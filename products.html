@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Custom Products - T-Shirts, Hoodies, Hats &amp; More | Meadow Prints</title>
+<meta name="description" content="Browse 500+ customizable products: t-shirts, hoodies, hats, bags, activewear, and promotional gifts. Add your design and get a free proof.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=9">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Products</div>
+    <span class="eyebrow">The catalog</span>
+    <h1>Custom products for every project</h1>
+    <p class="lead" style="max-width:56ch">Pick a blank, personalize it in our free studio, and we'll print or embroider it just for you. Every price includes our free art review.</p>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container">
+    <div class="chip-row" style="justify-content:center">
+      <span class="chip active" data-filter="all">All</span>
+      <span class="chip" data-filter="tshirts">T-Shirts</span>
+      <span class="chip" data-filter="hoodies">Hoodies &amp; Fleece</span>
+      <span class="chip" data-filter="hats">Hats &amp; Caps</span>
+      <span class="chip" data-filter="bags">Bags &amp; Totes</span>
+      <span class="chip" data-filter="activewear">Activewear &amp; Polos</span>
+      <span class="chip" data-filter="promo">Promo &amp; Gifts</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="container">
+    <div class="grid g4" id="catalog"></div>
+  </div>
+</section>
+
+<section class="band-cream cta-band">
+  <div class="container">
+    <h2>Can't find the exact blank?</h2>
+    <p class="lead">We stock hundreds more brands and styles. Tell us what you're after and we'll source it.</p>
+    <div class="mt3"><a class="btn btn-primary btn-lg" href="quote.html">Request a Product</a> <a class="btn btn-outline btn-lg" href="products.html">Start a Design</a></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/main.js?v=9"></script>
+<script src="js/products-data.js?v=8"></script>
+<script src="js/sanmar-catalog.js?v=8"></script>
+<script>
+  const cat = document.getElementById("catalog");
+  MEADOW_PRODUCTS.forEach(p => cat.insertAdjacentHTML("beforeend", productCardHTML(p)));
+  // re-init reveal + filters for freshly injected nodes
+  document.querySelectorAll(".product-card").forEach(el => el.classList.add("in"));
+  const chips = document.querySelectorAll("[data-filter]");
+  chips.forEach(chip => chip.addEventListener("click", () => {
+    chips.forEach(c => c.classList.remove("active")); chip.classList.add("active");
+    const f = chip.dataset.filter;
+    document.querySelectorAll("[data-cat]").forEach(card => {
+      card.style.display = (f === "all" || card.dataset.cat === f) ? "" : "none";
+    });
+  }));
+  // deep link via hash
+  if (location.hash) {
+    const target = location.hash.slice(1);
+    const chip = document.querySelector(`[data-filter="${target}"]`);
+    if (chip) chip.click();
+  }
+</script>
+</body>
+</html>

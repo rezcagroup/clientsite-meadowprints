@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Details | Meadow Prints &amp; Embroidery</title>
+<meta name="description" content="Request a quote on this custom product. Tell us your quantity and upload your design or logo - we'll send back a mockup within 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=9">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section style="padding-top:36px">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a> / <a href="products.html">Products</a> / <span id="crumb">Product</span></div>
+    <div class="split" style="align-items:flex-start;gap:56px">
+      <!-- Gallery -->
+      <div>
+        <div class="pd-hero" id="hero-media"></div>
+        <div class="pd-thumbs" id="pdThumbs"></div>
+        <div class="card" style="padding:22px;margin-top:16px">
+          <h3 style="margin-top:0">About this product</h3>
+          <p class="muted" id="p-long" style="margin-bottom:0">Details</p>
+        </div>
+      </div>
+
+      <!-- Inquiry -->
+      <div>
+        <span class="pill-tag" id="badge">Best Seller</span>
+        <h1 id="p-name" style="margin-top:14px">Meadow Soft-Wash Tee</h1>
+        <div id="p-brand" class="pc-brand" style="font-size:.85rem;margin-bottom:10px"></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <span class="stars" id="p-stars">★★★★★</span>
+          <span class="muted" id="p-reviews">(2,140 reviews)</span>
+        </div>
+        <p class="lead" id="p-blurb">Our go-to ringspun cotton tee - buttery soft and holds ink beautifully.</p>
+        <div style="font-family:var(--font-head);font-weight:800;font-size:1.6rem;color:var(--green-800);margin:6px 0 2px" id="p-price">from $9.98 <span class="muted" style="font-size:1rem;font-weight:600">/ each</span></div>
+        <p class="muted" style="font-size:.9rem">Final pricing depends on quantity, colors, and decoration - we'll confirm it on your mockup.</p>
+
+        <div id="p-features" style="margin:18px 0"></div>
+
+        <div id="p-colors" style="margin:18px 0">
+          <div class="pd-thumb-label">Available colors</div>
+          <div class="color-grid" id="p-color-dots"></div>
+          <p class="muted" style="font-size:.82rem;margin:8px 0 0">Dozens of colors and sizes in stock - we'll confirm exact options on your mockup.</p>
+        </div>
+
+        <!-- ORDER INQUIRY FORM -->
+        <div class="form-card" style="margin-top:20px;padding:26px">
+          <h2 style="margin-top:0;font-size:1.5rem">Interested in this order?</h2>
+          <p class="muted" style="margin-top:-4px">Tell us what you need and drop in your artwork. A Meadow specialist will send a mockup and pricing <strong>within 24 hours</strong> - no payment now.</p>
+
+          <form data-mock enctype="multipart/form-data">
+            <div class="form-success" style="display:none;background:var(--green-100);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center">
+              <div style="font-size:2.4rem"><span data-icon="leaf"></span></div>
+              <h3 style="margin:6px 0">Request received!</h3>
+              <p class="mb0 muted">Thanks - we've got your details for the <strong id="ok-product">product</strong>. Watch your inbox for a mockup within 24 hours.</p>
+            </div>
+
+            <input type="hidden" name="product" id="field-product" value="">
+
+            <div class="form-row">
+              <div class="field"><label>Name</label><input name="name" required placeholder="Your name"></div>
+              <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@email.com"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Phone (optional)</label><input name="phone" placeholder="(555) 555-1234"></div>
+              <div class="field"><label>Quantity needed</label>
+                <select name="quantity" required>
+                  <option value="">Select…</option>
+                  <option>Under 12</option><option>12-24</option><option>25-49</option><option>50-99</option><option>100-249</option><option>250+</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Decoration</label>
+                <select name="decoration"><option>Screen Printing</option><option>Embroidery</option><option>Direct-to-Garment</option><option>Not sure - help me choose</option></select>
+              </div>
+              <div class="field"><label>Need it by (optional)</label><input name="deadline" type="date"></div>
+            </div>
+
+            <div class="field">
+              <label>Colors &amp; sizes</label>
+              <input name="colorsizes" placeholder="e.g. Forest green, sizes S-XL, mostly M/L">
+            </div>
+
+            <div class="field">
+              <label>Your design / logo files</label>
+              <div class="dropzone" id="dropzone">
+                <div class="dz-ico"><span data-icon="paperclip"></span></div>
+                <strong>Drag &amp; drop your files here</strong>
+                <span>or click to browse · PNG, JPG, PDF, AI, EPS, SVG · up to 25MB each</span>
+                <input type="file" id="fileInput" name="files" multiple accept="image/*,.pdf,.ai,.eps,.svg" hidden>
+              </div>
+              <ul class="dz-list" id="dzList"></ul>
+              <div class="hint">Don't have art ready? No problem - leave a note below and we'll help you build it.</div>
+            </div>
+
+            <div class="field">
+              <label>Project details</label>
+              <textarea name="notes" placeholder="Tell us about your design, event, placement (front/back/sleeve), or anything else that helps."></textarea>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Request My Free Mockup</button>
+            <div class="form-note" style="margin-top:16px"><span data-icon="leaf"></span> Free mockup &amp; quote within 24h · No charge until you approve · 100% happiness guarantee</div>
+          </form>
+        </div>
+
+        <ul class="checklist mt3">
+          <li>Free art review, cleanup &amp; setup on every order</li>
+          <li>Volume pricing - the more you order, the more you save</li>
+          <li>Rush production available in as few as 3 days</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Details -->
+<section class="band-cream">
+  <div class="container">
+    <div class="split" style="align-items:flex-start;gap:40px">
+      <div>
+        <h2>Product details</h2>
+        <table class="spec-table" id="spec-table"></table>
+      </div>
+      <div>
+        <h2>Decoration &amp; turnaround</h2>
+        <div class="grid" style="gap:16px">
+          <div class="card" style="padding:22px"><h3><span data-icon="palette"></span> Decoration options</h3><p class="muted" id="d-decoration">Screen printing, DTG, or embroidery.</p></div>
+          <div class="card" style="padding:22px"><h3><span data-icon="thread"></span> Free art setup</h3><p class="muted">Every order includes free art review, cleanup, and (for embroidery) logo digitizing. You approve a proof before we produce anything.</p></div>
+          <div class="card" style="padding:22px"><h3><span data-icon="truck"></span> Turnaround &amp; shipping</h3><p class="muted">About 2 weeks after proof approval, with rush options in as few as 3 days. Free tracked shipping on orders over $100.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related -->
+<section>
+  <div class="container">
+    <h2 class="center" style="margin-bottom:36px">You might also like</h2>
+    <div class="grid g4" id="related"></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/main.js?v=9"></script>
+<script src="js/products-data.js?v=8"></script>
+<script src="js/sanmar-catalog.js?v=8"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id") || "meadow-soft-tee";
+  const p = MEADOW_PRODUCTS.find(x => x.id === id) || MEADOW_PRODUCTS[0];
+
+  document.getElementById("crumb").textContent = p.name;
+  document.getElementById("p-name").textContent = p.name;
+  document.getElementById("p-brand").textContent = p.brand ? "Blank: " + p.brand : "";
+  document.getElementById("p-blurb").textContent = p.blurb;
+  document.getElementById("p-long").textContent = p.blurb + " Available in a range of colors and sizes, ready for your custom print or embroidery.";
+  const _pv = priceFor(p);
+  document.getElementById("p-price").innerHTML = _pv
+    ? `from $${_pv} <span class="muted" style="font-size:1rem;font-weight:600">/ each</span>`
+    : `<span style="font-size:1.2rem">Get a quote for pricing</span>`;
+  document.getElementById("p-stars").textContent = stars(p.rating);
+  document.getElementById("p-reviews").textContent = `(${p.reviews.toLocaleString()} reviews)`;
+  document.getElementById("field-product").value = p.name;
+  document.getElementById("ok-product").textContent = p.name;
+  const badge = document.getElementById("badge");
+  if (p.tag) badge.textContent = p.tag; else badge.style.display = "none";
+  document.title = p.name + " | Meadow Prints & Embroidery";
+
+  // ---- Full detail content (features, colors, specs) ----
+  const specs = getSpecs(p);
+  document.getElementById("p-features").innerHTML =
+    `<div class="pd-thumb-label">Key features</div><ul class="checklist">${specs.features.map(f => `<li>${f}</li>`).join("")}</ul>`;
+  document.getElementById("p-color-dots").innerHTML =
+    COMMON_COLORS.map(c => `<span class="color-dot" title="${c}" style="background:${c};box-shadow:0 0 0 1.5px var(--line)"></span>`).join("");
+  document.getElementById("d-decoration").textContent = specs.decoration + ". We recommend the method that makes your art look its best.";
+
+  const rows = [
+    ["Brand / style", p.brand || "-"],
+    ["Category", specs.label],
+    ["Material", specs.material],
+    ["Weight", specs.weight],
+    ["Sizes", specs.sizes],
+    ["Colors", "Multiple - confirmed on your mockup"],
+    ["Decoration", specs.decoration],
+    ["Minimum order", "No minimum on many items; 12+ for screen print"],
+    ["Care", specs.care],
+    ["Turnaround", "~2 weeks after proof; rush available"],
+  ];
+  document.getElementById("spec-table").innerHTML =
+    rows.map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join("");
+
+  // ---- Product image: SanMar blank only ----
+  const hero = document.getElementById("hero-media");
+  const thumbsWrap = document.getElementById("pdThumbs");
+  hero.innerHTML = p.style
+    ? `<img src="images/blanks/${p.style}.jpg" alt="${p.name}">`
+    : productMediaSVG(p);
+  thumbsWrap.style.display = "none";
+
+  // ---- File dropzone ----
+  (function(){
+    const dz = document.getElementById("dropzone");
+    const input = document.getElementById("fileInput");
+    const list = document.getElementById("dzList");
+    let files = [];
+    const fmt = b => b < 1024*1024 ? (b/1024).toFixed(0)+" KB" : (b/1024/1024).toFixed(1)+" MB";
+    function render(){
+      list.innerHTML = "";
+      files.forEach((f, i) => {
+        const isImg = f.type.startsWith("image/");
+        const li = document.createElement("li");
+        li.innerHTML = `<span class="dz-thumb">${isImg ? "" : '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg>'}</span>
+          <span class="dz-name">${f.name}</span><span class="dz-size">${fmt(f.size)}</span>
+          <button type="button" class="dz-remove" aria-label="Remove">✕</button>`;
+        if (isImg){ const img=document.createElement("img"); img.className="dz-thumb"; img.src=URL.createObjectURL(f); li.querySelector(".dz-thumb").replaceWith(img); }
+        li.querySelector(".dz-remove").addEventListener("click", () => { files.splice(i,1); render(); });
+        list.appendChild(li);
+      });
+    }
+    function add(fl){ [...fl].forEach(f => files.push(f)); render(); }
+    dz.addEventListener("click", () => input.click());
+    input.addEventListener("change", e => add(e.target.files));
+    ["dragenter","dragover"].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add("drag"); }));
+    ["dragleave","drop"].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove("drag"); }));
+    dz.addEventListener("drop", e => add(e.dataTransfer.files));
+  })();
+
+  // related
+  const rel = MEADOW_PRODUCTS.filter(x => x.id !== p.id && x.cat === p.cat).slice(0,4);
+  const pool = rel.length ? rel : MEADOW_PRODUCTS.filter(x => x.id !== p.id).slice(0,4);
+  const relWrap = document.getElementById("related");
+  pool.forEach(rp => relWrap.insertAdjacentHTML("beforeend", productCardHTML(rp)));
+  relWrap.querySelectorAll(".product-card").forEach(el => el.classList.add("in"));
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a Free Quote | Meadow Prints &amp; Embroidery</title>
+<meta name="description" content="Get a free, no-pressure quote for custom printed or embroidered apparel. Tell us what you need and a Meadow specialist replies within one business day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=9">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="index.html">Home</a> / Get a Quote</div>
+    <span class="eyebrow">Free &amp; no pressure</span>
+    <h1>Get your free quote</h1>
+    <p class="lead" style="max-width:56ch">Tell us a little about your project and a real Meadow specialist will reply within one business day with pricing and ideas.</p>
+  </div>
+</section>
+
+<section style="padding-top:36px">
+  <div class="container split" style="align-items:flex-start;gap:48px">
+    <div class="form-card">
+      <form data-mock>
+        <div class="form-success" style="display:none;background:var(--green-100);border-radius:14px;padding:20px;margin-bottom:20px;text-align:center">
+          <div style="font-size:2.4rem"><span data-icon="leaf"></span></div>
+          <h3 style="margin:6px 0">Quote request received!</h3>
+          <p class="mb0 muted">Thanks! A Meadow specialist will email you within one business day.</p>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>First name</label><input required placeholder="Jordan"></div>
+          <div class="field"><label>Last name</label><input required placeholder="Rivera"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
+          <div class="field"><label>Phone (optional)</label><input placeholder="(555) 555-1234"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>What are you making?</label>
+            <select required>
+              <option value="">Choose a product…</option>
+              <option>T-Shirts</option><option>Hoodies &amp; Fleece</option><option>Embroidered Polos</option>
+              <option>Hats &amp; Caps</option><option>Bags &amp; Totes</option><option>Promo &amp; Gifts</option><option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field"><label>Decoration</label>
+            <select><option>Screen Printing</option><option>Embroidery</option><option>Direct-to-Garment</option><option>Help me choose</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Estimated quantity</label>
+            <select><option>Under 12</option><option>12-24</option><option>25-49</option><option>50-99</option><option>100-249</option><option>250+</option></select>
+          </div>
+          <div class="field"><label>Need it by</label><input type="date"></div>
+        </div>
+        <div class="field"><label>Tell us about your project</label><textarea placeholder="Colors, sizes, logo details, event date - anything helps!"></textarea><div class="hint">Have a logo? You'll be able to email it to us after you submit.</div></div>
+        <div class="field"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:500"><input type="checkbox" style="width:auto;margin-top:5px"> Send me occasional design tips &amp; offers (no spam, unsubscribe anytime).</label></div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Request My Free Quote</button>
+        <p class="muted center" style="font-size:.82rem;margin-top:12px">We reply within 1 business day · No obligation</p>
+      </form>
+    </div>
+
+    <aside>
+      <div class="card" style="padding:26px;margin-bottom:20px">
+        <h3>Why teams choose Meadow</h3>
+        <ul class="checklist mt2">
+          <li>Free design help &amp; art cleanup</li>
+          <li>No minimums on many products</li>
+          <li>Free proof before anything prints</li>
+          <li>100% happiness guarantee</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:26px;margin-bottom:20px">
+        <h3>Prefer to talk?</h3>
+        <p class="muted">Our team is here Mon-Fri, 8am-7pm ET.</p>
+        <p style="margin:6px 0"><strong><span data-icon="phone"></span> 1-800-MEADOW-1</strong></p>
+        <p style="margin:6px 0"><strong><span data-icon="mail"></span> hello@meadowprints.com</strong></p>
+        <a class="btn btn-outline btn-block mt2" href="contact.html">Contact Options</a>
+      </div>
+      <div class="card" style="padding:26px;background:var(--green-800);color:#edf3fa">
+        <div class="q-stars" style="color:var(--marigold)">★★★★★</div>
+        <p style="color:#fff">"Fastest quote I've ever gotten. Had pricing and a mockup by the next morning."</p>
+        <p style="color:#bcd0e6;margin:0;font-weight:700;font-size:.9rem">- Sam K., Trailhead 5K</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/main.js?v=9"></script>
+<script>
+  // If arriving from the studio/fundraiser, prefill message context
+  const from = new URLSearchParams(location.search).get("from");
+  if (from) {
+    const ta = document.querySelector("textarea");
+    if (ta && from === "studio") ta.value = "I'd like a quote on a custom order.";
+    if (ta && from === "fundraiser") ta.value = "I'd like to set up a t-shirt fundraiser for my group.";
+  }
+</script>
+</body>
+</html>

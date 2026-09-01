@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Reviews | Meadow Prints &amp; Embroidery</title>
+<meta name="description" content="Read real reviews from teams, schools, businesses, and families who trust Meadow Prints for custom apparel and embroidery. 5-star rated by local teams and businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=9">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="container center">
+    <span class="eyebrow">Reviews</span>
+    <h1>Loved by local teams &amp; businesses</h1>
+    <div style="font-size:1.6rem;color:var(--marigold);letter-spacing:3px">★★★★★</div>
+    <p class="lead">5 out of 5 average rating · Real customer reviews</p>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container">
+    <div class="grid g4">
+      <div class="card center reveal" style="padding:24px"><h3 style="font-size:2.2rem;color:var(--green-700);margin-bottom:0">5.0★</h3><p class="muted mb0">Overall rating</p></div>
+      <div class="card center reveal" style="padding:24px"><h3 style="font-size:2.2rem;color:var(--green-700);margin-bottom:0">98%</h3><p class="muted mb0">Would reorder</p></div>
+      <div class="card center reveal" style="padding:24px"><h3 style="font-size:2.2rem;color:var(--green-700);margin-bottom:0">24h</h3><p class="muted mb0">Avg. proof time</p></div>
+      <div class="card center reveal" style="padding:24px"><h3 style="font-size:2.2rem;color:var(--green-700);margin-bottom:0">99%</h3><p class="muted mb0">On-time delivery</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container">
+    <div class="chip-row" style="justify-content:center">
+      <span class="chip active" data-rfilter="all">All</span>
+      <span class="chip" data-rfilter="business">Business</span>
+      <span class="chip" data-rfilter="school">Schools</span>
+      <span class="chip" data-rfilter="event">Events</span>
+      <span class="chip" data-rfilter="embroidery">Embroidery</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="container">
+    <div class="grid g3" id="reviewGrid"></div>
+  </div>
+</section>
+
+<section class="band-mesh cta-band">
+  <div class="container">
+    <h2>Join thousands of happy groups</h2>
+    <p class="lead" style="color:#cfe0ee">Start your project today - and tell us how we did.</p>
+    <div class="mt3"><a class="btn btn-accent btn-lg" href="products.html">Start an Order</a> <a class="btn btn-ghost btn-lg" href="quote.html">Get a Quote</a></div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/main.js?v=9"></script>
+<script>
+  const REVIEWS = [
+    {n:"Maria G.",o:"North Ward FC",c:"event",t:"Our whole soccer club got jerseys in under two weeks. The proof process meant zero surprises, and the stitching is gorgeous.",p:"Embroidered Polos"},
+    {n:"Devon T.",o:"Bloom Café",c:"embroidery",t:"I needed 8 embroidered aprons. No minimums, real help, and they look so professional. Customers keep asking where we got them.",p:"Canvas Aprons"},
+    {n:"Aisha P.",o:"Riverside HS PTA",c:"school",t:"We raised over $3,200 with a shirt fundraiser. Meadow handled orders and shipping - we just shared the link.",p:"Fundraiser Tees"},
+    {n:"Sam K.",o:"Trailhead 5K",c:"event",t:"Fastest quote I've ever gotten. Had pricing and a mockup by the next morning, and the shirts arrived early.",p:"Event Tees"},
+    {n:"Carlos M.",o:"Fern & Oak Co.",c:"business",t:"Set up embroidered polos for our whole staff. The company store makes reordering for new hires effortless.",p:"Piqué Polos"},
+    {n:"Lena R.",o:"Cedar Robotics Club",c:"school",t:"The design team turned our rough sketch into something the kids were genuinely proud to wear. 10/10.",p:"Club Hoodies"},
+    {n:"Priya D.",o:"Summit Wellness",c:"business",t:"Beautiful DTG print on soft tees for our retreat. Colors were exactly like the proof. Will absolutely reorder.",p:"Tri-Blend Tees"},
+    {n:"Marcus W.",o:"Family Reunion '25",c:"event",t:"Matching shirts for 42 relatives, all different sizes, one easy order. Everyone loved them.",p:"Soft-Wash Tees"},
+    {n:"Nina B.",o:"Harbor Coffee Roasters",c:"embroidery",t:"The embroidered beanies are top quality. The logo digitizing was free and looked crisp on the first try.",p:"Knit Beanies"},
+  ];
+  const grid = document.getElementById("reviewGrid");
+  function render(f){
+    grid.innerHTML = "";
+    REVIEWS.filter(r => f==="all"||r.c===f).forEach(r => {
+      grid.insertAdjacentHTML("beforeend", `<div class="quote-card reveal in"><div class="q-stars">★★★★★</div><p>"${r.t}"</p><div class="q-author"><div class="q-avatar">${r.n.split(" ").map(x=>x[0]).join("")}</div><div><strong>${r.n}</strong><span>${r.o} · ${r.p}</span></div></div></div>`);
+    });
+  }
+  render("all");
+  document.querySelectorAll("[data-rfilter]").forEach(chip => chip.addEventListener("click", () => {
+    document.querySelectorAll("[data-rfilter]").forEach(c=>c.classList.remove("active"));
+    chip.classList.add("active"); render(chip.dataset.rfilter);
+  }));
+</script>
+</body>
+</html>
