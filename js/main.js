@@ -58,7 +58,6 @@ const NAV_LINKS = [
     { icon: "", title: "Businesses", sub: "Branded team gear", href: "use-cases.html#business" },
     { icon: "", title: "Schools & Clubs", sub: "Spirit wear & merch", href: "use-cases.html#schools" },
     { icon: "", title: "Events", sub: "Reunions, races, parties", href: "use-cases.html#events" },
-    { icon: "", title: "Fundraising", sub: "Raise money with tees", href: "fundraising.html" },
     { icon: "", title: "Family & Groups", sub: "Match the whole crew", href: "use-cases.html#family" },
     { icon: "", title: "Sports Teams", sub: "Jerseys & practice gear", href: "use-cases.html#sports" },
   ]},
@@ -100,7 +99,6 @@ function buildHeader() {
     <a href="embroidery.html">Embroidery</a>
     <a href="gallery.html">Our Work</a>
     <a href="how-it-works.html">How It Works</a>
-    <a href="fundraising.html">Fundraising</a>
     <a href="reviews.html">Reviews</a>
     <a href="about.html">About</a>
     <a href="faq.html">Help &amp; FAQ</a>
@@ -126,7 +124,7 @@ function buildFooter() {
           </div>
         </div>
         ${col("Shop", [["All Products","products.html"],["T-Shirts","products.html#tshirts"],["Hoodies","products.html#hoodies"],["Embroidery","embroidery.html"],["Hats & Caps","products.html#hats"],["Promo Gifts","products.html#promo"]])}
-        ${col("Solutions", [["Businesses","use-cases.html#business"],["Schools & Clubs","use-cases.html#schools"],["Events","use-cases.html#events"],["Fundraising","fundraising.html"],["Sports Teams","use-cases.html#sports"]])}
+        ${col("Solutions", [["Businesses","use-cases.html#business"],["Schools & Clubs","use-cases.html#schools"],["Events","use-cases.html#events"],["Sports Teams","use-cases.html#sports"],["Get a Quote","quote.html"]])}
         ${col("Learn", [["How It Works","how-it-works.html"],["Browse Products","products.html"],["Get a Quote","quote.html"],["Reviews","reviews.html"],["Help & FAQ","faq.html"]])}
         ${col("Company", [["About Us","about.html"],["Contact","contact.html"],["Our Guarantee","how-it-works.html#guarantee"],["Careers","about.html#careers"],["Blog","index.html"]])}
       </div>
