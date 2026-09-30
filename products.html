@@ -25,7 +25,7 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20">
+<link rel="stylesheet" href="css/styles.css?v=21">
 </head>
 <body>
 <div id="site-header"></div>
@@ -78,9 +78,9 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="js/main.js?v=20"></script>
-<script src="js/products-data.js?v=20"></script>
-<script src="js/sanmar-catalog.js?v=20"></script>
+<script src="js/main.js?v=21"></script>
+<script src="js/products-data.js?v=21"></script>
+<script src="js/sanmar-catalog.js?v=21"></script>
 <script>
   const grid = document.getElementById("catalog");
   const PAGE = 48;
@@ -96,8 +96,7 @@
   Object.keys(brandCounts).sort((a, b) => brandCounts[b] - brandCounts[a] || a.localeCompare(b))
     .forEach(m => brandSel.insertAdjacentHTML("beforeend", `<option value="${m}">${m} (${brandCounts[m]})</option>`));
 
-  function matches(p) {
-    if (state.cat !== "all" && p.cat !== state.cat) return false;
+  function matchesBrandAndSearch(p) {
     if (state.brand !== "all" && productMfr(p) !== state.brand) return false;
     if (state.q) {
       const hay = (p.name + " " + p.brand + " " + (p.style || "")).toLowerCase();
@@ -106,7 +105,17 @@
     return true;
   }
   function render() {
-    const list = MEADOW_PRODUCTS.filter(matches);
+    // only offer categories that have products for the chosen brand / search
+    const pool = MEADOW_PRODUCTS.filter(matchesBrandAndSearch);
+    const inCat = {};
+    pool.forEach(p => { inCat[p.cat] = (inCat[p.cat] || 0) + 1; });
+    if (state.cat !== "all" && !inCat[state.cat]) state.cat = "all";
+    chips.forEach(ch => {
+      const c = ch.dataset.pcat;
+      ch.style.display = (c === "all" || inCat[c]) ? "" : "none";
+      ch.classList.toggle("active", c === state.cat);
+    });
+    const list = state.cat === "all" ? pool : pool.filter(p => p.cat === state.cat);
     grid.innerHTML = list.slice(0, state.shown).map(productCardHTML).join("");
     grid.querySelectorAll(".product-card").forEach(el => el.classList.add("in"));
     document.getElementById("catCount").textContent =
@@ -114,11 +123,7 @@
     document.getElementById("catEmpty").style.display = list.length ? "none" : "";
     moreBtn.style.display = list.length > state.shown ? "" : "none";
   }
-  function setCat(c) {
-    state.cat = c; state.shown = PAGE;
-    chips.forEach(ch => ch.classList.toggle("active", ch.dataset.pcat === c));
-    render();
-  }
+  function setCat(c) { state.cat = c; state.shown = PAGE; render(); }
   chips.forEach(ch => ch.addEventListener("click", () => setCat(ch.dataset.pcat)));
   brandSel.addEventListener("change", () => { state.brand = brandSel.value; state.shown = PAGE; render(); });
   searchEl.addEventListener("input", () => { state.q = searchEl.value.trim().toLowerCase(); state.shown = PAGE; render(); });
