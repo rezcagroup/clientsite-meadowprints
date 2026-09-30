@@ -335,8 +335,9 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
 
 /* Feature / step */
 .feature { text-align:center; padding: 8px; }
-.feature .f-ico { width: 74px; height: 74px; border-radius: var(--radius); margin: 0 auto 18px; display:flex; align-items:center; justify-content:center; font-size: 2rem; color:#fff; border:2px solid var(--graphite); box-shadow: var(--shadow-sm); }
-[data-icon] { display:inline-flex; }
+.f-ico { width: 74px; height: 74px; border-radius: var(--radius); display:flex; align-items:center; justify-content:center; font-size: 2rem; color:#fff; border:2px solid var(--graphite); box-shadow: var(--shadow-sm); }
+.feature .f-ico { margin: 0 auto 18px; }
+[data-icon] { display:inline-flex; vertical-align:-.125em; }
 [data-icon] svg { width:1em; height:1em; }
 .feature h3 { margin-bottom: 8px; }
 .feature p { color: var(--slate); font-size:.98rem; }
@@ -385,6 +386,7 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
 .stats .stat { padding: 26px 16px; border-right:1px solid rgba(255,255,255,.18); }
 .stats .stat:last-child { border-right:none; }
 .stats.stats-3 { grid-template-columns: repeat(3,1fr); }
+.stats.stats-2 { grid-template-columns: repeat(2,1fr); max-width: 640px; margin: 0 auto; }
 .stats .stat strong { font-family:var(--font-head); font-size: clamp(2rem,4vw,3.1rem); color: var(--marigold); display:block; line-height:1; }
 .stats .stat span { font-family:var(--font-mono); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
 
@@ -514,6 +516,7 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
   .stats { grid-template-columns: repeat(2,1fr); }
   .stats .stat:nth-child(2){border-right:none;}
   .stats .stat:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.18);}
+  .stats.stats-2 .stat { border-bottom:none; }
   .stats.stats-3 .stat { padding: 20px 6px; border-bottom:none; }
   .stats.stats-3 .stat:nth-child(2){border-right:1px solid rgba(255,255,255,.18);}
   .stats.stats-3 .stat strong { font-size:1.7rem; }
