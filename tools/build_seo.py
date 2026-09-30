@@ -298,6 +298,11 @@ def business_ld():
             ],
         },
     }
+    data["openingHoursSpecification"] = [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+         "opens": "08:00", "closes": "19:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "16:00"},
+    ]
     if b["phone"]:
         data["telephone"] = b["phone"]
     if b["email"]:
