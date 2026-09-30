@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "17"
+ASSET_V = "18"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -32,8 +32,8 @@ BUSINESS = {
     "county": "Monmouth County",
     "region": "NJ",
     # Fill these in once confirmed with the client, then re-run. Empty values are left out.
-    "phone": "",
-    "email": "",
+    "phone": "+1-732-763-6078",
+    "email": "meadowprintsembroidery@gmail.com",
     "street": "",
     "city": "",
     "zip": "",

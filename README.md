@@ -45,7 +45,7 @@ over the meadow-green brand color.
 - **Brand name / links:** `NAV_LINKS`, `buildHeader()`, `buildFooter()` in `js/main.js`
 - **Colors / fonts:** CSS variables at the top of `css/styles.css`
 - **Products / prices:** `window.MEADOW_PRODUCTS` in `js/products-data.js`
-- **Contact details, phone, address:** search the HTML for `1-800-MEADOW-1` / `hello@meadowprints.com`
+- **Contact details, phone, address:** search the HTML for `(732) 763-6078` / `meadowprintsembroidery@gmail.com`
 
 ## Notes
 Forms post to Formspree (`FORM_ENDPOINT` in `js/main.js`). Add real

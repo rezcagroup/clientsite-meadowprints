@@ -137,7 +137,7 @@ function buildFooter() {
       <div class="footer-areas"><strong>Proudly serving Monmouth County, NJ</strong><a href="custom-apparel-freehold-nj">Freehold</a> · <a href="custom-apparel-red-bank-nj">Red Bank</a> · <a href="custom-apparel-middletown-nj">Middletown</a> · <a href="custom-apparel-howell-nj">Howell</a> · <a href="custom-apparel-marlboro-nj">Marlboro</a> · <a href="custom-apparel-manalapan-nj">Manalapan</a> · <a href="custom-apparel-holmdel-nj">Holmdel</a> · <a href="custom-apparel-asbury-park-nj">Asbury Park</a> · <a href="custom-apparel-long-branch-nj">Long Branch</a> · <a href="custom-apparel-wall-nj">Wall</a> · <a href="custom-apparel-neptune-nj">Neptune</a> · <a href="custom-apparel-tinton-falls-nj">Tinton Falls</a> · <a href="custom-apparel-ocean-township-nj">Ocean Township</a> · <a href="custom-apparel-eatontown-nj">Eatontown</a> · <a href="custom-apparel-colts-neck-nj">Colts Neck</a> · <a href="custom-apparel-hazlet-nj">Hazlet</a> · <a href="custom-apparel-belmar-nj">Belmar</a> · <a href="custom-apparel-manasquan-nj">Manasquan</a> · <a href="service-areas">All service areas</a></div>
       <div class="footer-bottom">
         <div>© ${new Date().getFullYear()} Meadow Prints &amp; Embroidery LLC. All rights reserved.</div>
-        <div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="contact">1-800-MEADOW-1</a></div>
+        <div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="tel:+17327636078">(732) 763-6078</a></div>
       </div>
     </div>
   </footer>`;
