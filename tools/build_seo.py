@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "15"
+ASSET_V = "16"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -239,6 +239,10 @@ def town_file(slug):
     return f"custom-apparel-{slug}-nj.html"
 
 
+def town_href(slug):
+    return href(town_file(slug))
+
+
 # ---------------------------------------------------------------- helpers
 def esc(s):
     return html.escape(s, quote=True)
@@ -248,8 +252,15 @@ def ld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "</script>"
 
 
+def href(path):
+    """Site-relative link for a page file: clean URLs, no .html (see vercel.json)."""
+    name, _, frag = path.partition("#")
+    name = "/" if name == "index.html" else name[:-5] if name.endswith(".html") else name
+    return name + ("#" + frag if frag else "")
+
+
 def url(path):
-    return BASE + "/" + ("" if path == "index.html" else path)
+    return BASE + "/" + ("" if path == "index.html" else href(path))
 
 
 def business_ld():
@@ -282,8 +293,8 @@ def business_ld():
             "@type": "OfferCatalog", "name": "Custom apparel services",
             "itemListElement": [
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "url": url(u)}}
-                for n, u in [("Screen printing", "screen-printing.html"), ("Custom embroidery", "embroidery.html"),
-                             ("Custom t-shirts", "custom-t-shirts.html"), ("Custom apparel catalog", "products.html")]
+                for n, u in [("Screen printing", "screen-printing"), ("Custom embroidery", "embroidery"),
+                             ("Custom t-shirts", "custom-t-shirts"), ("Custom apparel catalog", "products.html")]
             ],
         },
     }
@@ -339,6 +350,9 @@ def seo_block(path, title, desc, schemas, image="images/hero/hero.jpg"):
         f'<meta property="og:url" content="{url(path)}">',
         f'<meta property="og:image" content="{BASE}/{image}">',
         '<meta name="twitter:card" content="summary_large_image">',
+        '<link rel="icon" href="/favicon.ico" sizes="48x48">',
+        '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
     ] + [ld(s) for s in schemas] + ["<!-- seo:end -->"]
     return "\n".join(lines)
 
@@ -395,8 +409,8 @@ def cta(heading, text):
     <h2>{heading}</h2>
     <p class="lead" style="color:#cfe0ee;max-width:52ch;margin:0 auto 10px">{text}</p>
     <div class="mt3">
-      <a class="btn btn-accent btn-lg" href="quote.html">Get a Free Quote</a>
-      <a class="btn btn-ghost btn-lg" href="products.html">Browse Products</a>
+      <a class="btn btn-accent btn-lg" href="quote">Get a Free Quote</a>
+      <a class="btn btn-ghost btn-lg" href="products">Browse Products</a>
     </div>
   </div>
 </section>
@@ -404,12 +418,12 @@ def cta(heading, text):
 
 
 SERVICE_CARDS = [
-    ("printer", "Screen Printing", "Bold, durable prints that get more affordable per shirt as the order grows.", "screen-printing.html"),
-    ("thread", "Custom Embroidery", "Stitched logos for polos, hats, jackets and bags with a premium finish.", "embroidery.html"),
-    ("shirt", "Custom T-Shirts", "Tees for teams, events and businesses, from one-offs to hundreds.", "custom-t-shirts.html"),
-    ("cap", "Hats &amp; Caps", "Truckers, snapbacks and beanies, embroidered or patched.", "products.html#hats"),
-    ("jacket", "Hoodies &amp; Outerwear", "Hoodies, crews, quarter-zips and jackets for crews and fans.", "products.html#hoodies"),
-    ("target", "Team &amp; Spirit Wear", "Uniforms, warmups and fan gear with names and numbers.", "use-cases.html#sports"),
+    ("printer", "Screen Printing", "Bold, durable prints that get more affordable per shirt as the order grows.", "screen-printing"),
+    ("thread", "Custom Embroidery", "Stitched logos for polos, hats, jackets and bags with a premium finish.", "embroidery"),
+    ("shirt", "Custom T-Shirts", "Tees for teams, events and businesses, from one-offs to hundreds.", "custom-t-shirts"),
+    ("cap", "Hats &amp; Caps", "Truckers, snapbacks and beanies, embroidered or patched.", "products#hats"),
+    ("jacket", "Hoodies &amp; Outerwear", "Hoodies, crews, quarter-zips and jackets for crews and fans.", "products#hoodies"),
+    ("target", "Team &amp; Spirit Wear", "Uniforms, warmups and fan gear with names and numbers.", "use-cases#sports"),
 ]
 
 
@@ -423,7 +437,7 @@ def service_grid():
 
 def town_chips(slugs, light=False):
     return "".join(
-        f'\n      <a class="chip" href="{town_file(s)}">{esc(TOWN_BY_SLUG[s][1])}</a>' for s in slugs)
+        f'\n      <a class="chip" href="{town_href(s)}">{esc(TOWN_BY_SLUG[s][1])}</a>' for s in slugs)
 
 
 # ---------------------------------------------------------------- town pages
@@ -438,7 +452,7 @@ def build_town(i, town, photos):
     faqs = [
         (f"Do you serve {name}, NJ?",
          f"Yes. Meadow Prints &amp; Embroidery is based in Monmouth County and works with businesses, teams, schools and families in {name} "
-         f"every week. Send us your idea through the <a href=\"quote.html\">quote form</a> and a real person replies within one business day."),
+         f"every week. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
         (f"How fast can I get custom shirts in {name}?",
          f"Most {name} orders are finished about two weeks after you approve your proof, and rush production is available in as few as 3 days. "
          f"You get a digital proof within 24 hours, and nothing is printed until you approve it."),
@@ -456,13 +470,13 @@ def build_town(i, town, photos):
     body = f"""
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumbs"><a href="index.html">Home</a> / <a href="service-areas.html">Service Areas</a> / {esc(name)}</div>
+    <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / {esc(name)}</div>
     <span class="eyebrow">Serving {esc(name)}, NJ</span>
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem)">Custom T-Shirts, Screen Printing &amp; Embroidery in {esc(name)}, NJ</h1>
     <p class="lead" style="max-width:68ch">{esc(intro)}</p>
     <div class="hero-cta">
-      <a class="btn btn-primary btn-lg" href="quote.html">Get a Free Quote</a>
-      <a class="btn btn-outline btn-lg" href="products.html">Browse Products</a>
+      <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
+      <a class="btn btn-outline btn-lg" href="products">Browse Products</a>
     </div>
   </div>
 </section>
@@ -474,7 +488,7 @@ def build_town(i, town, photos):
     <p class="lead">Every order is made for you, with a free proof before anything is printed or stitched.</p>
     <ul class="checklist mt2">{order_items}
     </ul>
-    <div class="hero-cta"><a class="btn btn-primary" href="quote.html">Start My {esc(name.split(" & ")[0])} Order</a><a class="btn btn-outline" href="gallery.html">See Our Work</a></div>
+    <div class="hero-cta"><a class="btn btn-primary" href="quote">Start My {esc(name.split(" & ")[0])} Order</a><a class="btn btn-outline" href="gallery">See Our Work</a></div>
   </div>
   <div class="card reveal" style="padding:0;overflow:hidden"><img src="images/products/{photo}.jpg?v=8" alt="{esc(cap)} by Meadow Prints &amp; Embroidery, serving {esc(name)}, NJ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3"></div>
 </section>
@@ -516,7 +530,7 @@ def build_town(i, town, photos):
     <span class="eyebrow">Nearby</span>
     <h2>Also serving towns near {esc(name)}</h2>
     <div class="chip-row mt3" style="justify-content:center">{town_chips(nearby)}
-      <a class="chip" href="service-areas.html">All Monmouth County towns</a>
+      <a class="chip" href="service-areas">All Monmouth County towns</a>
     </div>
   </div>
 </section>
@@ -532,20 +546,20 @@ def build_hub():
     desc = ("Screen printing, embroidery and custom apparel across Monmouth County, NJ: "
             "Freehold, Red Bank, Middletown, Howell, Marlboro, Asbury Park and more.")
     cards = "".join(
-        f'\n      <a class="card reveal" style="padding:22px" href="{town_file(slug)}"><h3 style="margin-bottom:6px">{esc(name)}</h3>'
+        f'\n      <a class="card reveal" style="padding:22px" href="{town_href(slug)}"><h3 style="margin-bottom:6px">{esc(name)}</h3>'
         f'<p class="muted mb0" style="font-size:.92rem">Custom t-shirts, screen printing &amp; embroidery in {esc(name)}, NJ</p></a>'
         for slug, name, *_ in TOWNS)
     schemas = [business_ld(), breadcrumb_ld([("Home", "index.html"), ("Service Areas", path)])]
     body = f"""
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumbs"><a href="index.html">Home</a> / Service Areas</div>
+    <div class="breadcrumbs"><a href="/">Home</a> / Service Areas</div>
     <span class="eyebrow">Monmouth County, NJ</span>
     <h1>Custom apparel for every town in Monmouth County</h1>
     <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is a Monmouth County custom apparel shop. We screen print, embroider and deliver custom t-shirts, hoodies, hats and workwear for businesses, teams, schools and events from the bayshore to the beaches to the farms out west.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary btn-lg" href="quote.html">Get a Free Quote</a>
-      <a class="btn btn-outline btn-lg" href="products.html">Browse Products</a>
+      <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
+      <a class="btn btn-outline btn-lg" href="products">Browse Products</a>
     </div>
   </div>
 </section>
@@ -559,7 +573,7 @@ def build_hub():
     </div>
     <div class="grid g3">{cards}
     </div>
-    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We work with customers in every Monmouth County municipality, and we ship orders outside the county too. <a href="quote.html">Ask us for a quote</a>.</p>
+    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We work with customers in every Monmouth County municipality, and we ship orders outside the county too. <a href="quote">Ask us for a quote</a>.</p>
   </div>
 </section>
 
@@ -591,13 +605,13 @@ def build_service(path, name, title, desc, eyebrow, h1, lead, best_for, photo, p
     body = f"""
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumbs"><a href="index.html">Home</a> / {name}</div>
+    <div class="breadcrumbs"><a href="/">Home</a> / {name}</div>
     <span class="eyebrow">{eyebrow}</span>
     <h1>{h1}</h1>
     <p class="lead" style="max-width:66ch">{lead}</p>
     <div class="hero-cta">
-      <a class="btn btn-primary btn-lg" href="quote.html">Get a Free Quote</a>
-      <a class="btn btn-outline btn-lg" href="products.html">Browse Products</a>
+      <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
+      <a class="btn btn-outline btn-lg" href="products">Browse Products</a>
     </div>
   </div>
 </section>
@@ -608,7 +622,7 @@ def build_service(path, name, title, desc, eyebrow, h1, lead, best_for, photo, p
     <h2>When {name.lower()} is the right call</h2>
     <ul class="checklist mt2">{best}
     </ul>
-    <div class="hero-cta"><a class="btn btn-primary" href="quote.html">Price My Order</a><a class="btn btn-outline" href="gallery.html">See Our Work</a></div>
+    <div class="hero-cta"><a class="btn btn-primary" href="quote">Price My Order</a><a class="btn btn-outline" href="gallery">See Our Work</a></div>
   </div>
   <div class="card reveal" style="padding:0;overflow:hidden"><img src="images/products/{photo}.jpg?v=8" alt="{photo_alt}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3"></div>
 </section>
@@ -636,7 +650,7 @@ def build_service(path, name, title, desc, eyebrow, h1, lead, best_for, photo, p
     <span class="eyebrow">Monmouth County, NJ</span>
     <h2>{name} near you</h2>
     <div class="chip-row mt3" style="justify-content:center">{town_chips(top)}
-      <a class="chip" href="service-areas.html">All service areas</a>
+      <a class="chip" href="service-areas">All service areas</a>
     </div>
   </div>
 </section>
@@ -668,11 +682,11 @@ def build_services():
         [("How many shirts do I need to order for screen printing?",
           "Screen printing is most cost-effective at 12 pieces and up. For smaller quantities we will usually recommend direct-to-garment printing or embroidery instead."),
          ("How much does screen printing cost?",
-          "It depends on the garment, the number of ink colors and the quantity - the more you order, the lower the price per piece. <a href=\"quote.html\">Request a free quote</a> and we will price your exact project."),
+          "It depends on the garment, the number of ink colors and the quantity - the more you order, the lower the price per piece. <a href=\"quote\">Request a free quote</a> and we will price your exact project."),
          ("Can you screen print on hoodies and other garments?",
           "Yes. We print tees, long sleeves, tanks, hoodies, crewneck sweatshirts and many bags and performance fabrics."),
          ("Do you serve my town?",
-          "We work with customers across Monmouth County, NJ, including Freehold, Red Bank, Middletown, Howell, Marlboro, Manalapan and the Shore towns. See our <a href=\"service-areas.html\">service areas</a>.")]))
+          "We work with customers across Monmouth County, NJ, including Freehold, Red Bank, Middletown, Howell, Marlboro, Manalapan and the Shore towns. See our <a href=\"service-areas\">service areas</a>.")]))
     out.append(build_service(
         "custom-t-shirts.html", "Custom T-Shirts",
         "Custom T-Shirts in Monmouth County, NJ | Meadow Prints & Embroidery",
@@ -698,7 +712,7 @@ def build_services():
          ("Can you help with my design?",
           "Yes. Every order includes a free art review, and we can create a mockup from a rough idea or an existing logo."),
          ("Where are you located?",
-          "Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey, and serves the whole county. See our <a href=\"service-areas.html\">service areas</a>.")]))
+          "Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey, and serves the whole county. See our <a href=\"service-areas\">service areas</a>.")]))
     return out
 
 

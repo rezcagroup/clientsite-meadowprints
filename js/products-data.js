@@ -158,7 +158,7 @@ function productMfr(p) {
 }
 
 function productCardHTML(p) {
-  return `<a class="card product-card reveal" data-cat="${p.cat}" href="product.html?id=${p.id}">
+  return `<a class="card product-card reveal" data-cat="${p.cat}" href="product?id=${p.id}">
     <div class="pc-media${p.style ? ' blank' : ''}">${p.tag ? `<span class="tag">${p.tag}</span>` : ""}${productBlankMedia(p, "pc-photo")}</div>
     <div class="pc-body">
       <h3>${p.name}</h3>
