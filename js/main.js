@@ -47,7 +47,8 @@ function iconify(root) {
 
 const NAV_LINKS = [
   { label: "Products", href: "products.html", mega: [
-    { icon: "", title: "T-Shirts", sub: "Soft, everyday tees", href: "products.html#tshirts" },
+    { icon: "", title: "Custom T-Shirts", sub: "Tees for any group", href: "custom-t-shirts.html" },
+    { icon: "", title: "Screen Printing", sub: "Bold, durable prints", href: "screen-printing.html" },
     { icon: "", title: "Hoodies & Fleece", sub: "Cozy custom layers", href: "products.html#hoodies" },
     { icon: "", title: "Embroidery", sub: "Polos, caps, jackets", href: "embroidery.html" },
     { icon: "", title: "Hats & Caps", sub: "Stitched or printed", href: "products.html#hats" },
@@ -64,6 +65,7 @@ const NAV_LINKS = [
   { label: "Embroidery", href: "embroidery.html" },
   { label: "Our Work", href: "gallery.html" },
   { label: "How It Works", href: "how-it-works.html" },
+  { label: "Service Areas", href: "service-areas.html" },
 ];
 
 function buildHeader() {
@@ -96,8 +98,11 @@ function buildHeader() {
     <a href="products.html">Start an Order</a>
     <a href="use-cases.html">Use Cases</a>
     <a href="embroidery.html">Embroidery</a>
+    <a href="screen-printing.html">Screen Printing</a>
+    <a href="custom-t-shirts.html">Custom T-Shirts</a>
     <a href="gallery.html">Our Work</a>
     <a href="how-it-works.html">How It Works</a>
+    <a href="service-areas.html">Service Areas</a>
     <a href="about.html">About</a>
     <a href="faq.html">Help &amp; FAQ</a>
     <a href="contact.html">Contact</a>
@@ -113,7 +118,7 @@ function buildFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand brand-footer" href="index.html">${LOGO}</a>
-          <p>Custom apparel, screen printing &amp; embroidery - designed with you, made to order, and shipped with care. <strong>Quality. Precision. Every stitch.</strong> Proudly independent since 2024.</p>
+          <p>Custom apparel, screen printing &amp; embroidery in Monmouth County, NJ - designed with you, made to order, and shipped with care. <strong>Quality. Precision. Every stitch.</strong> Proudly independent since 2024.</p>
           <div class="socials">
             <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
             <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>
@@ -121,11 +126,12 @@ function buildFooter() {
             <a href="#" aria-label="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-4 19.2c-.1-.8-.2-2 .1-2.9l1.2-5s-.3-.6-.3-1.5c0-1.5.8-2.6 1.9-2.6.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.5-.2 1 .5 1.9 1.6 1.9 2 0 3.3-2.5 3.3-5.5 0-2.3-1.5-4-4.4-4a5 5 0 0 0-5.2 5c0 1 .3 1.6.7 2.2.2.2.2.3.1.6l-.2.9c-.1.3-.3.4-.6.3-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.8 7.8-6.8 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.9c-.3 1-.9 2-1.4 2.8A10 10 0 1 0 12 2z"/></svg></a>
           </div>
         </div>
-        ${col("Shop", [["All Products","products.html"],["T-Shirts","products.html#tshirts"],["Hoodies","products.html#hoodies"],["Embroidery","embroidery.html"],["Hats & Caps","products.html#hats"],["Promo Gifts","products.html#promo"]])}
+        ${col("Shop", [["All Products","products.html"],["Custom T-Shirts","custom-t-shirts.html"],["Screen Printing","screen-printing.html"],["Embroidery","embroidery.html"],["Hoodies","products.html#hoodies"],["Hats & Caps","products.html#hats"],["Promo Gifts","products.html#promo"]])}
         ${col("Solutions", [["Businesses","use-cases.html#business"],["Schools & Clubs","use-cases.html#schools"],["Events","use-cases.html#events"],["Sports Teams","use-cases.html#sports"],["Get a Quote","quote.html"]])}
-        ${col("Learn", [["How It Works","how-it-works.html"],["Browse Products","products.html"],["Get a Quote","quote.html"],["Help & FAQ","faq.html"]])}
+        ${col("Learn", [["How It Works","how-it-works.html"],["Browse Products","products.html"],["Service Areas","service-areas.html"],["Help & FAQ","faq.html"]])}
         ${col("Company", [["About Us","about.html"],["Contact","contact.html"],["Our Guarantee","how-it-works.html#guarantee"],["Careers","about.html#careers"],["Blog","index.html"]])}
       </div>
+      <div class="footer-areas"><strong>Proudly serving Monmouth County, NJ</strong><a href="custom-apparel-freehold-nj.html">Freehold</a> · <a href="custom-apparel-red-bank-nj.html">Red Bank</a> · <a href="custom-apparel-middletown-nj.html">Middletown</a> · <a href="custom-apparel-howell-nj.html">Howell</a> · <a href="custom-apparel-marlboro-nj.html">Marlboro</a> · <a href="custom-apparel-manalapan-nj.html">Manalapan</a> · <a href="custom-apparel-holmdel-nj.html">Holmdel</a> · <a href="custom-apparel-asbury-park-nj.html">Asbury Park</a> · <a href="custom-apparel-long-branch-nj.html">Long Branch</a> · <a href="custom-apparel-wall-nj.html">Wall</a> · <a href="custom-apparel-neptune-nj.html">Neptune</a> · <a href="custom-apparel-tinton-falls-nj.html">Tinton Falls</a> · <a href="custom-apparel-ocean-township-nj.html">Ocean Township</a> · <a href="custom-apparel-eatontown-nj.html">Eatontown</a> · <a href="custom-apparel-colts-neck-nj.html">Colts Neck</a> · <a href="custom-apparel-hazlet-nj.html">Hazlet</a> · <a href="custom-apparel-belmar-nj.html">Belmar</a> · <a href="custom-apparel-manasquan-nj.html">Manasquan</a> · <a href="service-areas.html">All service areas</a></div>
       <div class="footer-bottom">
         <div>© ${new Date().getFullYear()} Meadow Prints &amp; Embroidery LLC. All rights reserved.</div>
         <div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="contact.html">1-800-MEADOW-1</a></div>

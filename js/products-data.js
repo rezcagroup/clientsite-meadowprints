@@ -108,6 +108,12 @@ const CATEGORY_SPECS = {
   promo:     { label:"Promo & Accessories", material:"Varies by item", weight:"One size", sizes:"One size", decoration:"Embroidery or print", care:"Follow item label",
                features:["Crowd-pleasing giveaway","Clean branding surface","Pairs well with apparel orders","Bulk pricing available"] },
 };
+CATEGORY_SPECS.outerwear = { label:"Jackets & Vests", material:"Soft shell, fleece, nylon, or insulated shells", weight:"Varies by style", sizes:"Adult XS - 4XL, ladies' and tall cuts on many styles", decoration:"Embroidery or heat-applied logo", care:"Follow garment label",
+               features:["Left-chest and back logo placement","Layer-ready fit","Wind- and water-resistant options","Great for crews, staff and team gifts"] };
+CATEGORY_SPECS.wovens = { label:"Woven & Dress Shirts", material:"Cotton, poly-cotton, or stretch blends", weight:"Varies by style", sizes:"Adult XS - 6XL, ladies' and tall cuts on many styles", decoration:"Embroidery", care:"Machine wash, tumble dry low",
+               features:["Wrinkle-resistant options","Crisp left-chest embroidery","Office, restaurant and trade-show ready","Matching men's and women's styles"] };
+CATEGORY_SPECS.bottoms = { label:"Pants & Shorts", material:"Fleece, canvas, or performance fabric", weight:"Varies by style", sizes:"Youth and adult sizes", decoration:"Screen print or embroidery", care:"Machine wash cold, tumble dry low",
+               features:["Hip or leg logo placement","Pairs with hoodies and tees","Team, crew and spirit-wear favorite","Youth and adult sizing"] };
 function getSpecs(p) { return CATEGORY_SPECS[p.cat] || CATEGORY_SPECS.tshirts; }
 const COMMON_COLORS = ["#1c1c1c","#ffffff","#243b63","#26400f","#7a1f2b","#4a5850","#f5a623","#2f9bd6","#e7ddc6","#6b4e9e"];
 
@@ -143,13 +149,21 @@ function productBlankMedia(p, cls) {
 
 function stars(n) { return "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5 - n); }
 
+/* Manufacturer name for filtering (hand-written entries store brand + style together) */
+function productMfr(p) {
+  if (p.mfr) return p.mfr;
+  const b = (p.brand || "").replace(/^Port & Co\./, "Port & Company");
+  const known = ["Port & Company","Port Authority","Sport-Tek","The North Face","Comfort Colors","Next Level","Bella+Canvas"];
+  return known.find(k => b.startsWith(k)) || b.split(" ")[0] || "Other";
+}
+
 function productCardHTML(p) {
   return `<a class="card product-card reveal" data-cat="${p.cat}" href="product.html?id=${p.id}">
     <div class="pc-media${p.style ? ' blank' : ''}">${p.tag ? `<span class="tag">${p.tag}</span>` : ""}${productBlankMedia(p, "pc-photo")}</div>
     <div class="pc-body">
       <h3>${p.name}</h3>
       ${p.brand ? `<div class="pc-brand">${p.brand}</div>` : ""}
-      <div class="pc-meta"><span class="stars">${stars(p.rating)}</span></div>
+      ${p.rating ? `<div class="pc-meta"><span class="stars">${stars(p.rating)}</span></div>` : ""}
       <div class="pc-foot"><span class="price">Get a quote</span><span class="btn btn-primary btn-sm">Request Order</span></div>
     </div>
   </a>`;
