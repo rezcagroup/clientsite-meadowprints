@@ -123,12 +123,6 @@ function buildFooter() {
         <div class="footer-brand">
           <a class="brand brand-footer" href="/">${LOGO}</a>
           <p>Custom apparel, screen printing &amp; embroidery in Monmouth County, NJ - designed with you, made to order, and shipped with care. <strong>Quality. Precision. Every stitch.</strong> Proudly independent since 2024.</p>
-          <div class="socials">
-            <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-            <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>
-            <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.6 3.6 3.6 4v3c-1.4 0-2.7-.4-3.6-1v6.5A5.5 5.5 0 1 1 10.5 10v3a2.5 2.5 0 1 0 2.5 2.5V3H16z"/></svg></a>
-            <a href="#" aria-label="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-4 19.2c-.1-.8-.2-2 .1-2.9l1.2-5s-.3-.6-.3-1.5c0-1.5.8-2.6 1.9-2.6.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.5-.2 1 .5 1.9 1.6 1.9 2 0 3.3-2.5 3.3-5.5 0-2.3-1.5-4-4.4-4a5 5 0 0 0-5.2 5c0 1 .3 1.6.7 2.2.2.2.2.3.1.6l-.2.9c-.1.3-.3.4-.6.3-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.8 7.8-6.8 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.9c-.3 1-.9 2-1.4 2.8A10 10 0 1 0 12 2z"/></svg></a>
-          </div>
         </div>
         ${col("Shop", [["All Products","products"],["Brands","brands"],["Custom T-Shirts","custom-t-shirts"],["Screen Printing","screen-printing"],["Embroidery","embroidery"],["Hoodies","products/hoodies"],["Hats & Caps","products/hats"],["Accessories & Gifts","products/promo"]])}
         ${col("Solutions", [["Businesses","use-cases/businesses"],["Schools & Clubs","use-cases/schools"],["Events","use-cases/events"],["Sports Teams","use-cases/sports"],["Get a Quote","quote"]])}
