@@ -64,7 +64,6 @@ const NAV_LINKS = [
   { label: "Embroidery", href: "embroidery.html" },
   { label: "Our Work", href: "gallery.html" },
   { label: "How It Works", href: "how-it-works.html" },
-  { label: "Reviews", href: "reviews.html" },
 ];
 
 function buildHeader() {
@@ -99,7 +98,6 @@ function buildHeader() {
     <a href="embroidery.html">Embroidery</a>
     <a href="gallery.html">Our Work</a>
     <a href="how-it-works.html">How It Works</a>
-    <a href="reviews.html">Reviews</a>
     <a href="about.html">About</a>
     <a href="faq.html">Help &amp; FAQ</a>
     <a href="contact.html">Contact</a>
@@ -125,7 +123,7 @@ function buildFooter() {
         </div>
         ${col("Shop", [["All Products","products.html"],["T-Shirts","products.html#tshirts"],["Hoodies","products.html#hoodies"],["Embroidery","embroidery.html"],["Hats & Caps","products.html#hats"],["Promo Gifts","products.html#promo"]])}
         ${col("Solutions", [["Businesses","use-cases.html#business"],["Schools & Clubs","use-cases.html#schools"],["Events","use-cases.html#events"],["Sports Teams","use-cases.html#sports"],["Get a Quote","quote.html"]])}
-        ${col("Learn", [["How It Works","how-it-works.html"],["Browse Products","products.html"],["Get a Quote","quote.html"],["Reviews","reviews.html"],["Help & FAQ","faq.html"]])}
+        ${col("Learn", [["How It Works","how-it-works.html"],["Browse Products","products.html"],["Get a Quote","quote.html"],["Help & FAQ","faq.html"]])}
         ${col("Company", [["About Us","about.html"],["Contact","contact.html"],["Our Guarantee","how-it-works.html#guarantee"],["Careers","about.html#careers"],["Blog","index.html"]])}
       </div>
       <div class="footer-bottom">
