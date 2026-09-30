@@ -6,7 +6,7 @@
 /* All site forms post here (Formspree). */
 const FORM_ENDPOINT = "https://formspree.io/f/xvkgyaze";
 
-const LOGO = `<img class="brand-logo" src="images/logo/newlogo-header.png?v=9" alt="Meadow Prints & Embroidery LLC" width="1420" height="1012">`;
+const LOGO = `<img class="brand-logo" src="images/logo/logo-nav.png" alt="Meadow Prints & Embroidery LLC - custom apparel in Monmouth County, NJ" width="200" height="143">`;
 
 /* Inline SVG icon set (stroke = currentColor, sized by font-size) */
 const ICONS = {
@@ -105,6 +105,7 @@ function buildHeader() {
     <a href="custom-t-shirts">Custom T-Shirts</a>
     <a href="gallery">Our Work</a>
     <a href="how-it-works">How It Works</a>
+    <a href="brands">Brands</a>
     <a href="service-areas">Service Areas</a>
     <a href="about">About</a>
     <a href="faq">Help &amp; FAQ</a>
@@ -129,12 +130,13 @@ function buildFooter() {
             <a href="#" aria-label="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-4 19.2c-.1-.8-.2-2 .1-2.9l1.2-5s-.3-.6-.3-1.5c0-1.5.8-2.6 1.9-2.6.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.5-.2 1 .5 1.9 1.6 1.9 2 0 3.3-2.5 3.3-5.5 0-2.3-1.5-4-4.4-4a5 5 0 0 0-5.2 5c0 1 .3 1.6.7 2.2.2.2.2.3.1.6l-.2.9c-.1.3-.3.4-.6.3-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.8 7.8-6.8 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.9c-.3 1-.9 2-1.4 2.8A10 10 0 1 0 12 2z"/></svg></a>
           </div>
         </div>
-        ${col("Shop", [["All Products","products"],["Custom T-Shirts","custom-t-shirts"],["Screen Printing","screen-printing"],["Embroidery","embroidery"],["Hoodies","products/hoodies"],["Hats & Caps","products/hats"],["Promo Gifts","products/promo"]])}
+        ${col("Shop", [["All Products","products"],["Brands","brands"],["Custom T-Shirts","custom-t-shirts"],["Screen Printing","screen-printing"],["Embroidery","embroidery"],["Hoodies","products/hoodies"],["Hats & Caps","products/hats"],["Promo Gifts","products/promo"]])}
         ${col("Solutions", [["Businesses","use-cases/businesses"],["Schools & Clubs","use-cases/schools"],["Events","use-cases/events"],["Sports Teams","use-cases/sports"],["Get a Quote","quote"]])}
         ${col("Learn", [["How It Works","how-it-works"],["Browse Products","products"],["Service Areas","service-areas"],["Help & FAQ","faq"]])}
         ${col("Company", [["About Us","about"],["Contact","contact"],["Our Guarantee","how-it-works/guarantee"],["Careers","about/careers"],["Blog","/"]])}
       </div>
       <div class="footer-areas"><strong>Proudly serving Monmouth County, NJ</strong><a href="custom-apparel-freehold-nj">Freehold</a> · <a href="custom-apparel-red-bank-nj">Red Bank</a> · <a href="custom-apparel-middletown-nj">Middletown</a> · <a href="custom-apparel-howell-nj">Howell</a> · <a href="custom-apparel-marlboro-nj">Marlboro</a> · <a href="custom-apparel-manalapan-nj">Manalapan</a> · <a href="custom-apparel-holmdel-nj">Holmdel</a> · <a href="custom-apparel-asbury-park-nj">Asbury Park</a> · <a href="custom-apparel-long-branch-nj">Long Branch</a> · <a href="custom-apparel-wall-nj">Wall</a> · <a href="custom-apparel-neptune-nj">Neptune</a> · <a href="custom-apparel-tinton-falls-nj">Tinton Falls</a> · <a href="custom-apparel-ocean-township-nj">Ocean Township</a> · <a href="custom-apparel-eatontown-nj">Eatontown</a> · <a href="custom-apparel-colts-neck-nj">Colts Neck</a> · <a href="custom-apparel-hazlet-nj">Hazlet</a> · <a href="custom-apparel-belmar-nj">Belmar</a> · <a href="custom-apparel-manasquan-nj">Manasquan</a> · <a href="service-areas">All service areas</a></div>
+      <div class="footer-areas"><strong>Brands we embroider &amp; print</strong><a href="brands/port-authority">Port Authority</a> · <a href="brands/sport-tek">Sport-Tek</a> · <a href="brands/port-and-company">Port &amp; Company</a> · <a href="brands/carhartt">Carhartt</a> · <a href="brands/district">District</a> · <a href="brands/nike">Nike</a> · <a href="brands/bella-canvas">Bella+Canvas</a> · <a href="brands/the-north-face">The North Face</a> · <a href="brands/gildan">Gildan</a> · <a href="brands/richardson">Richardson</a> · <a href="brands/next-level">Next Level</a> · <a href="brands/comfort-colors">Comfort Colors</a> · <a href="brands">All brands</a></div>
       <div class="footer-bottom">
         <div>© ${new Date().getFullYear()} Meadow Prints &amp; Embroidery LLC. All rights reserved.</div>
         <div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="tel:+17327636078">(732) 763-6078</a></div>

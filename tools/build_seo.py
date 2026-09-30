@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "22"
+ASSET_V = "23"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -231,6 +231,34 @@ TOWNS = [
       "Shirts for clam fests, regattas and local events",
       "School and rec team gear"],
      ["middletown", "rumson-fair-haven", "hazlet", "red-bank"]),
+    ("bradley-beach-avon", "Bradley Beach & Avon-by-the-Sea",
+     "Bradley Beach and Avon-by-the-Sea are small beach towns with busy Main Street restaurants, boardwalks and a loyal summer crowd. We print and embroider staff shirts, beach-badge-season merch and event tees for the businesses and groups in both towns.",
+     ["Staff tees and hats for Main Street restaurants, cafes and ice cream shops",
+      "Lifeguard, beach-staff and summer camp shirts",
+      "Retail sweatshirts and tees for beach shops",
+      "Shirts for races, block parties and family beach weeks"],
+     ["belmar", "asbury-park", "neptune", "spring-lake"]),
+    ("sea-girt-brielle", "Sea Girt & Brielle",
+     "Sea Girt and Brielle sit at the southern tip of the county, between the ocean and the Manasquan River. Brielle's marinas and charter fleet and Sea Girt's beachfront and clubs keep us busy with embroidered caps, outerwear and crew shirts.",
+     ["Embroidered caps, quarter-zips and jackets for charter boats and marinas",
+      "Beach-club, yacht-club and golf apparel",
+      "Staff shirts for waterfront restaurants",
+      "Team and school spirit wear"],
+     ["manasquan", "spring-lake", "wall", "belmar"]),
+    ("keansburg-union-beach", "Keansburg & Union Beach",
+     "Keansburg and Union Beach are close-knit bayshore communities, known for the boardwalk amusements in Keansburg and strong volunteer fire and first aid companies in both towns. We make affordable custom shirts, hoodies and hats for local teams, squads and small businesses.",
+     ["Shirts and hoodies for fire companies, first aid squads and benefit events",
+      "Youth league uniforms and fan gear",
+      "Staff tees for boardwalk and bayfront businesses",
+      "School, club and memorial shirts"],
+     ["hazlet", "keyport", "middletown", "matawan-aberdeen"]),
+    ("sea-bright-monmouth-beach", "Sea Bright & Monmouth Beach",
+     "Sea Bright and Monmouth Beach run along the narrow strip between the ocean and the Shrewsbury River, lined with beach clubs, marinas and restaurants. We supply the staff uniforms, club apparel and retail merch those businesses go through every season.",
+     ["Beach-club and cabana-staff polos, tees and hats",
+      "Uniforms for oceanfront restaurants and bars",
+      "Marina, boating and fishing apparel",
+      "Retail sweatshirts and tees for club shops"],
+     ["rumson-fair-haven", "long-branch", "oceanport", "atlantic-highlands"]),
 ]
 TOWN_BY_SLUG = {t[0]: t for t in TOWNS}
 
@@ -803,27 +831,140 @@ def patch_existing():
 
 
 # ---------------------------------------------------------------- sitemap / robots
-def build_sitemap(extra):
+def build_sitemap(extra, catalog):
     pages = [("index.html", "1.0"), ("products.html", "0.8"), ("embroidery.html", "0.9"), ("screen-printing.html", "0.9"),
              ("custom-t-shirts.html", "0.9"), ("service-areas.html", "0.9"), ("use-cases.html", "0.7"), ("gallery.html", "0.7"),
              ("how-it-works.html", "0.6"), ("about.html", "0.6"), ("faq.html", "0.6"), ("quote.html", "0.8"), ("contact.html", "0.7")]
     pages += [(p, "0.8") for p in extra]
-    pages += [(f"products/{c}", "0.7") for c in ("t-shirts", "polos", "hoodies", "jackets", "woven-shirts", "pants-shorts", "hats", "bags", "promo")]
+    pages += [(p, "0.7") for p in catalog["listings"]]
+    pages += [(p, "0.5") for p in catalog["products"]]
     rows = "".join(
         f"\n  <url><loc>{url(p)}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>" for p, pr in pages)
     (ROOT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{rows}\n</urlset>\n')
-    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n")
+    return len(pages)
+
+
+AI_BOTS = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "anthropic-ai",
+           "PerplexityBot", "Perplexity-User", "Google-Extended", "Applebot-Extended", "Amazonbot", "DuckAssistBot",
+           "Meta-ExternalAgent", "CCBot", "cohere-ai", "YouBot"]
+
+
+def build_robots():
+    bots = "\n".join(f"User-agent: {b}" for b in AI_BOTS)
+    (ROOT / "robots.txt").write_text(
+        "# Meadow Prints & Embroidery - everything on this site is public and may be crawled.\n"
+        "User-agent: *\nAllow: /\n\n"
+        "# AI search engines and assistants are welcome to read and cite this site.\n"
+        f"{bots}\nAllow: /\n\n"
+        f"Sitemap: {BASE}/sitemap.xml\n")
+
+
+def build_llms(catalog):
+    b = BUSINESS
+    towns = "\n".join(f"- [{name}]({url(town_file(slug))})" for slug, name, *_ in TOWNS)
+    brands = "\n".join(f"- [{name}]({BASE}/brands/{slug}): {count} styles" for name, slug, count, _ in catalog["brands"])
+    text = f"""# {b["name"]}
+
+> {b["legal"]} is a custom apparel shop in Monmouth County, New Jersey. It screen prints, embroiders and direct-to-garment prints t-shirts, polos, hoodies, jackets, hats, bags and workwear for businesses, teams, schools and events. There is no walk-in storefront; customers order by phone, email or the website and receive a free digital proof before anything is produced.
+
+## Key facts
+
+- Location: Monmouth County, New Jersey (serves every town in the county and ships elsewhere)
+- Phone: (732) 763-6078
+- Email: {b["email"]}
+- Hours: Monday-Friday 8am-7pm, Saturday 10am-4pm, closed Sunday (Eastern Time)
+- Founded: {b["founded"]} by {b["founder"]}, {b["founder_title"]}
+- Pricing: quoted per order; there are no list prices on the site
+- Proof: free digital proof within 24 hours; nothing is printed or stitched until the customer approves it
+- Turnaround: about two weeks after proof approval; rush production in as few as 3 days
+- Minimums: none on many products; screen printing is most cost-effective at 12 pieces or more
+- Artwork: customers email their logo or design to {b["email"]}; art review and embroidery digitizing are free
+- Catalog: {catalog["count"]:,} blank styles, none sold undecorated
+
+## Services
+
+- [Custom embroidery]({url("embroidery.html")}): stitched logos on polos, hats, jackets and bags
+- [Screen printing]({url("screen-printing.html")}): bold, durable prints for orders of 12 or more
+- [Custom t-shirts]({url("custom-t-shirts.html")}): tees for teams, events, businesses and families
+- [Who we work with]({url("use-cases.html")}): businesses, schools and clubs, events, families, sports teams
+
+## Ordering
+
+- [Get a free quote]({url("quote.html")})
+- [How ordering works]({url("how-it-works.html")})
+- [FAQ]({url("faq.html")})
+- [Contact]({url("contact.html")})
+
+## Product catalog
+
+- [All products]({url("products.html")})
+- [T-shirts]({BASE}/products/t-shirts), [polos and activewear]({BASE}/products/polos), [hoodies and fleece]({BASE}/products/hoodies), [jackets and vests]({BASE}/products/jackets), [woven shirts]({BASE}/products/woven-shirts), [pants and shorts]({BASE}/products/pants-shorts), [hats and caps]({BASE}/products/hats), [bags and totes]({BASE}/products/bags), [promo and gifts]({BASE}/products/promo)
+
+## Brands
+
+{brands}
+
+## Service areas (Monmouth County, NJ)
+
+{towns}
+
+## Other pages
+
+- [About]({url("about.html")})
+- [Our work (photo gallery)]({url("gallery.html")})
+- [Service areas overview]({url("service-areas.html")})
+- [Sitemap]({BASE}/sitemap.xml)
+"""
+    (ROOT / "llms.txt").write_text(text)
+
+
+def build_404():
+    body = f"""
+<section class="page-hero">
+  <div class="container center">
+    <span class="eyebrow">Page not found</span>
+    <h1>That page has moved or does not exist</h1>
+    <p class="lead" style="max-width:56ch;margin:0 auto">Try one of these instead, or call us at (732) 763-6078.</p>
+    <div class="hero-cta" style="justify-content:center">
+      <a class="btn btn-primary btn-lg" href="/">Home</a>
+      <a class="btn btn-outline btn-lg" href="products">Browse Products</a>
+      <a class="btn btn-outline btn-lg" href="quote">Get a Free Quote</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    {service_grid()}
+  </div>
+</section>
+"""
+    html = page("404.html", "Page Not Found | Meadow Prints & Embroidery", "The page you were looking for could not be found.", [], body)
+    html = html.replace('<meta name="robots" content="index,follow,max-image-preview:large">', '<meta name="robots" content="noindex">')
+    html = html.replace('<meta name="viewport" content="width=device-width, initial-scale=1">',
+                        '<meta name="viewport" content="width=device-width, initial-scale=1">\n<base href="/">')
+    html = re.sub(r'<link rel="canonical"[^>]*>\n', "", html)
+    (ROOT / "404.html").write_text(html)
 
 
 def main():
+    import sys
+    import catalog_pages
+    for old in ROOT.glob("custom-apparel-*-nj.html"):
+        old.unlink()
     photos = gallery()
     towns = [build_town(i, t, photos) for i, t in enumerate(TOWNS)]
     build_hub()
     build_services()
     patch_existing()
-    build_sitemap(towns)
-    print(f"built {len(towns)} town pages, hub, 2 service pages; patched {len(EXISTING)} existing pages")
+    catalog = catalog_pages.build(sys.modules[__name__], ROOT)
+    total = build_sitemap(towns, catalog)
+    build_robots()
+    build_llms(catalog)
+    build_404()
+    print(f"built {len(towns)} town pages, hub, 2 service pages, {len(catalog['listings'])} catalog landing pages, "
+          f"{len(catalog['products'])} product pages; patched {len(EXISTING)} existing pages; sitemap has {total} URLs")
 
 
 if __name__ == "__main__":

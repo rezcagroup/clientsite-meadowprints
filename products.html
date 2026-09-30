@@ -26,7 +26,7 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=22">
+<link rel="stylesheet" href="css/styles.css?v=23">
 </head>
 <body>
 <div id="site-header"></div>
@@ -79,9 +79,9 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="js/main.js?v=22"></script>
-<script src="js/products-data.js?v=22"></script>
-<script src="js/sanmar-catalog.js?v=22"></script>
+<script src="js/main.js?v=23"></script>
+<script src="js/products-data.js?v=23"></script>
+<script src="js/sanmar-catalog.js?v=23"></script>
 <script>
   const grid = document.getElementById("catalog");
   const PAGE = 48;
@@ -125,8 +125,10 @@
     moreBtn.style.display = list.length > state.shown ? "" : "none";
   }
   const CAT_SLUG = { tshirts:"t-shirts", activewear:"polos", hoodies:"hoodies", outerwear:"jackets", wovens:"woven-shirts", bottoms:"pants-shorts", hats:"hats", bags:"bags", promo:"promo" };
-  const catUrl = c => c === "all" ? "/products" : "/products/" + CAT_SLUG[c];
-  function setCat(c) { state.cat = c; state.shown = PAGE; render(); syncUrl(); }
+  const brandSlug = b => b.toLowerCase().replace(/&/g, "and").replace(/\+/g, "-").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const catUrl = c => state.brand !== "all" ? "/brands/" + brandSlug(state.brand)
+    : c === "all" ? "/products" : "/products/" + CAT_SLUG[c];
+  function setCat(c, fromUser) { state.cat = c; state.shown = PAGE; render(); if (fromUser !== false) syncUrl(); }
   function syncUrl() {
     if (location.protocol === "file:") return;
     history.replaceState(null, "", catUrl(state.cat));
@@ -143,7 +145,10 @@
   const fromPath = Object.keys(CAT_SLUG).find(c => CAT_SLUG[c] === pathSlug);
   const fromHash = location.hash.slice(1);
   const start = fromPath || (CAT_SLUG[fromHash] ? fromHash : null);
-  if (start) setCat(start); else render();
+  const brandPath = (location.pathname.match(/^\/brands\/([a-z0-9-]+)\/?$/) || [])[1];
+  const startBrand = brandPath && Object.keys(brandCounts).find(b => brandSlug(b) === brandPath);
+  if (startBrand) { state.brand = startBrand; brandSel.value = startBrand; }
+  if (start) setCat(start, !fromPath); else render();
 </script>
 </body>
 </html>

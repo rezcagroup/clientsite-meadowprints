@@ -143,7 +143,7 @@ function productMediaSVG(p) { return blankSVG(SHAPE_BY_ID[p.id] || "tee", p.colo
 /* Primary catalog image = SanMar blank if we have the style, else a mockup */
 function productBlankMedia(p, cls) {
   return p.style
-    ? `<img class="${cls} pc-blank" src="${BLANKDIR}${p.style}.jpg" alt="${p.brand} blank" loading="lazy">`
+    ? `<img class="${cls} pc-blank" src="${BLANKDIR}${p.style}.jpg" alt="${p.name} - ${p.brand}, ready for custom embroidery or printing" loading="lazy" width="320" height="480">`
     : productMediaSVG(p);
 }
 
