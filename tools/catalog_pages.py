@@ -32,8 +32,8 @@ CATS = {
              "Trucker caps, snapbacks, dad hats, visors and beanies with flat or 3D puff embroidery and patches."),
     "bags": ("bags", "Bags & Totes", "Custom bags & totes",
              "Backpacks, duffels, totes, cinch packs and coolers embroidered or printed with your logo for teams, events and giveaways."),
-    "promo": ("promo", "Promo & Gifts", "Custom promo items & gifts",
-              "Aprons, blankets, towels, scarves and other branded extras that round out an apparel order."),
+    "promo": ("promo", "Accessories & Gifts", "Custom accessories & gifts",
+              "Aprons, blankets, towels, socks, gloves, scarves and other branded extras that round out an apparel order or make a great client gift."),
 }
 
 BRANDS = {

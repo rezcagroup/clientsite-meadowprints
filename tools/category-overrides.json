@@ -1,0 +1,22 @@
+{
+  "_comment": "Style number -> catalog category, for products the name-based sorting gets wrong. Categories: tshirts, activewear, hoodies, outerwear, wovens, bottoms, hats, bags, promo.",
+  "CTSC4223": "promo",
+  "CTSC1054": "promo",
+  "J317": "outerwear",
+  "J754": "outerwear",
+  "J790": "outerwear",
+  "JST70": "outerwear",
+  "ST272": "tshirts",
+  "ST350": "tshirts",
+  "BC3480": "tshirts",
+  "DT5300": "tshirts",
+  "NL3633": "tshirts",
+  "PC099H": "tshirts",
+  "PC380H": "tshirts",
+  "PC54H": "tshirts",
+  "CT106923": "tshirts",
+  "DT145": "tshirts",
+  "ST359": "tshirts",
+  "YST359": "tshirts",
+  "ST310": "bottoms"
+}

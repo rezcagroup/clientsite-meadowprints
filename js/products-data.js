@@ -105,7 +105,7 @@ const CATEGORY_SPECS = {
                features:["Structured or relaxed crown","Snapback or flexfit sizing","Great for 3D puff embroidery","Front, side, or back logo placement"] },
   bags:      { label:"Bags & Totes", material:"Canvas, poly, or ripstop", weight:"One size", sizes:"One size", decoration:"Embroidery or screen print", care:"Spot clean",
                features:["Durable everyday construction","Roomy branded panel","Great for events and giveaways","Monogram or full-logo ready"] },
-  promo:     { label:"Promo & Accessories", material:"Varies by item", weight:"One size", sizes:"One size", decoration:"Embroidery or print", care:"Follow item label",
+  promo:     { label:"Accessories & Gifts", material:"Varies by item", weight:"One size", sizes:"One size", decoration:"Embroidery or print", care:"Follow item label",
                features:["Crowd-pleasing giveaway","Clean branding surface","Pairs well with apparel orders","Bulk pricing available"] },
 };
 CATEGORY_SPECS.outerwear = { label:"Jackets & Vests", material:"Soft shell, fleece, nylon, or insulated shells", weight:"Varies by style", sizes:"Adult XS - 4XL, ladies' and tall cuts on many styles", decoration:"Embroidery or heat-applied logo", care:"Follow garment label",

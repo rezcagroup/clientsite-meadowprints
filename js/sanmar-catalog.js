@@ -2088,4 +2088,6 @@ window.MEADOW_PRODUCTS.push(
   { id:"yst390", name:"Youth PosiCharge Electric Heather Tee", brand:"Sport-Tek YST390", mfr:"Sport-Tek", style:"YST390", cat:"tshirts", color:"#26400f", work:null, blurb:"Sport-Tek YST390 - Youth PosiCharge Electric Heather Tee, ready for custom print or embroidery." },
   { id:"yst470ls", name:"Youth Long Sleeve Rashguard Tee", brand:"Sport-Tek YST470LS", mfr:"Sport-Tek", style:"YST470LS", cat:"tshirts", color:"#26400f", work:null, blurb:"Sport-Tek YST470LS - Youth Long Sleeve Rashguard Tee, ready for custom print or embroidery." }
 );
+/* category corrections from tools/category-overrides.json (applies to every product, hand-written ones too) */
+(function (fix) { window.MEADOW_PRODUCTS.forEach(p => { if (p.style && fix[p.style]) p.cat = fix[p.style]; }); })({"CTSC4223": "promo", "CTSC1054": "promo", "J317": "outerwear", "J754": "outerwear", "J790": "outerwear", "JST70": "outerwear", "ST272": "tshirts", "ST350": "tshirts", "BC3480": "tshirts", "DT5300": "tshirts", "NL3633": "tshirts", "PC099H": "tshirts", "PC380H": "tshirts", "PC54H": "tshirts", "CT106923": "tshirts", "DT145": "tshirts", "ST359": "tshirts", "YST359": "tshirts", "ST310": "bottoms"});
 /* sanmar-brands:end */

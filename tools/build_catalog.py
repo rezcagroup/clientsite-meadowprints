@@ -45,7 +45,11 @@ def main():
         rows.append(
             f'  {{ id:{js(pid)}, name:{js(p["name"])}, brand:{js(p["brand"] + " " + style)}, mfr:{js(p["brand"])}, '
             f'style:{js(style)}, cat:{js(p["cat"])}, color:{js(COLOR.get(p["cat"], "#243b63"))}, work:null, blurb:{js(blurb)} }}')
-    block = f"{START}\nwindow.MEADOW_PRODUCTS.push(\n" + ",\n".join(rows) + f"\n);\n{END}\n"
+    fixes = {k: v for k, v in json.loads((ROOT / "tools/category-overrides.json").read_text()).items() if not k.startswith("_")}
+    block = (f"{START}\nwindow.MEADOW_PRODUCTS.push(\n" + ",\n".join(rows) + "\n);\n"
+             "/* category corrections from tools/category-overrides.json (applies to every product, hand-written ones too) */\n"
+             f"(function (fix) {{ window.MEADOW_PRODUCTS.forEach(p => {{ if (p.style && fix[p.style]) p.cat = fix[p.style]; }}); }})({json.dumps(fixes)});\n"
+             f"{END}\n")
     target.write_text(src + "\n" + block)
     print(f"wrote {len(rows)} generated products")
 
