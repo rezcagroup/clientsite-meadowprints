@@ -167,7 +167,9 @@
   // /product/<name> is the real address; old ?id= links still work and are rewritten to it
   const params = new URLSearchParams(location.search);
   const slug = (location.pathname.match(/^\/product\/([^/]+)\/?$/) || [])[1];
-  const p = (slug && productSlugs().bySlug[decodeURIComponent(slug)])
+  const bySlug = slug && productSlugs().bySlug[decodeURIComponent(slug)];
+  if (slug && !bySlug) location.replace("/products");   // unknown product address: send to the catalog
+  const p = bySlug
     || MEADOW_PRODUCTS.find(x => x.id === params.get("id"))
     || MEADOW_PRODUCTS[0];
   if (location.protocol !== "file:") history.replaceState(null, "", productUrl(p));
