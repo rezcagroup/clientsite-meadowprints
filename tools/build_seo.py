@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "25"
+ASSET_V = "26"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -961,7 +961,9 @@ def main():
     build_services()
     patch_existing()
     catalog = catalog_pages.build(sys.modules[__name__], ROOT)
-    total = build_sitemap(towns, catalog)
+    import legal_pages
+    legal = legal_pages.build(sys.modules[__name__])
+    total = build_sitemap(towns + legal, catalog)
     build_robots()
     build_llms(catalog)
     build_404()

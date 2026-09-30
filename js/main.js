@@ -133,7 +133,7 @@ function buildFooter() {
       <div class="footer-areas"><strong>Brands we embroider &amp; print</strong><a href="brands/port-authority">Port Authority</a> · <a href="brands/sport-tek">Sport-Tek</a> · <a href="brands/port-and-company">Port &amp; Company</a> · <a href="brands/carhartt">Carhartt</a> · <a href="brands/district">District</a> · <a href="brands/nike">Nike</a> · <a href="brands/bella-canvas">Bella+Canvas</a> · <a href="brands/the-north-face">The North Face</a> · <a href="brands/gildan">Gildan</a> · <a href="brands/richardson">Richardson</a> · <a href="brands/next-level">Next Level</a> · <a href="brands/comfort-colors">Comfort Colors</a> · <a href="brands">All brands</a></div>
       <div class="footer-bottom">
         <div>© ${new Date().getFullYear()} Meadow Prints &amp; Embroidery LLC. All rights reserved.</div>
-        <div><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="tel:+17327636078">(732) 763-6078</a></div>
+        <div><a href="privacy">Privacy</a> · <a href="terms">Terms</a> · <a href="accessibility">Accessibility</a> · <a href="tel:+17327636078">(732) 763-6078</a></div>
       </div>
     </div>
   </footer>`;
