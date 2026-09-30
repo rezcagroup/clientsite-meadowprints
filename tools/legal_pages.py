@@ -12,11 +12,7 @@ PRIVACY = f"""
 <p>When you fill out a quote, product request or contact form, we collect what you type in: your name, email address, phone number (optional), the product, quantity, decoration and deadline you're interested in, and any project notes or message. If you email us artwork, logos or designs, we receive those files and your email address.</p>
 
 <h3>Information collected automatically</h3>
-<ul>
-  <li><strong>Hosting logs.</strong> Our website host, Vercel, records standard technical information when pages load, such as IP address, browser type and the pages requested, to deliver the site and keep it secure.</li>
-  <li><strong>Fonts.</strong> Pages load typefaces from Google Fonts, which means your browser connects to Google and shares your IP address with Google when a page loads.</li>
-  <li><strong>No tracking or advertising cookies.</strong> We do not use analytics, advertising pixels or tracking cookies on this site.</li>
-</ul>
+<p>Like most websites, standard technical logs (such as IP address and browser type) are kept to deliver the site and keep it secure. We do not use analytics, advertising pixels or tracking cookies.</p>
 
 <h3>How we use your information</h3>
 <ul>
