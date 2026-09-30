@@ -24,7 +24,7 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=16">
+<link rel="stylesheet" href="css/styles.css?v=17">
 </head>
 <body>
 <div id="site-header"></div>
@@ -68,7 +68,7 @@
           <h2 style="margin-top:0;font-size:1.5rem">Interested in this order?</h2>
           <p class="muted" style="margin-top:-4px">Tell us what you need and drop in your artwork. A Meadow specialist will send a mockup and pricing <strong>within 24 hours</strong> - no payment now.</p>
 
-          <form data-mock enctype="multipart/form-data">
+          <form data-form="Product request" enctype="multipart/form-data">
             <div class="form-success" style="display:none;background:var(--green-100);border-radius:14px;padding:22px;margin-bottom:20px;text-align:center">
               <div style="font-size:2.4rem"><span data-icon="leaf"></span></div>
               <h3 style="margin:6px 0">Request received!</h3>
@@ -76,6 +76,9 @@
             </div>
 
             <input type="hidden" name="product" id="field-product" value="">
+            <input type="hidden" name="style" id="field-style" value="">
+            <p class="form-error" role="alert" style="display:none;background:#fde8f1;border-left:4px solid var(--hivis);padding:12px 14px;margin-bottom:16px;color:var(--ink)"></p>
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
 
             <div class="form-row">
               <div class="field"><label>Name</label><input name="name" required placeholder="Your name"></div>
@@ -108,7 +111,7 @@
                 <div class="dz-ico"><span data-icon="paperclip"></span></div>
                 <strong>Drag &amp; drop your files here</strong>
                 <span>or click to browse · PNG, JPG, PDF, AI, EPS, SVG · up to 25MB each</span>
-                <input type="file" id="fileInput" name="files" multiple accept="image/*,.pdf,.ai,.eps,.svg" hidden>
+                <input type="file" id="fileInput" multiple accept="image/*,.pdf,.ai,.eps,.svg" hidden>
               </div>
               <ul class="dz-list" id="dzList"></ul>
               <div class="hint">Don't have art ready? No problem - leave a note below and we'll help you build it.</div>
@@ -163,9 +166,9 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="js/main.js?v=16"></script>
-<script src="js/products-data.js?v=16"></script>
-<script src="js/sanmar-catalog.js?v=16"></script>
+<script src="js/main.js?v=17"></script>
+<script src="js/products-data.js?v=17"></script>
+<script src="js/sanmar-catalog.js?v=17"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const id = params.get("id") || "meadow-soft-tee";
@@ -179,6 +182,7 @@
   const starsEl = document.getElementById("p-stars");
   if (p.rating) starsEl.textContent = stars(p.rating); else starsEl.parentElement.style.display = "none";
   document.getElementById("field-product").value = p.name;
+  document.getElementById("field-style").value = p.brand || "";
   document.getElementById("ok-product").textContent = p.name;
   const badge = document.getElementById("badge");
   if (p.tag) badge.textContent = p.tag; else badge.style.display = "none";
@@ -236,6 +240,7 @@
       });
     }
     function add(fl){ [...fl].forEach(f => files.push(f)); render(); }
+    dz.closest("form").getFiles = () => files;   // read by the submit handler in main.js
     dz.addEventListener("click", () => input.click());
     input.addEventListener("change", e => add(e.target.files));
     ["dragenter","dragover"].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add("drag"); }));

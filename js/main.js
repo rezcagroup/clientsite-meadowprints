@@ -3,6 +3,9 @@
    Injects header + footer, handles nav, cart, accordions, reveal
    ============================================================ */
 
+/* All site forms post here (Formspree). */
+const FORM_ENDPOINT = "https://formspree.io/f/xvkgyaze";
+
 const LOGO = `<img class="brand-logo" src="images/logo/newlogo-header.png?v=9" alt="Meadow Prints & Embroidery LLC" width="1420" height="1012">`;
 
 /* Inline SVG icon set (stroke = currentColor, sized by font-size) */
@@ -243,15 +246,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }));
 
-  // simple form handler
-  document.querySelectorAll("form[data-mock]").forEach(form => {
-    form.addEventListener("submit", (e) => {
+  // forms: send to Formspree, show the success box only when it really went through
+  document.querySelectorAll("form[data-form]").forEach(form => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const ok = form.querySelector(".form-success");
-      form.querySelectorAll("input,textarea,select,button").forEach(el => el.setAttribute("disabled","true"));
-      if (ok) ok.style.display = "block";
-      toast("Thanks! We’ll be in touch within one business day.");
-      ok?.scrollIntoView({ behavior: "smooth", block: "center" });
+      const err = form.querySelector(".form-error");
+      const btn = form.querySelector('button[type="submit"]');
+      const label = btn.textContent;
+      const files = form.getFiles ? form.getFiles() : [];
+      const build = (withFiles) => {
+        const data = new FormData(form);
+        data.append("form", form.dataset.form);
+        data.append("page", location.pathname + location.search);
+        data.append("_subject", `${form.dataset.form} - ${data.get("product") || data.get("topic") || "Meadow Prints website"}`);
+        if (files.length) {
+          if (withFiles) files.forEach(f => data.append("attachment", f, f.name));
+          else data.append("files_not_attached", files.map(f => f.name).join(", "));
+        }
+        return data;
+      };
+      const send = (data) => fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      if (err) err.style.display = "none";
+      btn.disabled = true; btn.textContent = "Sending...";
+      try {
+        let res = await send(build(true));
+        let attached = files.length > 0;
+        if (!res.ok && files.length) { res = await send(build(false)); attached = false; }   // plan without uploads
+        if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Request failed");
+        form.querySelectorAll("input,textarea,select,button").forEach(el => el.setAttribute("disabled", "true"));
+        btn.textContent = "Sent";
+        if (ok) {
+          if (files.length && !attached) ok.insertAdjacentHTML("beforeend", '<p class="mb0" style="margin-top:8px"><strong>One more step:</strong> your files could not be attached here. When our email arrives, reply to it with your artwork.</p>');
+          ok.style.display = "block";
+          ok.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        toast("Thanks! We’ll be in touch within one business day.");
+      } catch (ex) {
+        btn.disabled = false; btn.textContent = label;
+        if (err) { err.textContent = "Sorry, that didn't send. Please check your connection and try again."; err.style.display = "block"; }
+      }
     });
   });
 });

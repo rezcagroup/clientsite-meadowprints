@@ -48,6 +48,5 @@ over the meadow-green brand color.
 - **Contact details, phone, address:** search the HTML for `1-800-MEADOW-1` / `hello@meadowprints.com`
 
 ## Notes
-Forms are front-end mockups (they show a success state but don't send data yet).
-To go live, wire them to a backend or a form service (e.g. Formspree) and add real
+Forms post to Formspree (`FORM_ENDPOINT` in `js/main.js`). Add real
 product photos in place of the SVG placeholders.

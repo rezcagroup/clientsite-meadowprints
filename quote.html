@@ -25,7 +25,7 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=16">
+<link rel="stylesheet" href="css/styles.css?v=17">
 </head>
 <body>
 <div id="site-header"></div>
@@ -42,40 +42,42 @@
 <section style="padding-top:36px">
   <div class="container split" style="align-items:flex-start;gap:48px">
     <div class="form-card">
-      <form data-mock>
+      <form data-form="Quote request">
         <div class="form-success" style="display:none;background:var(--green-100);border-radius:14px;padding:20px;margin-bottom:20px;text-align:center">
           <div style="font-size:2.4rem"><span data-icon="leaf"></span></div>
           <h3 style="margin:6px 0">Quote request received!</h3>
           <p class="mb0 muted">Thanks! A Meadow specialist will email you within one business day.</p>
         </div>
+        <p class="form-error" role="alert" style="display:none;background:#fde8f1;border-left:4px solid var(--hivis);padding:12px 14px;margin-bottom:16px;color:var(--ink)"></p>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <div class="form-row">
-          <div class="field"><label>First name</label><input required placeholder="Jordan"></div>
-          <div class="field"><label>Last name</label><input required placeholder="Rivera"></div>
+          <div class="field"><label>First name</label><input name="first_name" required placeholder="Jordan"></div>
+          <div class="field"><label>Last name</label><input name="last_name" required placeholder="Rivera"></div>
         </div>
         <div class="form-row">
-          <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
-          <div class="field"><label>Phone (optional)</label><input placeholder="(555) 555-1234"></div>
+          <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@email.com"></div>
+          <div class="field"><label>Phone (optional)</label><input name="phone" type="tel" placeholder="(555) 555-1234"></div>
         </div>
         <div class="form-row">
           <div class="field"><label>What are you making?</label>
-            <select required>
+            <select name="product" required>
               <option value="">Choose a product…</option>
               <option>T-Shirts</option><option>Hoodies &amp; Fleece</option><option>Embroidered Polos</option>
               <option>Hats &amp; Caps</option><option>Bags &amp; Totes</option><option>Promo &amp; Gifts</option><option>Not sure yet</option>
             </select>
           </div>
           <div class="field"><label>Decoration</label>
-            <select><option>Screen Printing</option><option>Embroidery</option><option>Direct-to-Garment</option><option>Help me choose</option></select>
+            <select name="decoration"><option>Screen Printing</option><option>Embroidery</option><option>Direct-to-Garment</option><option>Help me choose</option></select>
           </div>
         </div>
         <div class="form-row">
           <div class="field"><label>Estimated quantity</label>
-            <select><option>Under 12</option><option>12-24</option><option>25-49</option><option>50-99</option><option>100-249</option><option>250+</option></select>
+            <select name="quantity"><option>Under 12</option><option>12-24</option><option>25-49</option><option>50-99</option><option>100-249</option><option>250+</option></select>
           </div>
-          <div class="field"><label>Need it by</label><input type="date"></div>
+          <div class="field"><label>Need it by</label><input name="deadline" type="date"></div>
         </div>
-        <div class="field"><label>Tell us about your project</label><textarea placeholder="Colors, sizes, logo details, event date - anything helps!"></textarea><div class="hint">Have a logo? You'll be able to email it to us after you submit.</div></div>
-        <div class="field"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:500"><input type="checkbox" style="width:auto;margin-top:5px"> Send me occasional design tips &amp; offers (no spam, unsubscribe anytime).</label></div>
+        <div class="field"><label>Tell us about your project</label><textarea name="message" placeholder="Colors, sizes, logo details, event date - anything helps!"></textarea><div class="hint">Have a logo? You'll be able to email it to us after you submit.</div></div>
+        <div class="field"><label style="display:flex;gap:10px;align-items:flex-start;font-weight:500"><input type="checkbox" name="newsletter" value="yes" style="width:auto;margin-top:5px"> Send me occasional design tips &amp; offers (no spam, unsubscribe anytime).</label></div>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Request My Free Quote</button>
         <p class="muted center" style="font-size:.82rem;margin-top:12px">We reply within 1 business day · No obligation</p>
       </form>
@@ -103,7 +105,7 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="js/main.js?v=16"></script>
+<script src="js/main.js?v=17"></script>
 <script>
   // If arriving from the studio/fundraiser, prefill message context
   const from = new URLSearchParams(location.search).get("from");

@@ -26,7 +26,7 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=16">
+<link rel="stylesheet" href="css/styles.css?v=17">
 </head>
 <body>
 <div id="site-header"></div>
@@ -51,16 +51,18 @@
     <div class="split" style="align-items:flex-start;gap:48px">
       <div class="form-card">
         <h2 style="margin-top:0">Send us a message</h2>
-        <form data-mock>
+        <form data-form="Contact message">
           <div class="form-success" style="display:none;background:var(--green-100);border-radius:14px;padding:20px;margin-bottom:20px;text-align:center">
             <div style="font-size:2.4rem"><span data-icon="leaf"></span></div><h3 style="margin:6px 0">Message sent!</h3><p class="mb0 muted">We'll get back to you within one business day.</p>
           </div>
+          <p class="form-error" role="alert" style="display:none;background:#fde8f1;border-left:4px solid var(--hivis);padding:12px 14px;margin-bottom:16px;color:var(--ink)"></p>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
           <div class="form-row">
-            <div class="field"><label>Name</label><input required placeholder="Your name"></div>
-            <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
+            <div class="field"><label>Name</label><input name="name" required placeholder="Your name"></div>
+            <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@email.com"></div>
           </div>
-          <div class="field"><label>Topic</label><select><option>New order / quote</option><option>Existing order</option><option>Fundraising</option><option>Careers</option><option>Something else</option></select></div>
-          <div class="field"><label>Message</label><textarea required placeholder="How can we help?"></textarea></div>
+          <div class="field"><label>Topic</label><select name="topic"><option>New order / quote</option><option>Existing order</option><option>Fundraising</option><option>Careers</option><option>Something else</option></select></div>
+          <div class="field"><label>Message</label><textarea name="message" required placeholder="How can we help?"></textarea></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">Send Message</button>
         </form>
       </div>
@@ -94,6 +96,6 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="js/main.js?v=16"></script>
+<script src="js/main.js?v=17"></script>
 </body>
 </html>

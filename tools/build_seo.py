@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "16"
+ASSET_V = "17"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
