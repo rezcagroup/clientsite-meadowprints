@@ -254,30 +254,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const err = form.querySelector(".form-error");
       const btn = form.querySelector('button[type="submit"]');
       const label = btn.textContent;
-      const files = form.getFiles ? form.getFiles() : [];
-      const build = (withFiles) => {
+      const build = () => {
         const data = new FormData(form);
         data.append("form", form.dataset.form);
         data.append("page", location.pathname + location.search);
         data.append("_subject", `${form.dataset.form} - ${data.get("product") || data.get("topic") || "Meadow Prints website"}`);
-        if (files.length) {
-          if (withFiles) files.forEach(f => data.append("attachment", f, f.name));
-          else data.append("files_not_attached", files.map(f => f.name).join(", "));
-        }
         return data;
       };
       const send = (data) => fetch(FORM_ENDPOINT, { method: "POST", body: data, headers: { Accept: "application/json" } });
       if (err) err.style.display = "none";
       btn.disabled = true; btn.textContent = "Sending...";
       try {
-        let res = await send(build(true));
-        let attached = files.length > 0;
-        if (!res.ok && files.length) { res = await send(build(false)); attached = false; }   // plan without uploads
+        const res = await send(build());
         if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Request failed");
         form.querySelectorAll("input,textarea,select,button").forEach(el => el.setAttribute("disabled", "true"));
         btn.textContent = "Sent";
         if (ok) {
-          if (files.length && !attached) ok.insertAdjacentHTML("beforeend", '<p class="mb0" style="margin-top:8px"><strong>One more step:</strong> your files could not be attached here. When our email arrives, reply to it with your artwork.</p>');
           ok.style.display = "block";
           ok.scrollIntoView({ behavior: "smooth", block: "center" });
         }

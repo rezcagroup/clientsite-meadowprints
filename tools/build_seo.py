@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "18"
+ASSET_V = "19"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -516,7 +516,7 @@ def build_town(i, town, photos):
       <h2>From idea to your door in {esc(name)}</h2>
     </div>
     <div class="grid g3">
-      <div class="step reveal"><div class="step-num">1</div><h3>Tell us what you need</h3><p>Pick a product, give us a quantity, and upload your logo or idea. No logo yet? We will help you design one.</p></div>
+      <div class="step reveal"><div class="step-num">1</div><h3>Tell us what you need</h3><p>Pick a product, give us a quantity, and email us your logo or idea. No logo yet? We will help you design one.</p></div>
       <div class="step reveal"><div class="step-num">2</div><h3>Approve your proof</h3><p>You get a digital proof within 24 hours showing exact colors, sizing and placement.</p></div>
       <div class="step reveal"><div class="step-num">3</div><h3>We make and deliver it</h3><p>Your order is printed or embroidered in-house, then packed and sent to you in {esc(name)}.</p></div>
     </div>
@@ -733,7 +733,7 @@ EXISTING = {
         "Products"),
     "product.html": (
         "Custom Apparel Product Details | Meadow Prints & Embroidery",
-        "Request a quote on this custom product from Meadow Prints & Embroidery in Monmouth County, NJ. Tell us your quantity and upload your logo - mockup back within 24 hours.",
+        "Request a quote on this custom product from Meadow Prints & Embroidery in Monmouth County, NJ. Tell us your quantity and email us your logo - mockup back within 24 hours.",
         None),
     "embroidery.html": (
         "Custom Embroidery in Monmouth County, NJ | Meadow Prints & Embroidery",
