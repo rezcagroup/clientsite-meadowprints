@@ -157,8 +157,26 @@ function productMfr(p) {
   return known.find(k => b.startsWith(k)) || b.split(" ")[0] || "Other";
 }
 
+/* Readable product URLs: /product/<name>. Names shared by two products get the style number added. */
+let _slugCache = null;
+function productSlugs() {
+  if (_slugCache && _slugCache.count === MEADOW_PRODUCTS.length) return _slugCache;
+  const base = s => String(s).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const seen = {};
+  MEADOW_PRODUCTS.forEach(p => { const b = base(p.name); seen[b] = (seen[b] || 0) + 1; });
+  const byId = {}, bySlug = {};
+  MEADOW_PRODUCTS.forEach(p => {
+    let slug = base(p.name);
+    if (seen[slug] > 1) slug += "-" + base(p.style || p.id);
+    while (bySlug[slug]) slug += "-2";
+    byId[p.id] = slug; bySlug[slug] = p;
+  });
+  return (_slugCache = { count: MEADOW_PRODUCTS.length, byId, bySlug });
+}
+function productUrl(p) { return "/product/" + productSlugs().byId[p.id]; }
+
 function productCardHTML(p) {
-  return `<a class="card product-card reveal" data-cat="${p.cat}" href="product?id=${p.id}">
+  return `<a class="card product-card reveal" data-cat="${p.cat}" href="${productUrl(p)}">
     <div class="pc-media${p.style ? ' blank' : ''}">${p.tag ? `<span class="tag">${p.tag}</span>` : ""}${productBlankMedia(p, "pc-photo")}</div>
     <div class="pc-body">
       <h3>${p.name}</h3>
