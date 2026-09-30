@@ -6,30 +6,30 @@ const BLANKDIR = "images/blanks/";
 
 /* style = SanMar style number (blank image + brand);  work = our decorated photo */
 window.MEADOW_PRODUCTS = [
-  { id:"meadow-soft-tee", name:"Heavy Cotton Tee", brand:"Gildan 5000", style:"5000", cat:"tshirts", price:"9.98", rating:5, reviews:2140, tag:"Best Seller", best:true, color:"#26400f", work:"IMG_9997", blurb:"The workhorse tee - 100% heavy cotton that takes bold screen prints beautifully." },
-  { id:"heritage-ring-tee", name:"Cotton Crew Tee", brand:"Next Level 3600", style:"NL3600", cat:"tshirts", price:"11.40", rating:5, reviews:980, best:true, color:"#243b63", work:"IMG_0835", blurb:"Fitted ringspun tee with a smooth, retail-soft hand and a clean print surface." },
-  { id:"tri-blend-tee", name:"Tri-Blend Tee", brand:"Bella+Canvas 3413", style:"BC3413", cat:"tshirts", price:"13.20", rating:4, reviews:640, tag:"Softest", color:"#1c1c1c", work:"IMG_9996", blurb:"Heathered, ultra-soft tri-blend - a premium tee that shows off big prints." },
-  { id:"performance-tee", name:"Performance Tee", brand:"Sport-Tek ST272", style:"ST272", cat:"activewear", price:"13.40", rating:5, reviews:520, best:true, color:"#7fc6ea", work:"IMG_0773", blurb:"Moisture-wicking performance tee for teams on the move - great for prints." },
-  { id:"pullover-hoodie", name:"Pullover Hoodie", brand:"Gildan 18500", style:"18500", cat:"hoodies", price:"22.50", rating:5, reviews:1510, tag:"Best Seller", best:true, color:"#164a2b", work:"IMG_9629", blurb:"Heavyweight fleece pullover with a roomy hood and front pouch pocket." },
-  { id:"zip-hoodie", name:"Soft Shell Jacket", brand:"Port Authority J317", style:"J317", cat:"hoodies", price:"46.90", rating:5, reviews:430, best:true, color:"#1c1c1c", work:"IMG_9895", blurb:"Wind- and water-resistant full-zip softshell that embroiders like a dream." },
-  { id:"crew-sweatshirt", name:"Crewneck Sweatshirt", brand:"Gildan 18000", style:"18000", cat:"hoodies", price:"19.80", rating:4, reviews:360, color:"#e7ddc6", work:"IMG_0138", blurb:"Classic brushed-fleece crewneck - comfortable and clean for printed branding." },
-  { id:"structured-cap", name:"Trucker Snapback Cap", brand:"Richardson 112", style:"C112", cat:"hats", price:"16.75", rating:5, reviews:610, best:true, color:"#1c1c1c", work:"IMG_0280", blurb:"The industry-favorite 112 - structured front, mesh back, perfect for embroidery or patches." },
-  { id:"trucker-cap", name:"Mesh-Back Trucker", brand:"Sport-Tek STC26", style:"STC26", cat:"hats", price:"15.90", rating:5, reviews:280, best:true, color:"#4a5850", work:"IMG_0768", blurb:"Retro mesh-back trucker with a comfortable snapback closure." },
-  { id:"beanie", name:"Fine-Knit Beanie", brand:"Port & Co. CP90", style:"CP90", cat:"hats", price:"14.20", rating:5, reviews:190, color:"#243b63", work:"IMG_0126", blurb:"Cozy cuffed knit beanie with a crisp surface for embroidered logos and patches." },
-  { id:"cotton-tote", name:"Access Backpack", brand:"Port Authority BG615", style:"BG615", cat:"bags", price:"38.20", rating:5, reviews:140, tag:"Premium", best:true, color:"#4a5850", work:"IMG_0961", blurb:"Durable everyday backpack with a padded laptop sleeve and clean embroidery panel." },
-  { id:"drawstring-bag", name:"Drawstring Cinch Pack", brand:"Port & Co. BG85", style:"BG85", cat:"bags", price:"6.50", rating:4, reviews:210, color:"#2f9bd6", work:null, blurb:"Lightweight cinch pack - an easy, affordable giveaway for events." },
-  { id:"duffel", name:"Improved Duffel", brand:"Port Authority BG99", style:"BG99", cat:"bags", price:"28.00", rating:5, reviews:120, color:"#164a2b", work:null, blurb:"Roomy, rugged duffel - embroider a team name or monogram on the end panel." },
-  { id:"embroidered-polo", name:"Silk Touch Polo", brand:"Sport-Tek K500", style:"K500", cat:"activewear", price:"18.60", rating:5, reviews:820, tag:"Pro Look", best:true, color:"#1e6a3d", work:"IMG_0036", blurb:"The go-to embroidered polo - soft, wrinkle-resistant, and endlessly professional." },
-  { id:"quarter-zip", name:"1/4-Zip Pullover", brand:"Sport-Tek ST253", style:"ST253", cat:"activewear", price:"28.40", rating:5, reviews:300, color:"#4a5850", work:"IMG_9969", blurb:"Polished 1/4-zip mid-layer with a smooth left-chest embroidery area." },
-  { id:"apron", name:"Full-Length Apron", brand:"Port Authority A700", style:"A700", cat:"promo", price:"16.00", rating:5, reviews:260, color:"#ef6b53", work:"IMG_0374", blurb:"Café, shop, and event-ready apron - print or stitch your brand front and center." },
-  { id:"rally-towel", name:"Rally Towel", brand:"Port & Co. PT38", style:"PT38", cat:"promo", price:"5.40", rating:5, reviews:410, tag:"Popular", color:"#f5a623", work:null, blurb:"Spirit-day rally towel - print your logo or team name for games, events, and giveaways." },
-  { id:"stadium-blanket", name:"Sweatshirt Blanket", brand:"Port Authority BP35", style:"BP35", cat:"promo", price:"22.80", rating:5, reviews:190, color:"#6b4e9e", work:null, blurb:"Cozy fleece-back sweatshirt blanket - a premium embroidered gift for clients and staff." },
-  { id:"golf-towel", name:"Microfiber Golf Towel", brand:"Port Authority TW540", style:"TW540", cat:"promo", price:"9.20", rating:5, reviews:150, color:"#2f9bd6", work:null, blurb:"Grommeted microfiber golf towel - a clean canvas for embroidered logos at outings and events." },
-  { id:"youth-tee", name:"Youth Heavy Cotton Tee", brand:"Gildan 5000B", style:"5000B", cat:"tshirts", price:"8.90", rating:5, reviews:340, color:"#ef6b53", work:"IMG_0096", blurb:"The kid-sized version of our best-selling heavy cotton tee." },
-  { id:"long-sleeve", name:"Long-Sleeve Cotton Tee", brand:"Gildan 2400", style:"2400", cat:"tshirts", price:"13.60", rating:4, reviews:230, color:"#ef6b53", work:"IMG_0093", blurb:"Cooler-weather staple with room for a full-size back graphic." },
-  { id:"tank-top", name:"Jersey Tank", brand:"Bella+Canvas 3480", style:"BC3480", cat:"activewear", price:"11.90", rating:4, reviews:150, color:"#ffffff", work:"IMG_9985", blurb:"Soft, relaxed jersey tank - a warm-weather and event-day essential." },
-  { id:"work-jacket", name:"Challenger Jacket", brand:"Port Authority J754", style:"J754", cat:"hoodies", price:"39.00", rating:5, reviews:90, tag:"Premium", color:"#1c1c1c", work:"IMG_0251", blurb:"Rugged, warm shell jacket built for embroidered company branding." },
-  { id:"visor", name:"Camo Mesh Trucker", brand:"Sport-Tek STC26 Camo", style:"C874", cat:"hats", price:"15.40", rating:5, reviews:70, color:"#4a5850", work:"IMG_0536", blurb:"Camo-front mesh trucker that makes embroidered logos pop." },
+  { id:"meadow-soft-tee", name:"Heavy Cotton Tee", brand:"Gildan 5000", style:"5000", cat:"tshirts", rating:5, reviews:2140, tag:"Best Seller", best:true, color:"#26400f", work:"IMG_9997", blurb:"The workhorse tee - 100% heavy cotton that takes bold screen prints beautifully." },
+  { id:"heritage-ring-tee", name:"Cotton Crew Tee", brand:"Next Level 3600", style:"NL3600", cat:"tshirts", rating:5, reviews:980, best:true, color:"#243b63", work:"IMG_0835", blurb:"Fitted ringspun tee with a smooth, retail-soft hand and a clean print surface." },
+  { id:"tri-blend-tee", name:"Tri-Blend Tee", brand:"Bella+Canvas 3413", style:"BC3413", cat:"tshirts", rating:4, reviews:640, tag:"Softest", color:"#1c1c1c", work:"IMG_9996", blurb:"Heathered, ultra-soft tri-blend - a premium tee that shows off big prints." },
+  { id:"performance-tee", name:"Performance Tee", brand:"Sport-Tek ST272", style:"ST272", cat:"activewear", rating:5, reviews:520, best:true, color:"#7fc6ea", work:"IMG_0773", blurb:"Moisture-wicking performance tee for teams on the move - great for prints." },
+  { id:"pullover-hoodie", name:"Pullover Hoodie", brand:"Gildan 18500", style:"18500", cat:"hoodies", rating:5, reviews:1510, tag:"Best Seller", best:true, color:"#164a2b", work:"IMG_9629", blurb:"Heavyweight fleece pullover with a roomy hood and front pouch pocket." },
+  { id:"zip-hoodie", name:"Soft Shell Jacket", brand:"Port Authority J317", style:"J317", cat:"hoodies", rating:5, reviews:430, best:true, color:"#1c1c1c", work:"IMG_9895", blurb:"Wind- and water-resistant full-zip softshell that embroiders like a dream." },
+  { id:"crew-sweatshirt", name:"Crewneck Sweatshirt", brand:"Gildan 18000", style:"18000", cat:"hoodies", rating:4, reviews:360, color:"#e7ddc6", work:"IMG_0138", blurb:"Classic brushed-fleece crewneck - comfortable and clean for printed branding." },
+  { id:"structured-cap", name:"Trucker Snapback Cap", brand:"Richardson 112", style:"C112", cat:"hats", rating:5, reviews:610, best:true, color:"#1c1c1c", work:"IMG_0280", blurb:"The industry-favorite 112 - structured front, mesh back, perfect for embroidery or patches." },
+  { id:"trucker-cap", name:"Mesh-Back Trucker", brand:"Sport-Tek STC26", style:"STC26", cat:"hats", rating:5, reviews:280, best:true, color:"#4a5850", work:"IMG_0768", blurb:"Retro mesh-back trucker with a comfortable snapback closure." },
+  { id:"beanie", name:"Fine-Knit Beanie", brand:"Port & Co. CP90", style:"CP90", cat:"hats", rating:5, reviews:190, color:"#243b63", work:"IMG_0126", blurb:"Cozy cuffed knit beanie with a crisp surface for embroidered logos and patches." },
+  { id:"cotton-tote", name:"Access Backpack", brand:"Port Authority BG615", style:"BG615", cat:"bags", rating:5, reviews:140, tag:"Premium", best:true, color:"#4a5850", work:"IMG_0961", blurb:"Durable everyday backpack with a padded laptop sleeve and clean embroidery panel." },
+  { id:"drawstring-bag", name:"Drawstring Cinch Pack", brand:"Port & Co. BG85", style:"BG85", cat:"bags", rating:4, reviews:210, color:"#2f9bd6", work:null, blurb:"Lightweight cinch pack - an easy, affordable giveaway for events." },
+  { id:"duffel", name:"Improved Duffel", brand:"Port Authority BG99", style:"BG99", cat:"bags", rating:5, reviews:120, color:"#164a2b", work:null, blurb:"Roomy, rugged duffel - embroider a team name or monogram on the end panel." },
+  { id:"embroidered-polo", name:"Silk Touch Polo", brand:"Sport-Tek K500", style:"K500", cat:"activewear", rating:5, reviews:820, tag:"Pro Look", best:true, color:"#1e6a3d", work:"IMG_0036", blurb:"The go-to embroidered polo - soft, wrinkle-resistant, and endlessly professional." },
+  { id:"quarter-zip", name:"1/4-Zip Pullover", brand:"Sport-Tek ST253", style:"ST253", cat:"activewear", rating:5, reviews:300, color:"#4a5850", work:"IMG_9969", blurb:"Polished 1/4-zip mid-layer with a smooth left-chest embroidery area." },
+  { id:"apron", name:"Full-Length Apron", brand:"Port Authority A700", style:"A700", cat:"promo", rating:5, reviews:260, color:"#ef6b53", work:"IMG_0374", blurb:"Café, shop, and event-ready apron - print or stitch your brand front and center." },
+  { id:"rally-towel", name:"Rally Towel", brand:"Port & Co. PT38", style:"PT38", cat:"promo", rating:5, reviews:410, tag:"Popular", color:"#f5a623", work:null, blurb:"Spirit-day rally towel - print your logo or team name for games, events, and giveaways." },
+  { id:"stadium-blanket", name:"Sweatshirt Blanket", brand:"Port Authority BP35", style:"BP35", cat:"promo", rating:5, reviews:190, color:"#6b4e9e", work:null, blurb:"Cozy fleece-back sweatshirt blanket - a premium embroidered gift for clients and staff." },
+  { id:"golf-towel", name:"Microfiber Golf Towel", brand:"Port Authority TW540", style:"TW540", cat:"promo", rating:5, reviews:150, color:"#2f9bd6", work:null, blurb:"Grommeted microfiber golf towel - a clean canvas for embroidered logos at outings and events." },
+  { id:"youth-tee", name:"Youth Heavy Cotton Tee", brand:"Gildan 5000B", style:"5000B", cat:"tshirts", rating:5, reviews:340, color:"#ef6b53", work:"IMG_0096", blurb:"The kid-sized version of our best-selling heavy cotton tee." },
+  { id:"long-sleeve", name:"Long-Sleeve Cotton Tee", brand:"Gildan 2400", style:"2400", cat:"tshirts", rating:4, reviews:230, color:"#ef6b53", work:"IMG_0093", blurb:"Cooler-weather staple with room for a full-size back graphic." },
+  { id:"tank-top", name:"Jersey Tank", brand:"Bella+Canvas 3480", style:"BC3480", cat:"activewear", rating:4, reviews:150, color:"#ffffff", work:"IMG_9985", blurb:"Soft, relaxed jersey tank - a warm-weather and event-day essential." },
+  { id:"work-jacket", name:"Challenger Jacket", brand:"Port Authority J754", style:"J754", cat:"hoodies", rating:5, reviews:90, tag:"Premium", color:"#1c1c1c", work:"IMG_0251", blurb:"Rugged, warm shell jacket built for embroidered company branding." },
+  { id:"visor", name:"Camo Mesh Trucker", brand:"Sport-Tek STC26 Camo", style:"C874", cat:"hats", rating:5, reviews:70, color:"#4a5850", work:"IMG_0536", blurb:"Camo-front mesh trucker that makes embroidered logos pop." },
 ];
 
 /* Portfolio - real Meadow work, used on the homepage & gallery */
@@ -143,27 +143,6 @@ function productBlankMedia(p, cls) {
 
 function stars(n) { return "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5 - n); }
 
-/* Real "from" pricing (lowest 50+ tier from the Meadow price sheet).
-   Returns a price string, or null for items we quote (bags, promo, etc.). */
-function priceFor(p) {
-  const s = (p.style || "").toUpperCase();
-  const n = (p.name || "").toLowerCase();
-  const c = p.cat;
-  const isBeanie = /beanie|skull cap/.test(n) || ["CP90","CP91L","STC35"].includes(s);
-  const isPolo = /polo/.test(n) || ["K500","K540","K420","ST650","L500","K500LS","TLK500"].includes(s);
-  const isQuarterZip = /1\/4-zip|quarter-zip|quarter zip/.test(n) || ["ST253","F244"].includes(s);
-  if (c === "tshirts") return "10.00";              // DTF tees, tanks, long sleeve, youth
-  if (c === "hats") return isBeanie ? "12.00" : "17.00";
-  if (c === "hoodies") return "20.00";              // DTF hoodie / crew / jacket / vest
-  if (c === "activewear") {
-    if (isPolo) return "18.00";
-    if (isQuarterZip) return "20.00";
-    return "10.00";                                 // performance tees & tanks
-  }
-  return null;                                      // bags, promo -> quote
-}
-function priceLabel(p) { const v = priceFor(p); return v ? `from $${v}` : "Get a quote"; }
-
 function productCardHTML(p) {
   return `<a class="card product-card reveal" data-cat="${p.cat}" href="product.html?id=${p.id}">
     <div class="pc-media${p.style ? ' blank' : ''}">${p.tag ? `<span class="tag">${p.tag}</span>` : ""}${productBlankMedia(p, "pc-photo")}</div>
@@ -171,7 +150,7 @@ function productCardHTML(p) {
       <h3>${p.name}</h3>
       ${p.brand ? `<div class="pc-brand">${p.brand}</div>` : ""}
       <div class="pc-meta"><span class="stars">${stars(p.rating)}</span> <span class="muted" style="font-size:.8rem">(${p.reviews.toLocaleString()})</span></div>
-      <div class="pc-foot"><span class="price">${priceLabel(p)}</span><span class="btn btn-primary btn-sm">Request Order</span></div>
+      <div class="pc-foot"><span class="price">Get a quote</span><span class="btn btn-primary btn-sm">Request Order</span></div>
     </div>
   </a>`;
 }

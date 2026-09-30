@@ -7,7 +7,7 @@
 <meta name="description" content="Request a quote on this custom product. Tell us your quantity and upload your design or logo - we'll send back a mockup within 24 hours.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=9">
+<link rel="stylesheet" href="css/styles.css?v=10">
 </head>
 <body>
 <div id="site-header"></div>
@@ -36,7 +36,7 @@
           <span class="muted" id="p-reviews">(2,140 reviews)</span>
         </div>
         <p class="lead" id="p-blurb">Our go-to ringspun cotton tee - buttery soft and holds ink beautifully.</p>
-        <div style="font-family:var(--font-head);font-weight:800;font-size:1.6rem;color:var(--green-800);margin:6px 0 2px" id="p-price">from $9.98 <span class="muted" style="font-size:1rem;font-weight:600">/ each</span></div>
+        <div style="font-family:var(--font-head);font-weight:800;font-size:1.6rem;color:var(--green-800);margin:6px 0 2px" id="p-price"><span style="font-size:1.2rem">Get a quote for pricing</span></div>
         <p class="muted" style="font-size:.9rem">Final pricing depends on quantity, colors, and decoration - we'll confirm it on your mockup.</p>
 
         <div id="p-features" style="margin:18px 0"></div>
@@ -148,8 +148,8 @@
 
 <div id="site-footer"></div>
 <script src="js/main.js?v=10"></script>
-<script src="js/products-data.js?v=8"></script>
-<script src="js/sanmar-catalog.js?v=8"></script>
+<script src="js/products-data.js?v=10"></script>
+<script src="js/sanmar-catalog.js?v=10"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const id = params.get("id") || "meadow-soft-tee";
@@ -160,10 +160,6 @@
   document.getElementById("p-brand").textContent = p.brand ? "Blank: " + p.brand : "";
   document.getElementById("p-blurb").textContent = p.blurb;
   document.getElementById("p-long").textContent = p.blurb + " Available in a range of colors and sizes, ready for your custom print or embroidery.";
-  const _pv = priceFor(p);
-  document.getElementById("p-price").innerHTML = _pv
-    ? `from $${_pv} <span class="muted" style="font-size:1rem;font-weight:600">/ each</span>`
-    : `<span style="font-size:1.2rem">Get a quote for pricing</span>`;
   document.getElementById("p-stars").textContent = stars(p.rating);
   document.getElementById("p-reviews").textContent = `(${p.reviews.toLocaleString()} reviews)`;
   document.getElementById("field-product").value = p.name;
