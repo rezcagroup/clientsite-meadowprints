@@ -52,18 +52,18 @@ const NAV_LINKS = [
   { label: "Products", href: "products", mega: [
     { icon: "", title: "Custom T-Shirts", sub: "Tees for any group", href: "custom-t-shirts" },
     { icon: "", title: "Screen Printing", sub: "Bold, durable prints", href: "screen-printing" },
-    { icon: "", title: "Hoodies & Fleece", sub: "Cozy custom layers", href: "products#hoodies" },
+    { icon: "", title: "Hoodies & Fleece", sub: "Cozy custom layers", href: "products/hoodies" },
     { icon: "", title: "Embroidery", sub: "Polos, caps, jackets", href: "embroidery" },
-    { icon: "", title: "Hats & Caps", sub: "Stitched or printed", href: "products#hats" },
-    { icon: "", title: "Bags & Totes", sub: "Custom carry-alls", href: "products#bags" },
-    { icon: "", title: "Promo & Gifts", sub: "Mugs, stickers, more", href: "products#promo" },
+    { icon: "", title: "Hats & Caps", sub: "Stitched or printed", href: "products/hats" },
+    { icon: "", title: "Bags & Totes", sub: "Custom carry-alls", href: "products/bags" },
+    { icon: "", title: "Promo & Gifts", sub: "Mugs, stickers, more", href: "products/promo" },
   ]},
   { label: "Use Cases", href: "use-cases", mega: [
-    { icon: "", title: "Businesses", sub: "Branded team gear", href: "use-cases#business" },
-    { icon: "", title: "Schools & Clubs", sub: "Spirit wear & merch", href: "use-cases#schools" },
-    { icon: "", title: "Events", sub: "Reunions, races, parties", href: "use-cases#events" },
-    { icon: "", title: "Family & Groups", sub: "Match the whole crew", href: "use-cases#family" },
-    { icon: "", title: "Sports Teams", sub: "Jerseys & practice gear", href: "use-cases#sports" },
+    { icon: "", title: "Businesses", sub: "Branded team gear", href: "use-cases/businesses" },
+    { icon: "", title: "Schools & Clubs", sub: "Spirit wear & merch", href: "use-cases/schools" },
+    { icon: "", title: "Events", sub: "Reunions, races, parties", href: "use-cases/events" },
+    { icon: "", title: "Family & Groups", sub: "Match the whole crew", href: "use-cases/family" },
+    { icon: "", title: "Sports Teams", sub: "Jerseys & practice gear", href: "use-cases/sports" },
   ]},
   { label: "Embroidery", href: "embroidery" },
   { label: "Our Work", href: "gallery" },
@@ -129,10 +129,10 @@ function buildFooter() {
             <a href="#" aria-label="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-4 19.2c-.1-.8-.2-2 .1-2.9l1.2-5s-.3-.6-.3-1.5c0-1.5.8-2.6 1.9-2.6.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.5-.2 1 .5 1.9 1.6 1.9 2 0 3.3-2.5 3.3-5.5 0-2.3-1.5-4-4.4-4a5 5 0 0 0-5.2 5c0 1 .3 1.6.7 2.2.2.2.2.3.1.6l-.2.9c-.1.3-.3.4-.6.3-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.8 7.8-6.8 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.9c-.3 1-.9 2-1.4 2.8A10 10 0 1 0 12 2z"/></svg></a>
           </div>
         </div>
-        ${col("Shop", [["All Products","products"],["Custom T-Shirts","custom-t-shirts"],["Screen Printing","screen-printing"],["Embroidery","embroidery"],["Hoodies","products#hoodies"],["Hats & Caps","products#hats"],["Promo Gifts","products#promo"]])}
-        ${col("Solutions", [["Businesses","use-cases#business"],["Schools & Clubs","use-cases#schools"],["Events","use-cases#events"],["Sports Teams","use-cases#sports"],["Get a Quote","quote"]])}
+        ${col("Shop", [["All Products","products"],["Custom T-Shirts","custom-t-shirts"],["Screen Printing","screen-printing"],["Embroidery","embroidery"],["Hoodies","products/hoodies"],["Hats & Caps","products/hats"],["Promo Gifts","products/promo"]])}
+        ${col("Solutions", [["Businesses","use-cases/businesses"],["Schools & Clubs","use-cases/schools"],["Events","use-cases/events"],["Sports Teams","use-cases/sports"],["Get a Quote","quote"]])}
         ${col("Learn", [["How It Works","how-it-works"],["Browse Products","products"],["Service Areas","service-areas"],["Help & FAQ","faq"]])}
-        ${col("Company", [["About Us","about"],["Contact","contact"],["Our Guarantee","how-it-works#guarantee"],["Careers","about#careers"],["Blog","/"]])}
+        ${col("Company", [["About Us","about"],["Contact","contact"],["Our Guarantee","how-it-works/guarantee"],["Careers","about/careers"],["Blog","/"]])}
       </div>
       <div class="footer-areas"><strong>Proudly serving Monmouth County, NJ</strong><a href="custom-apparel-freehold-nj">Freehold</a> · <a href="custom-apparel-red-bank-nj">Red Bank</a> · <a href="custom-apparel-middletown-nj">Middletown</a> · <a href="custom-apparel-howell-nj">Howell</a> · <a href="custom-apparel-marlboro-nj">Marlboro</a> · <a href="custom-apparel-manalapan-nj">Manalapan</a> · <a href="custom-apparel-holmdel-nj">Holmdel</a> · <a href="custom-apparel-asbury-park-nj">Asbury Park</a> · <a href="custom-apparel-long-branch-nj">Long Branch</a> · <a href="custom-apparel-wall-nj">Wall</a> · <a href="custom-apparel-neptune-nj">Neptune</a> · <a href="custom-apparel-tinton-falls-nj">Tinton Falls</a> · <a href="custom-apparel-ocean-township-nj">Ocean Township</a> · <a href="custom-apparel-eatontown-nj">Eatontown</a> · <a href="custom-apparel-colts-neck-nj">Colts Neck</a> · <a href="custom-apparel-hazlet-nj">Hazlet</a> · <a href="custom-apparel-belmar-nj">Belmar</a> · <a href="custom-apparel-manasquan-nj">Manasquan</a> · <a href="service-areas">All service areas</a></div>
       <div class="footer-bottom">
@@ -170,6 +170,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (h) h.innerHTML = buildHeader();
   if (f) f.innerHTML = buildFooter();
   iconify();
+
+  // section addresses: /use-cases/sports, /how-it-works/guarantee, /about/careers
+  const SECTION_IDS = { businesses: "business" };
+  const sectionFor = (pathname) => {
+    const mt = pathname.match(/^\/(use-cases|how-it-works|about)\/([a-z-]+)\/?$/);
+    return mt ? { page: mt[1], el: document.getElementById(SECTION_IDS[mt[2]] || mt[2]) } : null;
+  };
+  const here = sectionFor(location.pathname);
+  if (here && here.el) setTimeout(() => here.el.scrollIntoView({ behavior: "instant", block: "start" }), 60);
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[href]");
+    if (!a) return;
+    if (a.getAttribute("href") === "#") { e.preventDefault(); return; }   // placeholder links do nothing
+    const to = a.origin === location.origin ? sectionFor(a.pathname) : null;
+    if (to && to.el && location.pathname.split("/")[1] === to.page) {     // already on that page: just scroll
+      e.preventDefault();
+      history.pushState(null, "", a.pathname);
+      to.el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
 
   // mobile nav
   const mob = document.getElementById("mobileNav");

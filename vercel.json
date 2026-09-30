@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/product/:slug", "destination": "/product" }
+    { "source": "/product/:slug", "destination": "/product" },
+    { "source": "/products/:category", "destination": "/products" },
+    { "source": "/use-cases/:section", "destination": "/use-cases" },
+    { "source": "/how-it-works/:section", "destination": "/how-it-works" },
+    { "source": "/about/:section", "destination": "/about" }
   ]
 }

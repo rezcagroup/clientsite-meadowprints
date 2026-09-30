@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "21"
+ASSET_V = "22"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -426,9 +426,9 @@ SERVICE_CARDS = [
     ("printer", "Screen Printing", "Bold, durable prints that get more affordable per shirt as the order grows.", "screen-printing"),
     ("thread", "Custom Embroidery", "Stitched logos for polos, hats, jackets and bags with a premium finish.", "embroidery"),
     ("shirt", "Custom T-Shirts", "Tees for teams, events and businesses, from one-offs to hundreds.", "custom-t-shirts"),
-    ("cap", "Hats &amp; Caps", "Truckers, snapbacks and beanies, embroidered or patched.", "products#hats"),
-    ("jacket", "Hoodies &amp; Outerwear", "Hoodies, crews, quarter-zips and jackets for crews and fans.", "products#hoodies"),
-    ("target", "Team &amp; Spirit Wear", "Uniforms, warmups and fan gear with names and numbers.", "use-cases#sports"),
+    ("cap", "Hats &amp; Caps", "Truckers, snapbacks and beanies, embroidered or patched.", "products/hats"),
+    ("jacket", "Hoodies &amp; Outerwear", "Hoodies, crews, quarter-zips and jackets for crews and fans.", "products/hoodies"),
+    ("target", "Team &amp; Spirit Wear", "Uniforms, warmups and fan gear with names and numbers.", "use-cases/sports"),
 ]
 
 
@@ -808,6 +808,7 @@ def build_sitemap(extra):
              ("custom-t-shirts.html", "0.9"), ("service-areas.html", "0.9"), ("use-cases.html", "0.7"), ("gallery.html", "0.7"),
              ("how-it-works.html", "0.6"), ("about.html", "0.6"), ("faq.html", "0.6"), ("quote.html", "0.8"), ("contact.html", "0.7")]
     pages += [(p, "0.8") for p in extra]
+    pages += [(f"products/{c}", "0.7") for c in ("t-shirts", "polos", "hoodies", "jackets", "woven-shirts", "pants-shorts", "hats", "bags", "promo")]
     rows = "".join(
         f"\n  <url><loc>{url(p)}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>" for p, pr in pages)
     (ROOT / "sitemap.xml").write_text(
