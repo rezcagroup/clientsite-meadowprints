@@ -826,6 +826,8 @@ def patch_existing():
             src, n = re.subn(r"<title>.*?</title>\s*<meta name=\"description\"[^>]*>", lambda m: block, src, count=1, flags=re.S)
             assert n == 1, path
         src = re.sub(r'<link href="https://fonts\.googleapis\.com/css2\?[^"]*" rel="stylesheet">', FONTS, src, count=1)
+        if FONTS not in src:   # every page must load the fonts itself (styles.css no longer imports them)
+            src = src.replace('<link rel="stylesheet" href="css/styles.css', FONTS + '\n<link rel="stylesheet" href="css/styles.css', 1)
         src = re.sub(r"((?:css|js)/[a-z-]+\.(?:css|js)\?v=)\d+", lambda m: m.group(1) + ASSET_V, src)
         f.write_text(src)
 
