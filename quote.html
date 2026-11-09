@@ -25,7 +25,7 @@
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=26">
+<link rel="stylesheet" href="css/styles.css?v=27">
 </head>
 <body>
 <div id="site-header"></div>
@@ -54,6 +54,7 @@
           <div class="field"><label>First name</label><input name="first_name" required placeholder="Jordan"></div>
           <div class="field"><label>Last name</label><input name="last_name" required placeholder="Rivera"></div>
         </div>
+        <div class="field"><label>Company (optional)</label><input name="company" placeholder="Your company or crew name"></div>
         <div class="form-row">
           <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@email.com"></div>
           <div class="field"><label>Phone (optional)</label><input name="phone" type="tel" placeholder="(555) 555-1234"></div>
@@ -62,6 +63,8 @@
           <div class="field"><label>What are you making?</label>
             <select name="product" required>
               <option value="">Choose a product…</option>
+              <option>Work shirts / company uniforms</option>
+              <option>Hi-vis &amp; safety apparel</option>
               <option>T-Shirts</option><option>Hoodies &amp; Fleece</option><option>Embroidered Polos</option>
               <option>Hats &amp; Caps</option><option>Bags &amp; Totes</option><option>Accessories &amp; Gifts</option><option>Not sure yet</option>
             </select>
@@ -72,7 +75,7 @@
         </div>
         <div class="form-row">
           <div class="field"><label>Estimated quantity</label>
-            <select name="quantity"><option>Under 12</option><option>12-24</option><option>25-49</option><option>50-99</option><option>100-249</option><option>250+</option></select>
+            <select name="quantity"><option>Under 12</option><option>12-24</option><option>25-49</option><option>50-99</option><option>100-249</option><option>250-499</option><option>500-999</option><option>1,000+</option></select>
           </div>
           <div class="field"><label>Need it by</label><input name="deadline" type="date"></div>
         </div>
@@ -105,7 +108,7 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="js/main.js?v=26"></script>
+<script src="js/main.js?v=27"></script>
 <script>
   // If arriving from the studio/fundraiser, prefill message context
   const from = new URLSearchParams(location.search).get("from");

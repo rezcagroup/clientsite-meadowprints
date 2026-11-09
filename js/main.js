@@ -67,7 +67,19 @@ const NAV_LINKS = [
   ]},
   { label: "Embroidery", href: "embroidery" },
   { label: "Our Work", href: "gallery" },
-  { label: "How It Works", href: "how-it-works" },
+  { label: "Work Apparel", href: "work-apparel", mega: [
+    { icon: "", title: "Landscaping & Lawn Care", sub: "Landscaping crews", href: "work-apparel/landscaping" },
+    { icon: "", title: "Construction & General Contractors", sub: "Construction crews", href: "work-apparel/construction" },
+    { icon: "", title: "HVAC", sub: "HVAC technicians", href: "work-apparel/hvac" },
+    { icon: "", title: "Plumbing", sub: "Plumbers", href: "work-apparel/plumbing" },
+    { icon: "", title: "Electricians", sub: "Electricians", href: "work-apparel/electrical" },
+    { icon: "", title: "Roofing & Siding", sub: "Roofing crews", href: "work-apparel/roofing" },
+    { icon: "", title: "Painting Contractors", sub: "Painting crews", href: "work-apparel/painting" },
+    { icon: "", title: "Pool Service & Installation", sub: "Pool crews", href: "work-apparel/pool-service" },
+    { icon: "", title: "Auto Repair & Body Shops", sub: "Shop crews", href: "work-apparel/auto-repair" },
+    { icon: "", title: "Bulk T-Shirts", sub: "50 to 1,000+ shirts", href: "bulk-t-shirts" },
+    { icon: "", title: "All Trades", sub: "Every industry we outfit", href: "work-apparel" },
+  ]},
   { label: "Service Areas", href: "service-areas" },
 ];
 
@@ -97,6 +109,8 @@ function buildHeader() {
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
     <div class="mn-head"><a class="brand" href="/" style="border:none">${LOGO}</a>
     <button class="icon-btn" id="closeMobile" aria-label="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <a href="work-apparel">Work Apparel</a>
+    <a href="bulk-t-shirts">Bulk T-Shirts</a>
     <a href="products">Products</a>
     <a href="products">Start an Order</a>
     <a href="use-cases">Use Cases</a>
@@ -125,7 +139,7 @@ function buildFooter() {
           <p>Custom apparel, screen printing &amp; embroidery in Monmouth County, NJ - designed with you, made to order, and shipped with care. <strong>Quality. Precision. Every stitch.</strong> Proudly independent since 2024.</p>
         </div>
         ${col("Shop", [["All Products","products"],["Brands","brands"],["Custom T-Shirts","custom-t-shirts"],["Screen Printing","screen-printing"],["Embroidery","embroidery"],["Hoodies","products/hoodies"],["Hats & Caps","products/hats"],["Accessories & Gifts","products/promo"]])}
-        ${col("Solutions", [["Businesses","use-cases/businesses"],["Schools & Clubs","use-cases/schools"],["Events","use-cases/events"],["Sports Teams","use-cases/sports"],["Get a Quote","quote"]])}
+        ${col("Solutions", [["Work Apparel","work-apparel"],["Bulk T-Shirts","bulk-t-shirts"],["Businesses","use-cases/businesses"],["Schools & Clubs","use-cases/schools"],["Events","use-cases/events"],["Sports Teams","use-cases/sports"],["Get a Quote","quote"]])}
         ${col("Learn", [["How It Works","how-it-works"],["Browse Products","products"],["Service Areas","service-areas"],["Help & FAQ","faq"]])}
         ${col("Company", [["About Us","about"],["Contact","contact"],["Our Guarantee","how-it-works/guarantee"],["Careers","about/careers"],["Blog","/"]])}
       </div>

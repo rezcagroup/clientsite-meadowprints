@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "26"
+ASSET_V = "27"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -468,6 +468,11 @@ def service_grid():
     return f'<div class="grid g3">{cards}\n    </div>'
 
 
+def work_chips():
+    import work_pages
+    return "".join(f'\n      <a class="chip" href="work-apparel/{s}">{esc(n)}</a>' for s, n, *_ in work_pages.INDUSTRIES)
+
+
 def town_chips(slugs, light=False):
     return "".join(
         f'\n      <a class="chip" href="{town_href(s)}">{esc(TOWN_BY_SLUG[s][1])}</a>' for s in slugs)
@@ -547,6 +552,17 @@ def build_town(i, town, photos):
       <div class="step reveal"><div class="step-num">1</div><h3>Tell us what you need</h3><p>Pick a product, give us a quantity, and email us your logo or idea. No logo yet? We will help you design one.</p></div>
       <div class="step reveal"><div class="step-num">2</div><h3>Approve your proof</h3><p>You get a digital proof within 24 hours showing exact colors, sizing and placement.</p></div>
       <div class="step reveal"><div class="step-num">3</div><h3>We make and deliver it</h3><p>Your order is printed or embroidered in-house, then packed and sent to you in {esc(name)}.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container center">
+    <span class="eyebrow">Work apparel</span>
+    <h2>Uniforms for {esc(name)} contractors &amp; crews</h2>
+    <p class="lead" style="max-width:60ch;margin:0 auto">Bulk work shirts, hi-vis safety apparel and Carhartt workwear for local trades, with your logo kept on file for reorders.</p>
+    <div class="chip-row mt3" style="justify-content:center">{work_chips()}
+      <a class="chip active" href="work-apparel">All work apparel</a>
     </div>
   </div>
 </section>
@@ -752,8 +768,8 @@ def build_services():
 # ---------------------------------------------------------------- existing pages
 EXISTING = {
     "index.html": (
-        "Custom T-Shirts, Screen Printing & Embroidery | Monmouth County, NJ",
-        "Monmouth County, NJ custom apparel shop: screen printing, embroidery and custom t-shirts, hoodies and hats for teams, businesses and events. Free quote.",
+        "Custom T-Shirts, Work Shirts & Embroidery | Monmouth County, NJ",
+        "Monmouth County, NJ custom apparel shop: bulk work shirts and uniforms for contractors and trades, plus screen printing and embroidery for teams and events.",
         None),
     "products.html": (
         "Custom Apparel Catalog: Tees, Hoodies & Hats | Monmouth County, NJ",
@@ -866,6 +882,8 @@ def build_llms(catalog):
     b = BUSINESS
     towns = "\n".join(f"- [{name}]({url(town_file(slug))})" for slug, name, *_ in TOWNS)
     brands = "\n".join(f"- [{name}]({BASE}/brands/{slug}): {count} styles" for name, slug, count, _ in catalog["brands"])
+    import work_pages
+    work_md = "\n".join(f"- [{name} uniforms]({BASE}/work-apparel/{slug})" for slug, name, *_ in work_pages.INDUSTRIES)
     text = f"""# {b["name"]}
 
 > {b["legal"]} is a custom apparel shop in Monmouth County, New Jersey. It screen prints, embroiders and direct-to-garment prints t-shirts, polos, hoodies, jackets, hats, bags and workwear for businesses, teams, schools and events. There is no walk-in storefront; customers order by phone, email or the website and receive a free digital proof before anything is produced.
@@ -890,6 +908,14 @@ def build_llms(catalog):
 - [Screen printing]({url("screen-printing.html")}): bold, durable prints for orders of 12 or more
 - [Custom t-shirts]({url("custom-t-shirts.html")}): tees for teams, events, businesses and families
 - [Who we work with]({url("use-cases.html")}): businesses, schools and clubs, events, families, sports teams
+
+## Work apparel for companies and trades
+
+Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI safety apparel, Carhartt workwear, polos, jackets and hats, with bulk pricing and the customer's logo kept on file for reorders.
+
+- [Work shirts and company uniforms]({url("work-apparel.html")})
+- [Bulk custom t-shirts]({url("bulk-t-shirts.html")})
+{work_md}
 
 ## Ordering
 
@@ -963,7 +989,9 @@ def main():
     catalog = catalog_pages.build(sys.modules[__name__], ROOT)
     import legal_pages
     legal = legal_pages.build(sys.modules[__name__])
-    total = build_sitemap(towns + legal, catalog)
+    import work_pages
+    work = work_pages.build(sys.modules[__name__])
+    total = build_sitemap(work + towns + legal, catalog)
     build_robots()
     build_llms(catalog)
     build_404()
