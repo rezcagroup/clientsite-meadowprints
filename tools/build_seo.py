@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "27"
+ASSET_V = "28"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -259,7 +259,104 @@ TOWNS = [
       "Marina, boating and fishing apparel",
       "Retail sweatshirts and tees for club shops"],
      ["rumson-fair-haven", "long-branch", "oceanport", "atlantic-highlands"]),
+    # ---- Ocean County
+    ("toms-river", "Toms River",
+     "Toms River is the Ocean County seat and one of the biggest towns at the Shore, with busy Route 37 and Hooper Avenue businesses, contractors of every kind and a youth baseball tradition the whole state knows. We make custom work shirts, team uniforms and business apparel for Toms River from just up the Parkway in Monmouth County.",
+     ["Crew shirts, hi-vis tops and hoodies for contractors and service companies",
+      "Little League, travel ball and rec team uniforms with names and numbers",
+      "Embroidered polos and jackets for offices, dealerships and medical practices",
+      "Event and fundraiser shirts for schools and community groups"],
+     ["brick", "lakewood", "jackson", "point-pleasant"]),
+    ("brick", "Brick",
+     "Brick sits between Barnegat Bay and the Garden State Parkway, with Routes 70 and 88 lined with shops, restaurants and service businesses. We print and embroider uniforms, crew shirts and team gear for Brick businesses, marinas, schools and leagues.",
+     ["Work tees and hoodies for landscapers, builders and trades",
+      "Staff shirts and hats for restaurants and shops on Routes 70 and 88",
+      "Marina and boating apparel for the bayfront",
+      "Youth sports and school spirit wear"],
+     ["toms-river", "point-pleasant", "lakewood", "wall"]),
+    ("lakewood", "Lakewood",
+     "Lakewood is one of the fastest-growing towns in New Jersey and home to one of the state's largest industrial parks, full of warehouses, distributors and manufacturers. We supply Lakewood companies with bulk work shirts, hi-vis apparel and embroidered uniforms for their crews and staff.",
+     ["Bulk tees and hi-vis shirts for warehouse and distribution crews",
+      "Embroidered polos and jackets for office and sales staff",
+      "Hoodies, beanies and outerwear for loading-dock and yard crews",
+      "Uniform reorders for growing teams"],
+     ["toms-river", "jackson", "howell", "brick"]),
+    ("jackson", "Jackson",
+     "Jackson is a big, spread-out township known for Six Flags Great Adventure, farms and a large base of contractors and landscapers. We make durable crew shirts, workwear and team apparel for Jackson businesses, leagues and schools.",
+     ["Crew tees, pocket tees and hoodies for landscaping and construction companies",
+      "Embroidered jackets, vests and caps for trades",
+      "Rec league and travel team uniforms",
+      "Seasonal staff shirts for local attractions and events"],
+     ["lakewood", "howell", "toms-river", "millstone-upper-freehold"]),
+    ("point-pleasant", "Point Pleasant & Point Pleasant Beach",
+     "Point Pleasant and Point Pleasant Beach are home to the boardwalk at Jenkinson's, the Manasquan Inlet fishing fleet and a long list of marinas, restaurants and summer businesses. We print and embroider staff shirts, charter boat apparel and beach-town merch.",
+     ["Staff tees, tanks and hats for boardwalk and beach businesses",
+      "Charter boat, fishing fleet and marina apparel",
+      "Restaurant and bar uniforms",
+      "Retail tees and hoodies for shops"],
+     ["brick", "manasquan", "sea-girt-brielle", "toms-river"]),
+    ("stafford-lbi", "Manahawkin & Long Beach Island",
+     "Manahawkin and Stafford Township are the gateway to Long Beach Island, where summer businesses, builders and service companies work flat out from spring through fall. We make crew shirts, staff uniforms and retail merch for LBI and the mainland.",
+     ["Staff shirts and hats for LBI restaurants, shops and rentals",
+      "Crew tees and hoodies for builders, landscapers and pool companies",
+      "Retail tees and sweatshirts for island shops",
+      "Lifeguard, camp and summer-staff shirts"],
+     ["toms-river", "brick", "point-pleasant", "lakewood"]),
+    # ---- Middlesex County
+    ("old-bridge", "Old Bridge",
+     "Old Bridge is one of the largest townships in Middlesex County, bordering Monmouth County along Routes 9 and 18. We outfit Old Bridge contractors, businesses, schools and rec teams with custom printed and embroidered apparel.",
+     ["Work shirts and hi-vis apparel for contractors and trades",
+      "Rec league and travel team uniforms",
+      "Embroidered polos for offices and retail staff",
+      "School club, class and fundraiser shirts"],
+     ["matawan-aberdeen", "sayreville", "east-brunswick", "marlboro"]),
+    ("sayreville", "Sayreville & South Amboy",
+     "Sayreville and South Amboy sit on the Raritan Bay and River, with industrial businesses, contractors and busy Route 9 and 35 corridors. We make bulk work shirts, uniforms and team gear for local companies and community groups.",
+     ["Bulk work tees and hi-vis shirts for industrial and warehouse crews",
+      "Embroidered jackets and caps for trades",
+      "First responder, fire company and community event shirts",
+      "Youth sports uniforms and fan gear"],
+     ["old-bridge", "woodbridge", "east-brunswick", "keyport"]),
+    ("east-brunswick", "East Brunswick",
+     "East Brunswick's Route 18 corridor is packed with offices, medical practices, retailers and service businesses. We make embroidered polos and outerwear for professional teams, plus printed crew shirts and school and league apparel.",
+     ["Embroidered polos and quarter-zips for offices and medical practices",
+      "Staff shirts for retail and restaurants on Route 18",
+      "Crew tees for contractors and service companies",
+      "School spirit wear and rec team uniforms"],
+     ["old-bridge", "new-brunswick", "monroe", "sayreville"]),
+    ("edison", "Edison",
+     "Edison is a business hub at the crossroads of Route 1, Route 27 and the Turnpike, with warehouses, distribution centers, offices and service companies of every size. We supply Edison businesses with bulk work shirts, hi-vis apparel and embroidered company uniforms.",
+     ["Bulk tees and hi-vis tops for warehouse and logistics crews",
+      "Embroidered polos and jackets for company staff",
+      "Trade-show and corporate event apparel",
+      "Uniform programs with easy reorders for growing teams"],
+     ["woodbridge", "new-brunswick", "east-brunswick", "sayreville"]),
+    ("new-brunswick", "New Brunswick",
+     "New Brunswick is the Middlesex County seat, home to Rutgers University, major hospitals and a busy downtown of restaurants and theaters. We print and embroider for student organizations, healthcare teams, restaurants and local businesses.",
+     ["Club, Greek life and student organization shirts and hoodies",
+      "Embroidered apparel for healthcare and office teams",
+      "Restaurant and bar staff uniforms",
+      "Event, fundraiser and 5K shirts"],
+     ["edison", "east-brunswick", "monroe", "old-bridge"]),
+    ("monroe", "Monroe Township",
+     "Monroe Township is a large, growing community in southern Middlesex County with active adult communities, schools, warehouses and businesses along Route 33. We make custom apparel for Monroe companies, clubs, schools and teams.",
+     ["Bulk work shirts for warehouse and distribution crews",
+      "Club and community group apparel",
+      "School spirit wear and rec team uniforms",
+      "Embroidered polos for local businesses"],
+     ["east-brunswick", "manalapan", "millstone-upper-freehold", "new-brunswick"]),
+    ("woodbridge", "Woodbridge",
+     "Woodbridge Township sits at the junction of the Turnpike, Parkway and Route 1, with ports, warehouses and industrial businesses alongside retail and offices. We outfit Woodbridge companies with bulk work tees, hi-vis apparel and embroidered uniforms.",
+     ["Hi-vis and work shirts for port, warehouse and trucking crews",
+      "Embroidered polos and jackets for company staff",
+      "Retail and restaurant uniforms",
+      "Youth sports and school apparel"],
+     ["edison", "sayreville", "new-brunswick", "old-bridge"]),
 ]
+
+# Towns outside Monmouth County (everything else in TOWNS is Monmouth)
+COUNTY = {s: "Ocean" for s in ("toms-river", "brick", "lakewood", "jackson", "point-pleasant", "stafford-lbi")}
+COUNTY.update({s: "Middlesex" for s in ("old-bridge", "sayreville", "east-brunswick", "edison", "new-brunswick", "monroe", "woodbridge")})
 TOWN_BY_SLUG = {t[0]: t for t in TOWNS}
 
 
@@ -490,7 +587,7 @@ def build_town(i, town, photos):
     faqs = [
         (f"Do you serve {name}, NJ?",
          f"Yes. Meadow Prints &amp; Embroidery is based in Monmouth County and works with businesses, teams, schools and families in {name} "
-         f"every week. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
+         f"and the surrounding area. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
         (f"How fast can I get custom shirts in {name}?",
          f"Most {name} orders are finished about two weeks after you approve your proof, and rush production is available in as few as 3 days. "
          f"You get a digital proof within 24 hours, and nothing is printed until you approve it."),
@@ -509,7 +606,7 @@ def build_town(i, town, photos):
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / {esc(name)}</div>
-    <span class="eyebrow">Serving {esc(name)}, NJ</span>
+    <span class="eyebrow">Serving {esc(name)}, NJ &middot; {COUNTY.get(slug, "Monmouth")} County</span>
     <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem)">Custom T-Shirts, Screen Printing &amp; Embroidery in {esc(name)}, NJ</h1>
     <p class="lead" style="max-width:68ch">{esc(intro)}</p>
     <div class="hero-cta">
@@ -591,38 +688,38 @@ def build_town(i, town, photos):
 # ---------------------------------------------------------------- hub + service pages
 def build_hub():
     path = "service-areas.html"
-    title = "Custom Apparel Service Areas in Monmouth County, NJ | Meadow Prints"
-    desc = ("Screen printing, embroidery and custom apparel across Monmouth County, NJ: "
-            "Freehold, Red Bank, Middletown, Howell, Marlboro, Asbury Park and more.")
-    cards = "".join(
-        f'\n      <a class="card reveal" style="padding:22px" href="{town_href(slug)}"><h3 style="margin-bottom:6px">{esc(name)}</h3>'
-        f'<p class="muted mb0" style="font-size:.92rem">Custom t-shirts, screen printing &amp; embroidery in {esc(name)}, NJ</p></a>'
-        for slug, name, *_ in TOWNS)
+    title = "Custom Apparel Service Areas: Monmouth, Ocean & Middlesex Counties, NJ"
+    desc = ("Screen printing, embroidery and custom apparel across Central Jersey and the Shore: Monmouth, Ocean and Middlesex "
+            "Counties, including Freehold, Red Bank, Toms River, Brick, Lakewood, Edison and more.")
+
+    def cards(county):
+        return "".join(
+            f'\n      <a class="card reveal" style="padding:22px" href="{town_href(slug)}"><h3 style="margin-bottom:6px">{esc(name)}</h3>'
+            f'<p class="muted mb0" style="font-size:.92rem">Custom t-shirts, screen printing &amp; embroidery in {esc(name)}, NJ</p></a>'
+            for slug, name, *_ in TOWNS if COUNTY.get(slug, "Monmouth") == county)
+
+    groups = "".join(f"""
+    <h2 class="center" style="margin:{'0' if i == 0 else '56px'} 0 24px">{county} County</h2>
+    <div class="grid g3">{cards(county)}
+    </div>""" for i, county in enumerate(("Monmouth", "Ocean", "Middlesex")))
     schemas = [business_ld(), breadcrumb_ld([("Home", "index.html"), ("Service Areas", path)])]
     body = f"""
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumbs"><a href="/">Home</a> / Service Areas</div>
-    <span class="eyebrow">Monmouth County, NJ</span>
-    <h1>Custom apparel for every town in Monmouth County</h1>
-    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is a Monmouth County custom apparel shop. We screen print, embroider and deliver custom t-shirts, hoodies, hats and workwear for businesses, teams, schools and events from the bayshore to the beaches to the farms out west.</p>
+    <span class="eyebrow">Central Jersey &amp; the Shore</span>
+    <h1>Custom apparel across Monmouth, Ocean &amp; Middlesex Counties</h1>
+    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is based in Monmouth County. We screen print, embroider and deliver custom t-shirts, work shirts, hoodies, hats and uniforms for businesses, crews, teams and schools throughout Monmouth County and neighboring Ocean and Middlesex Counties - and we ship anywhere in <a href="custom-apparel-new-jersey">New Jersey</a>.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
-      <a class="btn btn-outline btn-lg" href="products">Browse Products</a>
+      <a class="btn btn-outline btn-lg" href="work-apparel">Work Apparel</a>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="container">
-    <div class="center" style="max-width:640px;margin:0 auto 44px">
-      <span class="eyebrow">Find your town</span>
-      <h2>Towns we serve</h2>
-      <p class="lead">Pick your town to see what local businesses, teams and schools order most.</p>
-    </div>
-    <div class="grid g3">{cards}
-    </div>
-    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We work with customers in every Monmouth County municipality, and we ship orders outside the county too. <a href="quote">Ask us for a quote</a>.</p>
+  <div class="container">{groups}
+    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We work with customers all over Central Jersey and ship orders anywhere in the state. <a href="quote">Ask us for a quote</a>.</p>
   </div>
 </section>
 
@@ -630,12 +727,82 @@ def build_hub():
   <div class="container">
     <div class="center" style="max-width:640px;margin:0 auto 44px">
       <span class="eyebrow">What we do</span>
-      <h2>Services across Monmouth County</h2>
+      <h2>Services across Central Jersey</h2>
     </div>
     {service_grid()}
   </div>
 </section>
 {cta("Let's make something worth wearing", "Tell us your town, your quantity and your idea - we will take it from there.")}"""
+    (ROOT / path).write_text(page(path, title, desc, schemas, body))
+    return path
+
+
+def build_nj():
+    path = "custom-apparel-new-jersey.html"
+    title = "Custom T-Shirts, Screen Printing & Embroidery in New Jersey | Meadow Prints"
+    desc = ("New Jersey custom apparel shop for bulk work shirts, company uniforms, screen printing and embroidery. "
+            "Based in Monmouth County, serving Central Jersey and the Shore and shipping statewide.")
+    faqs = [
+        ("Where in New Jersey are you located?",
+         "We're based in Monmouth County. We don't have a walk-in storefront - orders are placed by phone, email or online."),
+        ("Do you work with businesses outside Monmouth County?",
+         "Yes. We regularly serve Ocean and Middlesex Counties and ship finished orders anywhere in New Jersey."),
+        ("What's the best way to start a company or crew order?",
+         "Send a quote request or call (732) 763-6078 with the garments, rough quantity and your logo. You'll get a quote and a free digital proof within 24 hours."),
+    ]
+    schemas = [
+        service_ld("Custom apparel, screen printing and embroidery in New Jersey", path, {"@type": "State", "name": "New Jersey"}, desc),
+        breadcrumb_ld([("Home", "index.html"), ("Service Areas", "service-areas.html"), ("New Jersey", path)]),
+        faq_ld([(q, strip_tags(a)) for q, a in faqs]),
+    ]
+    chips = lambda county: "".join(f'\n      <a class="chip" href="{town_href(t[0])}">{esc(t[1])}</a>' for t in TOWNS if COUNTY.get(t[0], "Monmouth") == county)
+    body = f"""
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / New Jersey</div>
+    <span class="eyebrow">New Jersey custom apparel</span>
+    <h1>Custom t-shirts, work shirts &amp; embroidery for New Jersey</h1>
+    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is a New Jersey custom apparel shop based in Monmouth County. We specialize in bulk work shirts and uniforms for contractors and trades, and we screen print and embroider for businesses, teams, schools and events across Central Jersey and the Shore, shipping finished orders anywhere in the state.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
+      <a class="btn btn-outline btn-lg" href="tel:+17327636078">Call (732) 763-6078</a>
+    </div>
+  </div>
+</section>
+
+<section class="band-cream">
+  <div class="container">
+    <div class="center" style="max-width:640px;margin:0 auto 44px">
+      <span class="eyebrow">What we do</span>
+      <h2>Printing &amp; embroidery services</h2>
+    </div>
+    {service_grid()}
+  </div>
+</section>
+
+<section>
+  <div class="container center">
+    <span class="eyebrow">Where we work</span>
+    <h2>Towns we serve</h2>
+    <h3 class="mt3" style="margin-bottom:12px">Monmouth County</h3>
+    <div class="chip-row" style="justify-content:center">{chips("Monmouth")}
+    </div>
+    <h3 class="mt4" style="margin-bottom:12px">Ocean County</h3>
+    <div class="chip-row" style="justify-content:center">{chips("Ocean")}
+    </div>
+    <h3 class="mt4" style="margin-bottom:12px">Middlesex County</h3>
+    <div class="chip-row" style="justify-content:center">{chips("Middlesex")}
+    </div>
+  </div>
+</section>
+
+<section class="band-cream">
+  <div class="container" style="max-width:820px">
+    <h2 style="margin-bottom:20px">New Jersey custom apparel FAQ</h2>
+    {accordion(faqs)}
+  </div>
+</section>
+{cta("Ready to get started?", "Tell us your town, your quantity and your logo and we'll reply within one business day.")}"""
     (ROOT / path).write_text(page(path, title, desc, schemas, body))
     return path
 
@@ -890,7 +1057,7 @@ def build_llms(catalog):
 
 ## Key facts
 
-- Location: Monmouth County, New Jersey (serves every town in the county and ships elsewhere)
+- Location: Monmouth County, New Jersey (serves Monmouth, Ocean and Middlesex Counties and ships anywhere in New Jersey)
 - Phone: (732) 763-6078
 - Email: {b["email"]}
 - Hours: Monday-Friday 8am-7pm, Saturday 10am-4pm, closed Sunday (Eastern Time)
@@ -915,7 +1082,15 @@ Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI saf
 
 - [Work shirts and company uniforms]({url("work-apparel.html")})
 - [Bulk custom t-shirts]({url("bulk-t-shirts.html")})
+- [Hi-vis safety apparel with logo]({url("hi-vis-safety-apparel.html")})
 {work_md}
+
+## Teams, schools and events
+
+- [Team uniforms]({url("team-uniforms.html")})
+- [School spirit wear]({url("school-spirit-wear.html")})
+- [Fundraiser shirts]({url("fundraiser-shirts.html")})
+- [Event and reunion shirts]({url("event-shirts.html")})
 
 ## Ordering
 
@@ -933,7 +1108,7 @@ Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI saf
 
 {brands}
 
-## Service areas (Monmouth County, NJ)
+## Service areas (Monmouth, Ocean and Middlesex Counties, NJ)
 
 {towns}
 
@@ -984,6 +1159,7 @@ def main():
     photos = gallery()
     towns = [build_town(i, t, photos) for i, t in enumerate(TOWNS)]
     build_hub()
+    towns.append(build_nj())
     build_services()
     patch_existing()
     catalog = catalog_pages.build(sys.modules[__name__], ROOT)
@@ -991,7 +1167,9 @@ def main():
     legal = legal_pages.build(sys.modules[__name__])
     import work_pages
     work = work_pages.build(sys.modules[__name__])
-    total = build_sitemap(work + towns + legal, catalog)
+    import more_pages
+    more = more_pages.build(sys.modules[__name__])
+    total = build_sitemap(work + more + towns + legal, catalog)
     build_robots()
     build_llms(catalog)
     build_404()

@@ -60,10 +60,11 @@ const NAV_LINKS = [
   ]},
   { label: "Use Cases", href: "use-cases", mega: [
     { icon: "", title: "Businesses", sub: "Branded team gear", href: "use-cases/businesses" },
-    { icon: "", title: "Schools & Clubs", sub: "Spirit wear & merch", href: "use-cases/schools" },
-    { icon: "", title: "Events", sub: "Reunions, races, parties", href: "use-cases/events" },
+    { icon: "", title: "Schools & Clubs", sub: "Spirit wear & merch", href: "school-spirit-wear" },
+    { icon: "", title: "Events", sub: "Reunions, races, parties", href: "event-shirts" },
     { icon: "", title: "Family & Groups", sub: "Match the whole crew", href: "use-cases/family" },
-    { icon: "", title: "Sports Teams", sub: "Jerseys & practice gear", href: "use-cases/sports" },
+    { icon: "", title: "Sports Teams", sub: "Jerseys & practice gear", href: "team-uniforms" },
+    { icon: "", title: "Fundraisers", sub: "Shirts for your cause", href: "fundraiser-shirts" },
   ]},
   { label: "Embroidery", href: "embroidery" },
   { label: "Our Work", href: "gallery" },
@@ -77,6 +78,7 @@ const NAV_LINKS = [
     { icon: "", title: "Painting Contractors", sub: "Painting crews", href: "work-apparel/painting" },
     { icon: "", title: "Pool Service & Installation", sub: "Pool crews", href: "work-apparel/pool-service" },
     { icon: "", title: "Auto Repair & Body Shops", sub: "Shop crews", href: "work-apparel/auto-repair" },
+    { icon: "", title: "Hi-Vis & Safety", sub: "ANSI vests, hoodies, jackets", href: "hi-vis-safety-apparel" },
     { icon: "", title: "Bulk T-Shirts", sub: "50 to 1,000+ shirts", href: "bulk-t-shirts" },
     { icon: "", title: "All Trades", sub: "Every industry we outfit", href: "work-apparel" },
   ]},
@@ -111,6 +113,7 @@ function buildHeader() {
     <button class="icon-btn" id="closeMobile" aria-label="Close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <a href="work-apparel">Work Apparel</a>
     <a href="bulk-t-shirts">Bulk T-Shirts</a>
+    <a href="hi-vis-safety-apparel">Hi-Vis &amp; Safety</a>
     <a href="products">Products</a>
     <a href="products">Start an Order</a>
     <a href="use-cases">Use Cases</a>
@@ -143,7 +146,7 @@ function buildFooter() {
         ${col("Learn", [["How It Works","how-it-works"],["Browse Products","products"],["Service Areas","service-areas"],["Help & FAQ","faq"]])}
         ${col("Company", [["About Us","about"],["Contact","contact"],["Our Guarantee","how-it-works/guarantee"],["Careers","about/careers"],["Blog","/"]])}
       </div>
-      <div class="footer-areas"><strong>Proudly serving Monmouth County, NJ</strong><a href="custom-apparel-freehold-nj">Freehold</a> · <a href="custom-apparel-red-bank-nj">Red Bank</a> · <a href="custom-apparel-middletown-nj">Middletown</a> · <a href="custom-apparel-howell-nj">Howell</a> · <a href="custom-apparel-marlboro-nj">Marlboro</a> · <a href="custom-apparel-manalapan-nj">Manalapan</a> · <a href="custom-apparel-holmdel-nj">Holmdel</a> · <a href="custom-apparel-asbury-park-nj">Asbury Park</a> · <a href="custom-apparel-long-branch-nj">Long Branch</a> · <a href="custom-apparel-wall-nj">Wall</a> · <a href="custom-apparel-neptune-nj">Neptune</a> · <a href="custom-apparel-tinton-falls-nj">Tinton Falls</a> · <a href="custom-apparel-ocean-township-nj">Ocean Township</a> · <a href="custom-apparel-eatontown-nj">Eatontown</a> · <a href="custom-apparel-colts-neck-nj">Colts Neck</a> · <a href="custom-apparel-hazlet-nj">Hazlet</a> · <a href="custom-apparel-belmar-nj">Belmar</a> · <a href="custom-apparel-manasquan-nj">Manasquan</a> · <a href="service-areas">All service areas</a></div>
+      <div class="footer-areas"><strong>Proudly serving Monmouth, Ocean &amp; Middlesex Counties, NJ</strong><a href="custom-apparel-freehold-nj">Freehold</a> · <a href="custom-apparel-red-bank-nj">Red Bank</a> · <a href="custom-apparel-middletown-nj">Middletown</a> · <a href="custom-apparel-howell-nj">Howell</a> · <a href="custom-apparel-marlboro-nj">Marlboro</a> · <a href="custom-apparel-manalapan-nj">Manalapan</a> · <a href="custom-apparel-holmdel-nj">Holmdel</a> · <a href="custom-apparel-asbury-park-nj">Asbury Park</a> · <a href="custom-apparel-long-branch-nj">Long Branch</a> · <a href="custom-apparel-wall-nj">Wall</a> · <a href="custom-apparel-neptune-nj">Neptune</a> · <a href="custom-apparel-tinton-falls-nj">Tinton Falls</a> · <a href="custom-apparel-ocean-township-nj">Ocean Township</a> · <a href="custom-apparel-eatontown-nj">Eatontown</a> · <a href="custom-apparel-colts-neck-nj">Colts Neck</a> · <a href="custom-apparel-hazlet-nj">Hazlet</a> · <a href="custom-apparel-belmar-nj">Belmar</a> · <a href="custom-apparel-manasquan-nj">Manasquan</a> · <a href="custom-apparel-toms-river-nj">Toms River</a> · <a href="custom-apparel-brick-nj">Brick</a> · <a href="custom-apparel-lakewood-nj">Lakewood</a> · <a href="custom-apparel-edison-nj">Edison</a> · <a href="custom-apparel-new-brunswick-nj">New Brunswick</a> · <a href="custom-apparel-new-jersey">New Jersey</a> · <a href="service-areas">All service areas</a></div>
       <div class="footer-areas"><strong>Brands we embroider &amp; print</strong><a href="brands/port-authority">Port Authority</a> · <a href="brands/sport-tek">Sport-Tek</a> · <a href="brands/port-and-company">Port &amp; Company</a> · <a href="brands/carhartt">Carhartt</a> · <a href="brands/district">District</a> · <a href="brands/nike">Nike</a> · <a href="brands/bella-canvas">Bella+Canvas</a> · <a href="brands/the-north-face">The North Face</a> · <a href="brands/gildan">Gildan</a> · <a href="brands/richardson">Richardson</a> · <a href="brands/next-level">Next Level</a> · <a href="brands/comfort-colors">Comfort Colors</a> · <a href="brands">All brands</a></div>
       <div class="footer-bottom">
         <div>© ${new Date().getFullYear()} Meadow Prints &amp; Embroidery LLC. All rights reserved.</div>

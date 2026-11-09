@@ -165,6 +165,42 @@ INDUSTRIES = [
      ["CT106972", "ST420", "CT106899", "K469", "CT105294", "CT106438", "C112", "CT106687"],
      ("Can you make shirts we can sell in our ship store?",
       "Yes. We print and embroider retail-quality tees, hoodies and hats with your logo that you can sell as well as wear.")),
+    ("restaurants", "Restaurants & Food Service", "restaurant staff",
+     "Restaurants, bars, cafes, delis and food trucks need staff uniforms that look sharp, hold up to the kitchen and are easy to reorder when the summer crowd arrives. We print and embroider staff tees, polos, aprons and hats for food service businesses at the Shore and inland.",
+     ["Staff tees and polos for front of house",
+      "Embroidered aprons - waist, bistro and full-length",
+      "Hats and visors for kitchen and counter staff",
+      "Retail tees and hoodies to sell to regulars"],
+     ["Stain-release aprons and dark tees keep kitchen staff looking clean through a double shift.",
+      "Match front-of-house polos and back-of-house tees in the same color.",
+      "Seasonal hiring? Keep your logo on file and reorder a few shirts at a time."],
+     ["PC54", "BC3001", "KP55", "A707", "A706", "A700", "C112", "CT106880"],
+     ("Can you embroider our logo on aprons?",
+      "Yes. We embroider waist, bistro and full-length aprons, including stain-release styles, with your logo.")),
+    ("warehouse", "Warehouses & Manufacturing", "warehouse and plant crews",
+     "Warehouses, distribution centers and manufacturers need large numbers of matching shirts, hi-vis gear for the dock and yard, and an easy way to outfit new hires. We handle bulk uniform orders for warehouse and plant crews across Central Jersey.",
+     ["Bulk tees in company colors for every shift",
+      "Hi-vis vests and shirts for docks, yards and forklift areas",
+      "Hoodies, quarter-zips and beanies for cold warehouses",
+      "Embroidered polos for supervisors and office staff"],
+     ["Use one color per shift or department to make teams easy to tell apart.",
+      "Order a buffer of common sizes for new hires and keep your logo on file for quick top-ups.",
+      "Hi-vis for anyone working around trucks and forklifts; logo placed off the reflective striping."],
+     ["PC61", "5000", "5400", "CT106171", "CT104987", "PC78H", "CT104597", "K469"],
+     ("Can you handle uniform orders for multiple shifts or locations?",
+      "Yes. We can split one order by shift, department or location, use different colors for each, and ship to multiple addresses.")),
+    ("first-responders", "Fire, EMS & First Responders", "fire companies and squads",
+     "Volunteer fire companies, first aid squads and EMS crews are a big part of every Monmouth County town. We make duty polos, quarter-zips, hoodies, t-shirts and caps for departments, squads and auxiliaries, plus shirts for fundraisers and community events.",
+     ["Embroidered duty polos and quarter-zips with department patches or logos",
+      "Station tees and hoodies with large back lettering",
+      "Hats and beanies for members and auxiliaries",
+      "Fundraiser and community event shirts"],
+     ["Carhartt's FLD & RSCU line is built for first responders and takes embroidery well.",
+      "Big back lettering (FIRE, EMS, RESCUE) on tees and hoodies is easy to read at a scene or event.",
+      "Order member and auxiliary apparel together to keep the look consistent."],
+     ["CTC16119", "CTC86912", "CT106880", "PC61", "PC78H", "112T", "CT104597", "5400"],
+     ("Do you make shirts for fire company fundraisers?",
+      "Yes. We print fundraiser and event shirts for fire companies and squads, and special rates are available for nonprofits - just mention it on your quote request.")),
 ]
 
 
@@ -291,6 +327,7 @@ def build(B):
     <span class="eyebrow">More trades we outfit</span>
     <h2>Uniforms for every trade</h2>
     <div class="chip-row mt3" style="justify-content:center">{industry_chips(B, slug)}
+      <a class="chip" href="hi-vis-safety-apparel">Hi-Vis &amp; Safety</a>
       <a class="chip active" href="work-apparel">All work apparel</a>
     </div>
     <h3 class="mt4" style="margin-bottom:14px">Serving {B.esc(crew)} across Monmouth County</h3>
@@ -374,7 +411,7 @@ def build(B):
         <li><strong>Names stitched on</strong> - individual names on polos, work shirts and jackets</li>
         <li><strong>Mixed sizes, tall sizes and split shipping</strong> to the shop or job site</li>
       </ul>
-      <div class="hero-cta"><a class="btn btn-primary" href="bulk-t-shirts">Bulk T-Shirt Orders</a><a class="btn btn-outline" href="brands/carhartt">Shop Carhartt</a></div>
+      <div class="hero-cta"><a class="btn btn-primary" href="hi-vis-safety-apparel">Hi-Vis &amp; Safety Apparel</a><a class="btn btn-outline" href="bulk-t-shirts">Bulk T-Shirt Orders</a></div>
     </div>
     <div class="card reveal" style="padding:0;overflow:hidden"><img src="images/products/IMG_8845.jpg?v=8" alt="Hi-vis safety shirts printed by Meadow Prints &amp; Embroidery for a Monmouth County crew" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3"></div>
   </div>
