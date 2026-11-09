@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "28"
+ASSET_V = "29"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -406,11 +406,14 @@ def business_ld():
         "url": BASE + "/",
         "logo": BASE + "/images/logo/newlogo.png",
         "image": BASE + "/images/hero/hero.jpg",
-        "description": "Custom apparel shop in Monmouth County, New Jersey offering screen printing, embroidery, and custom t-shirts, hoodies, hats and workwear for businesses, teams, schools and events.",
+        "description": "Custom apparel shop based in Monmouth County, New Jersey, serving all of New Jersey, offering screen printing, embroidery, and custom t-shirts, hoodies, hats and workwear for businesses, teams, schools and events.",
         "foundingDate": b["founded"],
         "founder": {"@type": "Person", "name": b["founder"], "jobTitle": b["founder_title"]},
         "address": address,
-        "areaServed": [{"@type": "AdministrativeArea", "name": "Monmouth County, New Jersey"}]
+        "areaServed": [{"@type": "State", "name": "New Jersey"},
+                       {"@type": "AdministrativeArea", "name": "Monmouth County, New Jersey"},
+                       {"@type": "AdministrativeArea", "name": "Ocean County, New Jersey"},
+                       {"@type": "AdministrativeArea", "name": "Middlesex County, New Jersey"}]
                       + [{"@type": "City", "name": f"{n.replace(' & ', ' and ')}, NJ"} for _, n, *_ in TOWNS],
         "knowsAbout": ["Screen printing", "Custom embroidery", "Custom t-shirts", "Direct-to-garment printing",
                        "Team uniforms", "Corporate apparel", "Custom hats", "Workwear"],
@@ -587,7 +590,7 @@ def build_town(i, town, photos):
     faqs = [
         (f"Do you serve {name}, NJ?",
          f"Yes. Meadow Prints &amp; Embroidery is based in Monmouth County and works with businesses, teams, schools and families in {name} "
-         f"and the surrounding area. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
+         f"and serves all of New Jersey. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
         (f"How fast can I get custom shirts in {name}?",
          f"Most {name} orders are finished about two weeks after you approve your proof, and rush production is available in as few as 3 days. "
          f"You get a digital proof within 24 hours, and nothing is printed until you approve it."),
@@ -688,9 +691,9 @@ def build_town(i, town, photos):
 # ---------------------------------------------------------------- hub + service pages
 def build_hub():
     path = "service-areas.html"
-    title = "Custom Apparel Service Areas: Monmouth, Ocean & Middlesex Counties, NJ"
-    desc = ("Screen printing, embroidery and custom apparel across Central Jersey and the Shore: Monmouth, Ocean and Middlesex "
-            "Counties, including Freehold, Red Bank, Toms River, Brick, Lakewood, Edison and more.")
+    title = "Custom Apparel Service Areas Across New Jersey | Meadow Prints & Embroidery"
+    desc = ("Screen printing, embroidery and custom apparel for all of New Jersey from our Monmouth County shop, "
+            "including Freehold, Red Bank, Toms River, Brick, Lakewood, Edison and more.")
 
     def cards(county):
         return "".join(
@@ -707,9 +710,9 @@ def build_hub():
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumbs"><a href="/">Home</a> / Service Areas</div>
-    <span class="eyebrow">Central Jersey &amp; the Shore</span>
-    <h1>Custom apparel across Monmouth, Ocean &amp; Middlesex Counties</h1>
-    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is based in Monmouth County. We screen print, embroider and deliver custom t-shirts, work shirts, hoodies, hats and uniforms for businesses, crews, teams and schools throughout Monmouth County and neighboring Ocean and Middlesex Counties - and we ship anywhere in <a href="custom-apparel-new-jersey">New Jersey</a>.</p>
+    <span class="eyebrow">Serving all of New Jersey</span>
+    <h1>Custom apparel for all of New Jersey</h1>
+    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is based in Monmouth County and serves businesses, crews, teams and schools all over <a href="custom-apparel-new-jersey">New Jersey</a>. We screen print and embroider custom t-shirts, work shirts, hoodies, hats and uniforms, and deliver them wherever you are in the state. Here are some of the towns we work with most.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
       <a class="btn btn-outline btn-lg" href="work-apparel">Work Apparel</a>
@@ -719,7 +722,7 @@ def build_hub():
 
 <section>
   <div class="container">{groups}
-    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We work with customers all over Central Jersey and ship orders anywhere in the state. <a href="quote">Ask us for a quote</a>.</p>
+    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We serve all of New Jersey - every county, every town. <a href="quote">Ask us for a quote</a>.</p>
   </div>
 </section>
 
@@ -727,7 +730,7 @@ def build_hub():
   <div class="container">
     <div class="center" style="max-width:640px;margin:0 auto 44px">
       <span class="eyebrow">What we do</span>
-      <h2>Services across Central Jersey</h2>
+      <h2>Services across New Jersey</h2>
     </div>
     {service_grid()}
   </div>
@@ -741,12 +744,12 @@ def build_nj():
     path = "custom-apparel-new-jersey.html"
     title = "Custom T-Shirts, Screen Printing & Embroidery in New Jersey | Meadow Prints"
     desc = ("New Jersey custom apparel shop for bulk work shirts, company uniforms, screen printing and embroidery. "
-            "Based in Monmouth County, serving Central Jersey and the Shore and shipping statewide.")
+            "Based in Monmouth County and serving every county in New Jersey.")
     faqs = [
         ("Where in New Jersey are you located?",
          "We're based in Monmouth County. We don't have a walk-in storefront - orders are placed by phone, email or online."),
         ("Do you work with businesses outside Monmouth County?",
-         "Yes. We regularly serve Ocean and Middlesex Counties and ship finished orders anywhere in New Jersey."),
+         "Yes. We serve all of New Jersey - North Jersey, Central Jersey and South Jersey - and deliver finished orders anywhere in the state."),
         ("What's the best way to start a company or crew order?",
          "Send a quote request or call (732) 763-6078 with the garments, rough quantity and your logo. You'll get a quote and a free digital proof within 24 hours."),
     ]
@@ -762,7 +765,7 @@ def build_nj():
     <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / New Jersey</div>
     <span class="eyebrow">New Jersey custom apparel</span>
     <h1>Custom t-shirts, work shirts &amp; embroidery for New Jersey</h1>
-    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is a New Jersey custom apparel shop based in Monmouth County. We specialize in bulk work shirts and uniforms for contractors and trades, and we screen print and embroider for businesses, teams, schools and events across Central Jersey and the Shore, shipping finished orders anywhere in the state.</p>
+    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is a New Jersey custom apparel shop based in Monmouth County. We specialize in bulk work shirts and uniforms for contractors and trades, and we screen print and embroider for businesses, teams, schools and events in every corner of the state.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
       <a class="btn btn-outline btn-lg" href="tel:+17327636078">Call (732) 763-6078</a>
@@ -902,7 +905,7 @@ def build_services():
          ("Can you screen print on hoodies and other garments?",
           "Yes. We print tees, long sleeves, tanks, hoodies, crewneck sweatshirts and many bags and performance fabrics."),
          ("Do you serve my town?",
-          "We work with customers across Monmouth County, NJ, including Freehold, Red Bank, Middletown, Howell, Marlboro, Manalapan and the Shore towns. See our <a href=\"service-areas\">service areas</a>.")]))
+          "We're based in Monmouth County and serve all of New Jersey, from Freehold, Red Bank and the Shore towns to North and South Jersey. See our <a href=\"service-areas\">service areas</a>.")]))
     out.append(build_service(
         "custom-t-shirts.html", "Custom T-Shirts",
         "Custom T-Shirts in Monmouth County, NJ | Meadow Prints & Embroidery",
@@ -928,7 +931,7 @@ def build_services():
          ("Can you help with my design?",
           "Yes. Every order includes a free art review, and we can create a mockup from a rough idea or an existing logo."),
          ("Where are you located?",
-          "Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey, and serves the whole county. See our <a href=\"service-areas\">service areas</a>.")]))
+          "Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey, and serves the whole state. See our <a href=\"service-areas\">service areas</a>.")]))
     return out
 
 
@@ -1057,7 +1060,7 @@ def build_llms(catalog):
 
 ## Key facts
 
-- Location: Monmouth County, New Jersey (serves Monmouth, Ocean and Middlesex Counties and ships anywhere in New Jersey)
+- Location: based in Monmouth County, New Jersey; serves all of New Jersey
 - Phone: (732) 763-6078
 - Email: {b["email"]}
 - Hours: Monday-Friday 8am-7pm, Saturday 10am-4pm, closed Sunday (Eastern Time)
@@ -1108,7 +1111,7 @@ Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI saf
 
 {brands}
 
-## Service areas (Monmouth, Ocean and Middlesex Counties, NJ)
+## Service areas (all of New Jersey; town pages below)
 
 {towns}
 
