@@ -444,6 +444,14 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
 .acc-body { max-height:0; overflow:hidden; transition: max-height .28s var(--ease); }
 .acc-body-inner { padding: 0 22px 22px; color: var(--slate); }
 
+/* ---------- At-a-glance facts ---------- */
+.facts { display:grid; grid-template-columns: 1fr 1fr; gap:0; margin:0; background:#fff; border:2px solid var(--graphite); border-radius:var(--radius); }
+.facts .fact { padding:14px 18px; border-bottom:1px solid var(--line); }
+.facts .fact:nth-child(odd) { border-right:1px solid var(--line); }
+.facts dt { font-family:var(--font-mono); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:4px; }
+.facts dd { margin:0; color:var(--ink); font-size:.95rem; line-height:1.5; }
+@media (max-width: 700px) { .facts { grid-template-columns: 1fr; } .facts .fact:nth-child(odd) { border-right:none; } }
+
 /* ---------- Legal pages ---------- */
 .legal h3 { margin: 32px 0 10px; }
 .legal p, .legal li { color: var(--slate); }

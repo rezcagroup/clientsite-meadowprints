@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "29"
+ASSET_V = "30"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -1121,6 +1121,7 @@ Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI saf
 - [Our work (photo gallery)]({url("gallery.html")})
 - [Service areas overview]({url("service-areas.html")})
 - [Sitemap]({BASE}/sitemap.xml)
+- [Full details for AI assistants]({BASE}/llms-full.txt)
 """
     (ROOT / "llms.txt").write_text(text)
 
@@ -1165,6 +1166,8 @@ def main():
     towns.append(build_nj())
     build_services()
     patch_existing()
+    import ai_pages
+    ai_pages.fill_facts(ROOT)
     catalog = catalog_pages.build(sys.modules[__name__], ROOT)
     import legal_pages
     legal = legal_pages.build(sys.modules[__name__])
@@ -1175,6 +1178,15 @@ def main():
     total = build_sitemap(work + more + towns + legal, catalog)
     build_robots()
     build_llms(catalog)
+    import work_pages
+    ai_pages.build_llms_full(sys.modules[__name__], [
+        ("Services", ["custom-t-shirts.html", "screen-printing.html", "embroidery.html", "bulk-t-shirts.html", "hi-vis-safety-apparel.html"]),
+        ("Work apparel for companies and trades", ["work-apparel.html"] + [f"work-apparel/{s}.html" for s, *_ in work_pages.INDUSTRIES]),
+        ("Teams, schools and events", ["team-uniforms.html", "school-spirit-wear.html", "fundraiser-shirts.html", "event-shirts.html"]),
+        ("Frequently asked questions", ["faq.html"]),
+        ("Service areas", ["custom-apparel-new-jersey.html"] + [town_file(t[0]) for t in TOWNS]),
+    ])
+    ai_pages.write_indexnow_key(ROOT)
     build_404()
     print(f"built {len(towns)} town pages, hub, 2 service pages, {len(catalog['listings'])} catalog landing pages, "
           f"{len(catalog['products'])} product pages; patched {len(EXISTING)} existing pages; sitemap has {total} URLs")

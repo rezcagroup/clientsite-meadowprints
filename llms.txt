@@ -134,3 +134,4 @@ Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI saf
 - [Our work (photo gallery)](https://www.meadowprintsandembroidery.com/gallery)
 - [Service areas overview](https://www.meadowprintsandembroidery.com/service-areas)
 - [Sitemap](https://www.meadowprintsandembroidery.com/sitemap.xml)
+- [Full details for AI assistants](https://www.meadowprintsandembroidery.com/llms-full.txt)
