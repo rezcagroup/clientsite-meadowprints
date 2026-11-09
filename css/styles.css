@@ -171,7 +171,7 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
   border-bottom: 2px solid var(--graphite);
 }
 .nav { display: flex; align-items: center; gap: 20px; height: 74px; }
-.brand { display: flex; align-items: center; gap: 11px; }
+.brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
 .brand-logo { height: 58px; width: auto; display: block; background: #fff; padding: 5px 9px; border: 2px solid var(--graphite); border-radius: var(--radius); }
 .brand-footer .brand-logo { height: 60px; }
 @media (max-width: 480px){ .brand-logo { height: 48px; } }
@@ -205,11 +205,22 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
 .dropdown a span { font-family: var(--font-head); text-transform:uppercase; letter-spacing:.03em; font-weight:600; }
 .dropdown a span small { display:block; font-family: var(--font); text-transform:none; letter-spacing:0; font-weight:500; color:var(--muted); font-size:.76rem; }
 
-.nav-cta { display: flex; align-items: center; gap: 10px; margin-left: 10px; }
+.nav-cta { display: flex; align-items: center; gap: 10px; margin-left: 10px; flex-shrink: 0; }
+.nav-links > a, .nav-item > button, .nav-cta .btn { white-space: nowrap; }
 .icon-btn { position: relative; background: none; border: none; cursor: pointer; padding: 8px; border-radius: var(--radius-sm); color: var(--ink); display:inline-flex; }
 .icon-btn:hover { background: var(--graphite); color:#fff; }
 
 .hamburger { display: none; background: none; border: 2px solid var(--graphite); cursor: pointer; padding: 6px; border-radius: var(--radius-sm); color: var(--graphite); }
+/* The full menu needs about 1,260px. Below that, use the menu button and keep the two order buttons. */
+@media (max-width: 1279px) {
+  .nav-links { display: none; }
+  .nav-cta { margin-left: auto; }
+  .hamburger { display: inline-flex; }
+}
+@media (max-width: 560px) {
+  .nav-cta { display: none; }
+  .hamburger { margin-left: auto; }
+}
 
 /* ---------- Mobile nav ---------- */
 .mobile-nav {
@@ -510,8 +521,7 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
   .form-row { gap: 18px; }
 }
 @media (max-width: 780px) {
-  .nav-links, .nav-cta { display:none; }
-  .hamburger { display:inline-flex; margin-left:auto; }
+  .hamburger { display:inline-flex; }
   .nav { height: 64px; }
   .topbar { font-size:.68rem; letter-spacing:.02em; padding:7px 12px; }
   section { padding: 50px 0; }
@@ -571,4 +581,7 @@ section.container, section.container-wide { padding-top: 76px; padding-bottom: 7
   .split .grid.g2:has(> .card) { grid-template-columns: 1fr 1fr; gap: 12px !important; }
   .split .grid.g2:has(> .card) > .card { padding: 18px 10px !important; }
   .split .grid.g2:has(> .card) > .card h3 { font-size: 1.1rem; }
+}
+@media (max-width: 360px) {
+  .btn-lg { padding: 14px 16px; font-size: .95rem; letter-spacing: .03em; }
 }
