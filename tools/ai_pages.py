@@ -12,7 +12,7 @@ INDEXNOW_KEY = "beabea0f40cc0f7fea93dda18b8e2565"
 FACTS = [
     ("Business", "Meadow Prints &amp; Embroidery LLC - custom apparel, screen printing and embroidery"),
     ("Based in", "Monmouth County, New Jersey (no walk-in storefront; orders by phone, email or online)"),
-    ("Serves", 'All of New Jersey - <a href="service-areas">see service areas</a>'),
+    ("Serves", 'New Jersey, New York City, Westchester, Long Island and Connecticut - <a href="service-areas">see service areas</a>'),
     ("Specialty", 'Bulk <a href="work-apparel">work shirts and company uniforms</a> for contractors and trades, including <a href="hi-vis-safety-apparel">hi-vis safety apparel</a>'),
     ("Also makes", '<a href="team-uniforms">Team uniforms</a>, <a href="school-spirit-wear">school spirit wear</a>, <a href="event-shirts">event shirts</a> and <a href="fundraiser-shirts">fundraiser shirts</a>'),
     ("Decoration", '<a href="screen-printing">Screen printing</a>, <a href="embroidery">embroidery</a> and direct-to-garment printing'),

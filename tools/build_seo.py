@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "32"
+ASSET_V = "33"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -357,11 +357,21 @@ TOWNS = [
 # Towns outside Monmouth County (everything else in TOWNS is Monmouth)
 COUNTY = {s: "Ocean" for s in ("toms-river", "brick", "lakewood", "jackson", "point-pleasant", "stafford-lbi")}
 COUNTY.update({s: "Middlesex" for s in ("old-bridge", "sayreville", "east-brunswick", "edison", "new-brunswick", "monroe", "woodbridge")})
+from towns_tristate import EXTRA_TOWNS, PLACE as _PLACE, REGIONS
+TOWNS += EXTRA_TOWNS
 TOWN_BY_SLUG = {t[0]: t for t in TOWNS}
 
 
+def place(slug):
+    """State, region and county for a town page (Monmouth, Ocean and Middlesex towns live in TOWNS above)."""
+    if slug in _PLACE:
+        return _PLACE[slug]
+    return {"st": "NJ", "state": "New Jersey", "region": "Central Jersey & the Shore",
+            "county": f'{COUNTY.get(slug, "Monmouth")} County'}
+
+
 def town_file(slug):
-    return f"custom-apparel-{slug}-nj.html"
+    return f"custom-apparel-{slug}-{place(slug)['st'].lower()}.html"
 
 
 def town_href(slug):
@@ -406,15 +416,19 @@ def business_ld():
         "url": BASE + "/",
         "logo": BASE + "/images/logo/newlogo.png",
         "image": BASE + "/images/hero/hero.jpg",
-        "description": "Custom apparel shop based in Monmouth County, New Jersey, serving all of New Jersey, offering screen printing, embroidery, and custom t-shirts, hoodies, hats and workwear for businesses, teams, schools and events.",
+        "description": "Custom apparel shop based in Monmouth County, New Jersey, serving New Jersey, New York City and the tri-state area, offering screen printing, embroidery, and custom t-shirts, hoodies, hats and workwear for businesses, teams, schools and events.",
         "foundingDate": b["founded"],
         "founder": {"@type": "Person", "name": b["founder"], "jobTitle": b["founder_title"]},
         "address": address,
         "areaServed": [{"@type": "State", "name": "New Jersey"},
+                       {"@type": "City", "name": "New York, New York"},
+                       {"@type": "AdministrativeArea", "name": "Westchester County, New York"},
+                       {"@type": "AdministrativeArea", "name": "Long Island, New York"},
+                       {"@type": "State", "name": "Connecticut"},
                        {"@type": "AdministrativeArea", "name": "Monmouth County, New Jersey"},
                        {"@type": "AdministrativeArea", "name": "Ocean County, New Jersey"},
                        {"@type": "AdministrativeArea", "name": "Middlesex County, New Jersey"}]
-                      + [{"@type": "City", "name": f"{n.replace(' & ', ' and ')}, NJ"} for _, n, *_ in TOWNS],
+                      + [{"@type": "City", "name": f"{n.replace(' & ', ' and ')}, {place(sl)['st']}"} for sl, n, *_ in TOWNS],
         "knowsAbout": ["Screen printing", "Custom embroidery", "Custom t-shirts", "Direct-to-garment printing",
                        "Team uniforms", "Corporate apparel", "Custom hats", "Workwear"],
         "hasOfferCatalog": {
@@ -582,15 +596,17 @@ def town_chips(slugs, light=False):
 def build_town(i, town, photos):
     slug, name, intro, orders, nearby = town
     path = town_file(slug)
+    pl = place(slug)
+    st, state = pl["st"], pl["state"]
     plural = " & " in name
-    title = f"Custom T-Shirts & Embroidery in {name}, NJ | Meadow Prints"
-    desc = (f"Screen printing, embroidery and custom t-shirts for {name}, NJ businesses, teams and schools. "
-            f"Local Monmouth County shop. Free proof in 24 hours.")
+    title = f"Custom T-Shirts & Embroidery in {name}, {st} | Meadow Prints"
+    desc = (f"Screen printing, embroidery and custom t-shirts for {name}, {st} businesses, crews, teams and schools. "
+            f"Bulk orders, free proof in 24 hours.")
     photo, cap = photos[(i * 5) % len(photos)]
     faqs = [
-        (f"Do you serve {name}, NJ?",
-         f"Yes. Meadow Prints &amp; Embroidery is based in Monmouth County and works with businesses, teams, schools and families in {name} "
-         f"and serves all of New Jersey. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
+        (f"Do you serve {name}, {st}?",
+         f"Yes. Meadow Prints &amp; Embroidery is based in Monmouth County, NJ and works with businesses, teams, schools and families in {name} "
+         f"across the tri-state area. Send us your idea through the <a href=\"quote\">quote form</a> and a real person replies within one business day."),
         (f"How fast can I get custom shirts in {name}?",
          f"Most {name} orders are finished about two weeks after you approve your proof, and rush production is available in as few as 3 days. "
          f"You get a digital proof within 24 hours, and nothing is printed until you approve it."),
@@ -599,8 +615,8 @@ def build_town(i, town, photos):
          "Screen printing is most cost-effective at 12 pieces and up, and we will always point you to the best method for your quantity."),
     ]
     schemas = [
-        service_ld(f"Custom apparel, screen printing and embroidery in {name}, NJ", path,
-                   {"@type": "City", "name": f"{name.replace(' & ', ' and ')}, New Jersey"}, desc),
+        service_ld(f"Custom apparel, screen printing and embroidery in {name}, {st}", path,
+                   {"@type": "City", "name": f"{name.replace(' & ', ' and ')}, {state}"}, desc),
         breadcrumb_ld([("Home", "index.html"), ("Service Areas", "service-areas.html"), (name, path)]),
         faq_ld([(q, strip_tags(a)) for q, a in faqs]),
     ]
@@ -609,8 +625,8 @@ def build_town(i, town, photos):
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / {esc(name)}</div>
-    <span class="eyebrow">Serving {esc(name)}, NJ &middot; {COUNTY.get(slug, "Monmouth")} County</span>
-    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem)">Custom T-Shirts, Screen Printing &amp; Embroidery in {esc(name)}, NJ</h1>
+    <span class="eyebrow">Serving {esc(name)}, {st} &middot; {esc(pl["county"])}</span>
+    <h1 style="font-size:clamp(1.9rem,4.4vw,3.2rem)">Custom T-Shirts, Screen Printing &amp; Embroidery in {esc(name)}, {st}</h1>
     <p class="lead" style="max-width:68ch">{esc(intro)}</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
@@ -628,7 +644,7 @@ def build_town(i, town, photos):
     </ul>
     <div class="hero-cta"><a class="btn btn-primary" href="quote">Start My {esc(name.split(" & ")[0])} Order</a><a class="btn btn-outline" href="gallery">See Our Work</a></div>
   </div>
-  <div class="card reveal" style="padding:0;overflow:hidden"><img src="images/products/{photo}.jpg?v=8" alt="{esc(cap)} by Meadow Prints &amp; Embroidery, serving {esc(name)}, NJ" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3"></div>
+  <div class="card reveal" style="padding:0;overflow:hidden"><img src="images/products/{photo}.jpg?v=8" alt="{esc(cap)} by Meadow Prints &amp; Embroidery, serving {esc(name)}, {st}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3"></div>
 </section>
 
 <section class="band-cream">
@@ -691,38 +707,41 @@ def build_town(i, town, photos):
 # ---------------------------------------------------------------- hub + service pages
 def build_hub():
     path = "service-areas.html"
-    title = "Custom Apparel Service Areas Across New Jersey | Meadow Prints & Embroidery"
-    desc = ("Screen printing, embroidery and custom apparel for all of New Jersey from our Monmouth County shop, "
-            "including Freehold, Red Bank, Toms River, Brick, Lakewood, Edison and more.")
+    title = "Service Areas: NJ, NYC & the Tri-State Area | Meadow Prints & Embroidery"
+    desc = ("Custom apparel, screen printing and embroidery for New Jersey, New York City, Westchester, Long Island "
+            "and Connecticut from our Monmouth County, NJ shop.")
 
-    def cards(county):
+    def cards(region):
         return "".join(
             f'\n      <a class="card reveal" style="padding:22px" href="{town_href(slug)}"><h3 style="margin-bottom:6px">{esc(name)}</h3>'
-            f'<p class="muted mb0" style="font-size:.92rem">Custom t-shirts, screen printing &amp; embroidery in {esc(name)}, NJ</p></a>'
-            for slug, name, *_ in TOWNS if COUNTY.get(slug, "Monmouth") == county)
+            f'<p class="muted mb0" style="font-size:.92rem">{esc(place(slug)["county"])}, {place(slug)["st"]}</p></a>'
+            for slug, name, *_ in TOWNS if place(slug)["region"] == region)
 
     groups = "".join(f"""
-    <h2 class="center" style="margin:{'0' if i == 0 else '56px'} 0 24px">{county} County</h2>
-    <div class="grid g3">{cards(county)}
-    </div>""" for i, county in enumerate(("Monmouth", "Ocean", "Middlesex")))
+    <h2 class="center" style="margin:{'0' if i == 0 else '56px'} 0 24px">{esc(region)}</h2>
+    <div class="grid g3">{cards(region)}
+    </div>""" for i, region in enumerate(REGIONS))
+    area_links = "".join(f'\n      <a class="chip" href="{href(p)}">{esc(label)}</a>' for p, label, *_ in AREAS)
     schemas = [business_ld(), breadcrumb_ld([("Home", "index.html"), ("Service Areas", path)])]
     body = f"""
 <section class="page-hero">
   <div class="container">
     <div class="breadcrumbs"><a href="/">Home</a> / Service Areas</div>
-    <span class="eyebrow">Serving all of New Jersey</span>
-    <h1>Custom apparel for all of New Jersey</h1>
-    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is based in Monmouth County and serves businesses, crews, teams and schools all over <a href="custom-apparel-new-jersey">New Jersey</a>. We screen print and embroider custom t-shirts, work shirts, hoodies, hats and uniforms, and deliver them wherever you are in the state. Here are some of the towns we work with most.</p>
+    <span class="eyebrow">NJ, NYC &amp; the tri-state area</span>
+    <h1>Custom apparel across the tri-state area</h1>
+    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey and works with businesses, crews, teams and schools across New Jersey, New York City, Westchester, Long Island and Connecticut. We screen print and embroider custom t-shirts, work shirts, hoodies, hats and uniforms and deliver them wherever you are.</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
       <a class="btn btn-outline btn-lg" href="work-apparel">Work Apparel</a>
+    </div>
+    <div class="chip-row mt3">{area_links}
     </div>
   </div>
 </section>
 
 <section>
   <div class="container">{groups}
-    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We serve all of New Jersey - every county, every town. <a href="quote">Ask us for a quote</a>.</p>
+    <p class="center muted mt4" style="max-width:60ch;margin-left:auto;margin-right:auto">Don't see your town? We work with customers all over the tri-state area. <a href="quote">Ask us for a quote</a>.</p>
   </div>
 </section>
 
@@ -730,7 +749,7 @@ def build_hub():
   <div class="container">
     <div class="center" style="max-width:640px;margin:0 auto 44px">
       <span class="eyebrow">What we do</span>
-      <h2>Services across New Jersey</h2>
+      <h2>Services across the tri-state area</h2>
     </div>
     {service_grid()}
   </div>
@@ -740,32 +759,79 @@ def build_hub():
     return path
 
 
-def build_nj():
-    path = "custom-apparel-new-jersey.html"
-    title = "Custom T-Shirts, Screen Printing & Embroidery in New Jersey | Meadow Prints"
-    desc = ("New Jersey custom apparel shop for bulk work shirts, company uniforms, screen printing and embroidery. "
-            "Based in Monmouth County and serving every county in New Jersey.")
-    faqs = [
-        ("Where in New Jersey are you located?",
-         "We're based in Monmouth County. We don't have a walk-in storefront - orders are placed by phone, email or online."),
-        ("Do you work with businesses outside Monmouth County?",
-         "Yes. We serve all of New Jersey - North Jersey, Central Jersey and South Jersey - and deliver finished orders anywhere in the state."),
-        ("What's the best way to start a company or crew order?",
-         "Send a quote request or call (732) 763-6078 with the garments, rough quantity and your logo. You'll get a quote and a free digital proof within 24 hours."),
-    ]
-    schemas = [
-        service_ld("Custom apparel, screen printing and embroidery in New Jersey", path, {"@type": "State", "name": "New Jersey"}, desc),
-        breadcrumb_ld([("Home", "index.html"), ("Service Areas", "service-areas.html"), ("New Jersey", path)]),
-        faq_ld([(q, strip_tags(a)) for q, a in faqs]),
-    ]
-    chips = lambda county: "".join(f'\n      <a class="chip" href="{town_href(t[0])}">{esc(t[1])}</a>' for t in TOWNS if COUNTY.get(t[0], "Monmouth") == county)
-    body = f"""
+# Area landing pages: path, label, title, h1, lead, regions shown, schema area, FAQs
+AREAS = [
+    ("custom-apparel-new-jersey.html", "New Jersey",
+     "Custom T-Shirts, Screen Printing & Embroidery in New Jersey | Meadow Prints",
+     "Custom t-shirts, work shirts & embroidery for New Jersey",
+     "Meadow Prints & Embroidery is a New Jersey custom apparel shop based in Monmouth County. We specialize in bulk work shirts and uniforms for contractors and trades, and we screen print and embroider for businesses, teams, schools and events in every corner of the state - North, Central and South Jersey.",
+     ["Central Jersey & the Shore", "North Jersey", "South Jersey"], {"@type": "State", "name": "New Jersey"},
+     [("Where in New Jersey are you located?",
+       "We're based in Monmouth County. We don't have a walk-in storefront - orders are placed by phone, email or online."),
+      ("Do you work with businesses outside Monmouth County?",
+       "Yes. We serve all of New Jersey - North Jersey, Central Jersey and South Jersey - and deliver finished orders anywhere in the state.")]),
+    ("custom-apparel-new-york-city.html", "New York City",
+     "Custom T-Shirts, Work Shirts & Embroidery in NYC | Meadow Prints",
+     "Custom t-shirts, work shirts & embroidery for New York City",
+     "From our shop in New Jersey we make bulk crew shirts, hi-vis apparel, embroidered company uniforms, restaurant staff shirts and event apparel for businesses in Manhattan, Brooklyn, Queens, the Bronx and Staten Island.",
+     ["New York City"], {"@type": "City", "name": "New York, New York"},
+     [("Do you work with New York City businesses?",
+       "Yes. We work with contractors, restaurants, offices and organizations in all five boroughs and deliver finished orders to your site, shop or office."),
+      ("Where are you located?",
+       "Our shop is in Monmouth County, New Jersey. We don't have a walk-in storefront - orders are placed by phone, email or online.")]),
+    ("custom-apparel-westchester-ny.html", "Westchester",
+     "Custom T-Shirts, Work Shirts & Embroidery in Westchester, NY | Meadow Prints",
+     "Custom apparel for Westchester County",
+     "We make embroidered company apparel, bulk crew shirts, hi-vis gear and team uniforms for businesses and organizations in White Plains, Yonkers, New Rochelle and across Westchester County.",
+     ["Westchester County, NY"], {"@type": "AdministrativeArea", "name": "Westchester County, New York"},
+     [("Do you serve Westchester County?",
+       "Yes. We work with businesses, crews, schools and teams throughout Westchester and deliver finished orders to you."),
+      ("Where are you located?",
+       "Our shop is in Monmouth County, New Jersey. Orders are placed by phone, email or online.")]),
+    ("custom-apparel-long-island-ny.html", "Long Island",
+     "Custom T-Shirts, Work Shirts & Embroidery on Long Island | Meadow Prints",
+     "Custom apparel for Long Island",
+     "We make bulk crew shirts for contractors and landscapers, embroidered company apparel, staff uniforms and team gear for businesses across Nassau and Suffolk Counties.",
+     ["Long Island, NY"], {"@type": "AdministrativeArea", "name": "Long Island, New York"},
+     [("Do you serve Long Island?",
+       "Yes. We work with businesses and organizations in Nassau and Suffolk Counties and deliver finished orders to you."),
+      ("Where are you located?",
+       "Our shop is in Monmouth County, New Jersey. Orders are placed by phone, email or online.")]),
+    ("custom-apparel-connecticut.html", "Connecticut",
+     "Custom T-Shirts, Work Shirts & Embroidery in Connecticut | Meadow Prints",
+     "Custom apparel for Connecticut",
+     "We make embroidered company apparel, bulk work shirts, hi-vis gear and staff uniforms for businesses in Stamford, Greenwich, Norwalk, Bridgeport and across Fairfield County.",
+     ["Connecticut"], {"@type": "State", "name": "Connecticut"},
+     [("Do you serve Connecticut?",
+       "Yes. We work with businesses and organizations in Fairfield County and beyond and deliver finished orders to you."),
+      ("Where are you located?",
+       "Our shop is in Monmouth County, New Jersey. Orders are placed by phone, email or online.")]),
+]
+
+
+def build_areas():
+    paths = []
+    for path, label, title, h1, lead, regions, area, faqs in AREAS:
+        faqs = faqs + [("What's the best way to start a company or crew order?",
+                        "Send a quote request or call (732) 763-6078 with the garments, rough quantity and your logo. You'll get a quote and a free digital proof within 24 hours.")]
+        desc = lead.split(". ")[0] + ". Bulk work shirts, free proof in 24 hours."
+        schemas = [
+            service_ld(f"Custom apparel, screen printing and embroidery in {label}", path, area, desc),
+            breadcrumb_ld([("Home", "index.html"), ("Service Areas", "service-areas.html"), (label, path)]),
+            faq_ld([(q, strip_tags(a)) for q, a in faqs]),
+        ]
+        groups = "".join(f"""
+    <h3 class="mt3" style="margin-bottom:12px">{esc(region)}</h3>
+    <div class="chip-row" style="justify-content:center">{"".join(f'<a class="chip" href="{town_href(t[0])}">{esc(t[1])}</a>' for t in TOWNS if place(t[0])["region"] == region)}
+    </div>""" for region in regions)
+        others = "".join(f'\n      <a class="chip" href="{href(p)}">{esc(l)}</a>' for p, l, *_ in AREAS if p != path)
+        body = f"""
 <section class="page-hero">
   <div class="container">
-    <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / New Jersey</div>
-    <span class="eyebrow">New Jersey custom apparel</span>
-    <h1>Custom t-shirts, work shirts &amp; embroidery for New Jersey</h1>
-    <p class="lead" style="max-width:66ch">Meadow Prints &amp; Embroidery is a New Jersey custom apparel shop based in Monmouth County. We specialize in bulk work shirts and uniforms for contractors and trades, and we screen print and embroider for businesses, teams, schools and events in every corner of the state.</p>
+    <div class="breadcrumbs"><a href="/">Home</a> / <a href="service-areas">Service Areas</a> / {esc(label)}</div>
+    <span class="eyebrow">{esc(label)} custom apparel</span>
+    <h1>{esc(h1)}</h1>
+    <p class="lead" style="max-width:66ch">{esc(lead)}</p>
     <div class="hero-cta">
       <a class="btn btn-primary btn-lg" href="quote">Get a Free Quote</a>
       <a class="btn btn-outline btn-lg" href="tel:+17327636078">Call (732) 763-6078</a>
@@ -786,28 +852,23 @@ def build_nj():
 <section>
   <div class="container center">
     <span class="eyebrow">Where we work</span>
-    <h2>Towns we serve</h2>
-    <h3 class="mt3" style="margin-bottom:12px">Monmouth County</h3>
-    <div class="chip-row" style="justify-content:center">{chips("Monmouth")}
-    </div>
-    <h3 class="mt4" style="margin-bottom:12px">Ocean County</h3>
-    <div class="chip-row" style="justify-content:center">{chips("Ocean")}
-    </div>
-    <h3 class="mt4" style="margin-bottom:12px">Middlesex County</h3>
-    <div class="chip-row" style="justify-content:center">{chips("Middlesex")}
+    <h2>Towns we serve in {esc(label)}</h2>{groups}
+    <h3 class="mt4" style="margin-bottom:12px">Also serving</h3>
+    <div class="chip-row" style="justify-content:center">{others}
     </div>
   </div>
 </section>
 
 <section class="band-cream">
   <div class="container" style="max-width:820px">
-    <h2 style="margin-bottom:20px">New Jersey custom apparel FAQ</h2>
+    <h2 style="margin-bottom:20px">{esc(label)} custom apparel FAQ</h2>
     {accordion(faqs)}
   </div>
 </section>
 {cta("Ready to get started?", "Tell us your town, your quantity and your logo and we'll reply within one business day.")}"""
-    (ROOT / path).write_text(page(path, title, desc, schemas, body))
-    return path
+        (ROOT / path).write_text(page(path, title, desc, schemas, body))
+        paths.append(path)
+    return paths
 
 
 def build_service(path, name, title, desc, eyebrow, h1, lead, best_for, photo, photo_alt, sections, faqs):
@@ -905,7 +966,7 @@ def build_services():
          ("Can you screen print on hoodies and other garments?",
           "Yes. We print tees, long sleeves, tanks, hoodies, crewneck sweatshirts and many bags and performance fabrics."),
          ("Do you serve my town?",
-          "We're based in Monmouth County and serve all of New Jersey, from Freehold, Red Bank and the Shore towns to North and South Jersey. See our <a href=\"service-areas\">service areas</a>.")]))
+          "We're based in Monmouth County, NJ and serve New Jersey, New York City and the tri-state area. See our <a href=\"service-areas\">service areas</a>.")]))
     out.append(build_service(
         "custom-t-shirts.html", "Custom T-Shirts",
         "Custom T-Shirts in Monmouth County, NJ | Meadow Prints & Embroidery",
@@ -931,7 +992,7 @@ def build_services():
          ("Can you help with my design?",
           "Yes. Every order includes a free art review, and we can create a mockup from a rough idea or an existing logo."),
          ("Where are you located?",
-          "Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey, and serves the whole state. See our <a href=\"service-areas\">service areas</a>.")]))
+          "Meadow Prints &amp; Embroidery is based in Monmouth County, New Jersey, and serves the tri-state area. See our <a href=\"service-areas\">service areas</a>.")]))
     return out
 
 
@@ -1050,7 +1111,9 @@ def build_robots():
 
 def build_llms(catalog):
     b = BUSINESS
-    towns = "\n".join(f"- [{name}]({url(town_file(slug))})" for slug, name, *_ in TOWNS)
+    towns = "\n\n".join(f"### {region}\n\n" + "\n".join(f"- [{name}]({url(town_file(slug))})" for slug, name, *_ in TOWNS if place(slug)["region"] == region)
+                          for region in REGIONS)
+    towns = "\n".join(f"- [{label}]({url(p)})" for p, label, *_ in AREAS) + "\n\n" + towns
     brands = "\n".join(f"- [{name}]({BASE}/brands/{slug}): {count} styles" for name, slug, count, _ in catalog["brands"])
     import work_pages
     work_md = "\n".join(f"- [{name} uniforms]({BASE}/work-apparel/{slug})" for slug, name, *_ in work_pages.INDUSTRIES)
@@ -1060,7 +1123,7 @@ def build_llms(catalog):
 
 ## Key facts
 
-- Location: based in Monmouth County, New Jersey; serves all of New Jersey
+- Location: based in Monmouth County, New Jersey; serves New Jersey, New York City, Westchester, Long Island and Connecticut
 - Phone: (732) 763-6078
 - Email: {b["email"]}
 - Hours: Monday-Friday 8am-7pm, Saturday 10am-4pm, closed Sunday (Eastern Time)
@@ -1111,7 +1174,7 @@ Meadow Prints focuses on crew and company orders: work tees, hi-vis and ANSI saf
 
 {brands}
 
-## Service areas (all of New Jersey; town pages below)
+## Service areas (New Jersey and the tri-state area)
 
 {towns}
 
@@ -1158,12 +1221,13 @@ def build_404():
 def main():
     import sys
     import catalog_pages
-    for old in ROOT.glob("custom-apparel-*-nj.html"):
-        old.unlink()
+    for pattern in ("custom-apparel-*-nj.html", "custom-apparel-*-ny.html", "custom-apparel-*-ct.html"):
+        for old in ROOT.glob(pattern):
+            old.unlink()
     photos = gallery()
     towns = [build_town(i, t, photos) for i, t in enumerate(TOWNS)]
     build_hub()
-    towns.append(build_nj())
+    towns += build_areas()
     build_services()
     patch_existing()
     import ai_pages
