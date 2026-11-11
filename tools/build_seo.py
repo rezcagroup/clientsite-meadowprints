@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "33"
+ASSET_V = "34"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -48,7 +48,7 @@ TOWNS = [
       "Staff tees and aprons for Main Street restaurants, bars and cafes",
       "Spirit wear and booster-club merch for Freehold school teams",
       "Hi-vis hoodies and work shirts for local contractors and trades"],
-     ["manalapan", "howell", "colts-neck", "marlboro"]),
+     ["freehold-township", "manalapan", "howell", "colts-neck", "marlboro", "farmingdale"]),
     ("red-bank", "Red Bank",
      "Red Bank packs a lot into a small downtown: the boutiques and restaurants on Broad Street, the theaters and galleries, and a riverfront that fills up for events all year. We make custom apparel for Red Bank shops, restaurants, nonprofits and event organizers who want merch people actually keep wearing.",
      ["Branded tees and hats for Broad Street boutiques, salons and restaurants",
@@ -71,19 +71,19 @@ TOWNS = [
       "Fundraiser shirts for school and community groups"],
      ["freehold", "wall", "manalapan", "colts-neck"]),
     ("marlboro", "Marlboro",
-     "Marlboro families are always on a field, in a gym or at a school event, and local businesses along Routes 9 and 79 serve them year-round. We make the spirit wear, team apparel and branded staff gear that keeps Marlboro looking sharp.",
-     ["Spirit wear and team apparel for Marlboro school and rec programs",
-      "Dance, cheer and gymnastics studio jackets and bags",
-      "Embroidered polos for medical, dental and professional offices",
-      "Bar and bat mitzvah, birthday and family event shirts"],
-     ["manalapan", "freehold", "holmdel", "matawan-aberdeen"]),
+     "Marlboro is one of our busiest towns. Contractors, landscapers and service companies work out of Marlboro and Morganville, businesses line Routes 9, 79 and 520, and families are always on a field, in a gym or at a school event. We make crew shirts, company uniforms, spirit wear and team apparel for all of it.",
+     ["Crew tees, hoodies and hi-vis gear for Marlboro contractors, landscapers and pool companies",
+      "Embroidered polos and jackets for medical, dental and professional offices",
+      "Spirit wear and team apparel for Marlboro school and rec programs",
+      "Dance, cheer and gymnastics studio jackets, plus bar and bat mitzvah and family event shirts"],
+     ["morganville", "manalapan", "englishtown", "freehold-township", "freehold", "holmdel", "colts-neck", "matawan-aberdeen", "old-bridge"]),
     ("manalapan", "Manalapan",
      "From the Route 9 corridor to the fields at the rec complex, Manalapan and neighboring Englishtown keep busy with youth sports, school activities and family-run businesses. We supply custom t-shirts, hoodies and embroidered gear for all of it.",
      ["Uniforms and sideline gear for Manalapan rec and travel teams",
       "School club, band and graduating-class shirts",
       "Branded apparel for Route 9 retailers, restaurants and fitness studios",
       "Embroidered caps and jackets for local trades"],
-     ["marlboro", "freehold", "millstone-upper-freehold", "howell"]),
+     ["marlboro", "englishtown", "freehold-township", "millstone-upper-freehold", "howell", "jamesburg"]),
     ("holmdel", "Holmdel",
      "Holmdel mixes quiet neighborhoods and farms with the companies and shops at Bell Works. We make polished embroidered apparel for Holmdel offices and startups, plus team and school gear for local families.",
      ["Embroidered polos, vests and quarter-zips for offices and tech teams",
@@ -782,7 +782,7 @@ AREAS = [
     ("custom-apparel-westchester-ny.html", "Westchester",
      "Custom T-Shirts, Work Shirts & Embroidery in Westchester, NY | Meadow Prints",
      "Custom apparel for Westchester County",
-     "We make embroidered company apparel, bulk crew shirts, hi-vis gear and team uniforms for businesses and organizations in White Plains, Yonkers, New Rochelle and across Westchester County.",
+     "We make embroidered company apparel, bulk crew shirts, hi-vis gear and team uniforms for businesses and organizations in White Plains, Yonkers, New Rochelle, Mount Vernon, Scarsdale, Rye, Port Chester, Mamaroneck, Tarrytown, Ossining, Peekskill, Mount Kisco and across Westchester County.",
      ["Westchester County, NY"], {"@type": "AdministrativeArea", "name": "Westchester County, New York"},
      [("Do you serve Westchester County?",
        "Yes. We work with businesses, crews, schools and teams throughout Westchester and deliver finished orders to you."),
