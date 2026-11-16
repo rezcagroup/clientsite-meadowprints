@@ -20,7 +20,7 @@ import re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BASE = "https://www.meadowprintsandembroidery.com"
-ASSET_V = "34"
+ASSET_V = "36"
 TODAY = datetime.date.today().isoformat()
 
 BUSINESS = {
@@ -569,7 +569,7 @@ SERVICE_CARDS = [
     ("thread", "Custom Embroidery", "Stitched logos for polos, hats, jackets and bags with a premium finish.", "embroidery"),
     ("shirt", "Custom T-Shirts", "Tees for teams, events and businesses, from one-offs to hundreds.", "custom-t-shirts"),
     ("cap", "Hats &amp; Caps", "Truckers, snapbacks and beanies, embroidered or patched.", "products/hats"),
-    ("jacket", "Hoodies &amp; Outerwear", "Hoodies, crews, quarter-zips and jackets for crews and fans.", "products/hoodies"),
+    ("hoodie", "Hoodies &amp; Outerwear", "Hoodies, crews, quarter-zips and jackets for crews and fans.", "products/hoodies"),
     ("target", "Team &amp; Spirit Wear", "Uniforms, warmups and fan gear with names and numbers.", "use-cases/sports"),
 ]
 
