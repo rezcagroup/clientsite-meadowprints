@@ -32,31 +32,53 @@
 <body>
 <div id="site-header"></div>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO (embroidery machine video; plays once and stops on the finished logo) -->
+<style>
+  .hero-video { position: relative; overflow: hidden; border-bottom: 2px solid var(--graphite); background: #001434; min-height: 560px; display: flex; align-items: center; padding: 0; }
+  .hero-video .media { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: min(62%, 1100px); height: auto; aspect-ratio: 16 / 9;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24%); mask-image: linear-gradient(90deg, transparent 0, #000 24%); }
+  .hero-video video, .hero-video .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-video .scrim { display: none; }
+  .hero-video .container { position: relative; z-index: 2; width: 100%; }
+  .hero-video .copy { max-width: 480px; padding: 64px 0 72px; color: #fff; }
+  .hero-video .eyebrow { color: #fff; border-color: rgba(255,255,255,.55); }
+  .hero-video h1 { color: #fff; font-size: clamp(2.3rem, 4.4vw, 3.6rem); }
+  .hero-video h1 span { color: #ff4fa3; }
+  .hero-video .lead { color: #d7deea; max-width: 36ch; }
+  .hero-video .btn-outline { color: #fff; border-color: #fff; }
+  .hero-video .btn-outline:hover { background: #fff; color: var(--graphite); }
+  .hero-video .hero-trust { background: rgba(255,255,255,.96); }
+  @media (max-width: 1000px) {
+    .hero-video { display: block; min-height: 0; }
+    .hero-video .media { position: relative; top: auto; transform: none; height: auto; width: 100%; aspect-ratio: 16 / 9; -webkit-mask-image: none; mask-image: none; }
+    .hero-video .scrim { display: none; }
+    .hero-video .copy { max-width: none; text-align: center; padding: 32px 0 48px; }
+    .hero-video .lead { margin-left: auto; margin-right: auto; }
+    .hero-video .hero-cta, .hero-video .hero-trust { justify-content: center; margin-left: auto; margin-right: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-video video { display: none; } }
+</style>
+<section class="hero-video">
+  <div class="media">
+    <img class="poster" src="images/hero/stitch-hero-end.jpg" width="1344" height="768" alt="Meadow Prints and Embroidery logo embroidered on a navy shirt by a commercial embroidery machine">
+    <video autoplay muted playsinline preload="auto" poster="images/hero/stitch-hero-poster.jpg" aria-hidden="true">
+      <source src="images/hero/stitch-hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="scrim"></div>
   <div class="container">
-    <div class="hero-grid">
-      <div>
-        <span class="eyebrow"><span data-icon="leaf"></span> Monmouth County, NJ custom apparel</span>
-        <h1>Custom shirts your group will <span>actually love</span>.</h1>
-        <p class="lead">From one embroidered polo to 500 screen-printed tees, our Monmouth County shop turns your idea into wear-it-everywhere gear - with free design help and a 100% happiness guarantee.</p>
-        <div class="hero-cta">
-          <a class="btn btn-primary btn-lg" href="products">Browse Products</a>
-          <a class="btn btn-outline btn-lg" href="quote">Get a Quote</a>
-        </div>
-        <div class="hero-trust">
-          <div><strong>5.0★</strong><span>5-star rated</span></div>
-          <div><strong>24-hr</strong><span>proof turnaround</span></div>
-          <div><strong>Free</strong><span>design help</span></div>
-        </div>
+    <div class="copy">
+      <span class="eyebrow"><span data-icon="thread"></span> Monmouth County, NJ custom apparel</span>
+      <h1>Custom shirts your group will <span>actually love</span>.</h1>
+      <p class="lead">From one embroidered polo to 500 screen-printed tees, our Monmouth County shop turns your idea into wear-it-everywhere gear - with free design help and a 100% happiness guarantee.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent btn-lg" href="products">Browse Products</a>
+        <a class="btn btn-outline btn-lg" href="quote">Get a Quote</a>
       </div>
-      <div class="hero-art">
-        <div class="hero-card" style="padding:12px;transform:none">
-          <img src="images/hero/hero-920.jpg" width="920" height="614" fetchpriority="high" alt="Custom branded apparel and gear by Meadow Prints and Embroidery in Monmouth County, NJ - hoodie, tee, cap, tumbler, notebook and duffel" style="border-radius:var(--radius);display:block;width:100%;height:auto">
-        </div>
-        <div class="float-badge" style="top:-14px; left:-18px;"><span class="fb-ico" style="background:var(--green-600)"><span data-icon="star"></span></span>No order minimums*</div>
-        <div class="float-badge" style="bottom:24px; right:-22px;"><span class="fb-ico" style="background:var(--hivis)">★</span>Free proof in 24h</div>
-        <div class="float-badge" style="bottom:-16px; left:30px;"><span class="fb-ico" style="background:var(--graphite)"><span data-icon="thread"></span></span>In-house embroidery</div>
+      <div class="hero-trust">
+        <div><strong>5.0★</strong><span>5-star rated</span></div>
+        <div><strong>24-hr</strong><span>proof turnaround</span></div>
+        <div><strong>Free</strong><span>design help</span></div>
       </div>
     </div>
   </div>
